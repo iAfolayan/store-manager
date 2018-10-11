@@ -241,6 +241,7 @@ input[type=search] {
 	margin-top: 7px;
 	height:250px;
 	position: relative;
+	text-align: center;
 }
 
 .productHolderCard img{
