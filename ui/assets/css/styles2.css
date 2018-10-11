@@ -1,0 +1,617 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	font-family: arial;
+}
+html{
+	margin: 0;
+	height: 100vh;
+}
+.logincover {
+	background: url("../images/bg2.jpg") no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+a {
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none;
+}
+ul {
+	list-style-position: inside;
+	padding-left: 0;
+}
+ul>li {
+	text-decoration: none;
+	list-style: none;
+}
+.pageWrapper {
+	width: 80%;
+	min-height: 400px;
+	margin: 0 auto;
+	margin-top: 50px;
+	padding: 20px;
+	padding-top: 20px;
+}
+.pageWrapper a{
+	color: #fff;
+}
+.pageWrapper a:hover{
+	color: #fff;
+}
+#logo {
+	width: 100px;
+	height: 100px;
+	margin: 0 auto;
+	border-radius: 100%;
+	background: url('../images/logo.png') no-repeat center;
+}
+.pageWrapper h1 {
+	font-size: 2em;
+	text-align: center;
+	color: #fff;
+}
+.clearAll {
+	clear: both;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+/* Login Form styling */
+.formElement {
+	margin:0 auto;
+	width: 80%;
+	background-color: #1212124d;
+	padding: 20px;
+	border-radius: 5px;
+}
+.formInput, input[type=search] {
+	width: 94%;
+	outline: none;
+	padding: 10px;
+	margin:0 auto;
+	border:1px solid #000;
+	border-radius: 5px;
+	margin-bottom: 15px;
+}
+.formInput:focus {
+	border-color: #0f488a;
+  	outline: 0;
+  	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+  	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+.loginBtn, .editBtn, .deleteBtn {
+	background-color: #1c41a9;
+	color: #fff;
+	width: 100%;
+	padding:15px;
+	outline:none;
+	border:none;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+	border-radius: 5px;
+	margin-top: 15px;
+}
+.loginBtn:hover {
+	background-color: #0f488a;
+	cursor: pointer;
+	-webkit-transition: background 1s;
+	-o-webkit-transition: background 0.5s;
+	-ms-webkit-transition: background 0.5s;
+}
+.editBtn, .deleteBtn {
+	float: left;
+	padding: 6px;
+	letter-spacing: 2px;
+}
+.deleteBtn {background-color: #941313;}
+.editBtn {background-color: #0f8a3a;}
+label {
+	font-weight: bold;
+	color: white;
+}
+.recPassword {
+	color: #fff;
+	text-align: center;
+	display: block;
+	margin-top: 20px;
+}
+.recPassword>a{
+	font-size: 12px;
+	text-transform: uppercase;
+}
+footer {
+	margin-top: 50px;
+	text-align: center;
+	color: #fff;
+}
+
+/* DASHBOARD */
+.bodyWrapper { width: 100% }
+.sidebar{
+	width: 25%;
+	height: 100vh;
+	position: fixed;
+	background-color: #0f488a;
+	color: #fff;
+	padding:10px;
+	display: none;
+}
+nav>ul>li {
+	line-height: 40px;
+}
+
+nav>ul>li>a {
+	color: #FFF;
+}
+
+#usrManagement, #prdManagement, #rptManagement{
+	font-size: 18px;
+}
+.usrChild>ul>li , .prdChild>ul>li, .rptChild>ul>li{
+	line-height: 30px;
+	margin: 0;
+	padding-left: 15px;
+	display: block;
+	font-size: 15px;
+}
+.usrChild>ul>li:hover, .prdChild>ul>li:hover, .rptChild>ul>li:hover {
+	background-color: #041a33;
+	display: block
+}
+.usrChild>ul>li>a, .prdChild>ul>li>a, .rptChild>ul>li>a {
+	color: #FFF
+}
+.usrChild>ul>li>a:hover, .prdChild>ul>li>a:hover, .rptChild>ul>li>a:hover { color: #FFF }
+
+/* PRODUCT STYLING */
+/*Styles books page*/
+.mainPage {
+	width: 94%;
+	min-height: 200px;
+	float: left;
+	padding: 10px;
+	/* margin-bottom: 50px; */
+}
+.searchForm{
+	width: 100%;
+	float: left;
+}
+.searchButton {
+	margin-left: 10px;
+	background: #0f488a;
+	padding: 8px;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	float: left;
+}
+input[type=search] {
+	width: 84%;
+	cursor: pointer;
+	float: left;
+	margin-top: -2px;
+	border-radius: 10px;
+}
+.mainHeader {
+	width: 100%;
+	height: 40px;
+	/* padding-top: 20px; */
+	margin-bottom: 20px;
+}
+
+.product-holder-title h1{
+	font-size: 40px;
+	padding: 0;
+	margin:20px;
+	color: #0F488A;
+}
+
+.productHolder{
+	/*height: 350px;*/
+	margin: 0 auto;
+	min-height: 200px;
+	width: 100%;
+	float: left;
+}
+.card_4_column {
+	width: 100%;
+	float: left;
+	margin-bottom: 20px;
+}
+.productHolderCard{
+	max-height: 360px;
+	max-width: 222px;
+	border-radius: 5px;
+	padding-bottom: 15px;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
+	margin: auto;
+}
+
+.product-title{
+	padding-top: 5px;
+	text-align:center;
+}
+
+.productHolderCard .img-holder{
+	max-height: 250px;
+	max-width: 200px;
+	margin: 0 auto;
+	margin-top: 7px;
+	height:250px;
+	position: relative;
+}
+
+.productHolderCard img{
+	max-height: 201px;
+	max-width: 200px;
+	margin: 0 auto;
+	margin-top: 7px;
+	min-height: 25px;
+	min-width: auto;
+}
+
+.productHolderCard .img-overlay{
+	max-height: 91.2px;
+	max-width: 200px;
+	position: absolute;
+	right:0;
+	left: 0;
+	bottom: -7px;
+	overflow: hidden;
+	height: 0%; 
+	-webkit-transition: height 0.5s;
+	background: #0F488A;;
+	color: white;
+	display: flex;
+	align-items:center;
+	justify-content:center;
+}
+
+.productHolderCard:hover .img-overlay{
+	height: 100%;
+}
+.productHolderCard:hover{
+	box-shadow: 0 2px 21px 0 rgba(0,0,0,0.19);
+}
+
+.productHolderCard .dets{
+	max-height: 70px;
+	max-width:200px;
+	margin:15px auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 25px;
+}
+
+.productHolderCard a {
+	text-decoration: none;
+	color: #000;
+}
+
+.product-holder-prot .dets {
+	margin: auto;
+	text-align: center;	
+}
+article {
+	text-align: center;
+    font-size: 14px;
+    line-height: 25px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.img-holder h3 {
+	text-align: center;
+	font-size: 13px;
+}
+.bodyWrapper footer {
+	text-align: center;
+	color: #000;
+}
+
+.mainPage hr {
+	width: 100%;
+	border-color: #ece9e930;
+}
+button {
+	background-color: #5791da;
+	color: #fff;
+	text-transform: uppercase;
+	padding: 8px;
+	border: none;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+button:hover {
+	background-color: #0F488A;
+}
+.productHolder>h3, .userFormControl>h3, .modifyProduct>h3 {
+	margin-left: 20px;
+	margin-bottom: 30px;
+	padding-bottom: 15px;
+	color: #0F488A;
+	border-bottom: 1px solid #fbf8f8;
+	border-width: thin;
+	width: 90%;
+}
+.userFormControl> h2 {
+	text-align: center;
+	text-transform: uppercase;
+	margin: 50px auto;
+}
+.deleteIcon { width: 100%; text-align: center; }
+.deleteIcon img {
+	margin:0px auto;
+	width: 20%
+}
+
+/* END OF PRODUCT STYLING */
+
+/* CREATE USER FORM STYLING */
+.userFormControl, .modifyProduct {
+	margin: 0 auto;
+	width: 85%;
+	margin-top: 50px
+	border-radius:10px;
+}
+.userFormControl label {
+	color: #000
+}
+.column_6 {
+	width: 100%;
+	float: left;
+}
+sup {
+	color: #f00
+}
+textarea {
+	resize: none;
+}
+.btnSpacing {
+	margin-bottom: 77px;
+}
+/* END OF CREATE USER FORM */
+/* Modify Product Holder */
+.modifyProduct {
+	width: 95%;
+}
+/* TABLE STYLING */
+.tblDisplay {
+	vertical-align: top;
+	text-align: left;
+	border-collapse: collapse;
+	overflow-x: auto;
+	width: 100%
+}
+
+.tblDisplay img {
+	width: 15%
+}
+thead{
+	background-color: #0f488a;
+	color: #FFF;
+	text-transform: uppercase;
+}
+
+caption {
+	text-align:left;
+	font-size: 20px;
+	color: #0f488a;
+	padding-bottom: 10px;
+	padding-top: 20px;
+}
+
+caption>span {
+	color: #F00;
+	font-weight: bold;
+}
+
+
+/* PRODUCT DETAILS */
+.productImageHolder {
+	float: left;
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+}
+.productInformation>h4 , .productImageHolder>h4 {
+	color: #0f488a;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 15px;
+}
+.productImageHolder>h4 {
+	border-top: 1px solid #ccc;
+	/* text-align: center; */
+	padding-top: 15px;
+}
+.productInformation {
+	float: left;
+	width: 100%;
+	padding:10px;
+}
+.productInformation article {
+	text-align:justify;
+	line-height: 30px;
+	margin-top: 20px;
+}
+.proDetails {
+	/* float: right; */
+	margin-top: 50px;
+	width: 100%;
+	text-align: right;
+	font-size: 12px;
+	/* color: blue; */
+}
+.proDetails a{
+	color: #0f488a;
+}
+.productInformation label {
+	color: #000
+}
+.mHolder {width: 100%;
+margin-bottom: 15px;
+}
+
+/* ENDING OF PRODUCT DETAILS */
+/*******************************************************/
+/****Content Area Media Queries for phones and tabs*****/
+/*******************************************************/
+
+/* Small devices (tablets, 768px and up) */
+@media only screen and (min-width: 768px){
+.pageWrapper {
+	width: 60%;
+	margin-top: 30px;
+	padding: 20px;
+	padding-top: 20px;
+}
+.card_4_column {
+	width: 50%;
+	float: left;
+}
+
+.mainPage hr {
+	width: 75%;
+}
+.userFormControl {
+	width: 60%;
+	margin-top: 50px
+}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media only screen and (min-width: 992px){
+/* PAGE WRAPPER */
+.pageWrapper {
+	width: 40%;
+	margin-top: 60px;
+	padding: 30px;
+	padding-top: 40px;
+}
+.pageWrapper h1 {
+	font-size: 3em;
+}
+
+/* LOGIN STYLING */
+.formElement {
+	width: 70%;
+}
+
+.loginBtn {
+	background-color: #1c41a9;
+	width: 30%;
+	float: right;
+	margin-top: 0px;
+	margin-right: 17px;
+}
+.editBtn, .deleteBtn {
+    width: 36%;
+    text-align: center;
+    font-size: 12px;
+    margin-right: 8px;
+}
+
+label {
+	font-weight: bold;
+	color: #fff;
+}
+.recPassword {
+	color: #fff;
+	text-align: center;
+	display: inline;
+	line-height: 35px;
+}
+
+/* DASHBOARD */
+.sidebar{
+	width: 15%;
+	display: block;
+}
+.card_4_column {
+	width: 25%;
+	float: left;
+}
+
+.mainPage { width: 83%; float: right; 	padding:10px; }
+.mainHeader { width: 100% }
+.mainPage hr {
+	width: 50%;
+}
+.searchForm{
+	width: 25%;
+	float: right;
+}
+.searchButton {
+	margin-left: 10px;
+	background: #0f488a;
+	padding: 8px;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	float: left;
+}
+input[type=search] {
+	width: 80%;
+}
+.productHolder>h3, .userFormControl>h3 {
+	margin-left: 30px;
+	margin-bottom: 30px;
+	padding-bottom: 15px;
+}
+
+/* CREATE USER FORM */
+.userFormControl{
+	width: 60%;
+	margin-top: 50px;
+}
+
+.modifyProduct {
+	width: 90%;
+	margin-top: 50px;
+}
+.column_6 {
+	width: 45%;
+}
+.inputMargin {
+	margin-right: 45px;
+}
+select {
+	width: 102% !important
+}
+
+/* TABLE STYLING */
+
+.editBtn, .deleteBtn {
+    width: 35%;
+    text-align: center;
+    font-size: 10px;
+    margin-right: 7px;
+}
+
+/* EDIT PRODUCT */
+.productImageHolder {
+	float: left;
+	width: 20%;
+	padding: 10px;
+}
+
+.productInformation {
+	width: 70%;
+}
+
+.proDetails {
+	margin-top: 50px;
+	text-align: right;
+	font-size: 12px;
+}
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media only screen and (min-width: 1200px){
+
+}
