@@ -455,6 +455,10 @@ caption>span {
 .mHolder {width: 100%;
 margin-bottom: 15px;
 }
+.modifyProduct>img {
+	width: 5%;
+    float: right;
+}
 
 /* ENDING OF PRODUCT DETAILS */
 /*******************************************************/
@@ -580,7 +584,7 @@ input[type=search] {
 	margin-right: 45px;
 }
 select {
-	width: 102% !important
+	width: 97% !important;
 }
 
 /* TABLE STYLING */
