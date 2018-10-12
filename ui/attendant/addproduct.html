@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Store Manager | Sale Attendant </title>
 	<link rel="stylesheet" href="../assets/css/styles.css">
@@ -22,15 +23,31 @@
 		</div>
 		<div class="mainPage">
 			<div class="mainHeader">
+				
 				<div class="searchForm">
+
+					<div class="mobileMenu">
+						<img src="../assets/images/menu.png" title="Menu" alt="">
+					</div>
+
 					<form action="#" method="POST" >
 						<input type="search" name="" value="" placeholder="Search key" class="formInput">
 						<input type="submit" name="" class="searchButton" value="Go!">
 					</form>
 				</div>
+
+			</div>	
+			<div id="menuDrop" class="menuDropContent">
+				<div id="logo"></div><hr />
+				<a href="index.html" title="Attendant Home">Home</a>
+				<a href="addproduct.html" title="Add product to shopping Cart">Product to Cart</a>
+				<a href="viewsalerecords.html" title="View Sales Record by individual">View Sales record</a>
 			</div>		
 			<div class="modifyProduct">
-				<img src="../assets/images/cart.jpg" alt="">
+				<sup>
+					<div class="circle">2</div>
+				</sup><img src="../assets/images/cart.jpg" alt="">
+
 				<h3>Product details </h3>
 				<div class="productImageHolder">
 					<img src="../assets/images/4.PNG" alt="product Name" title="product Name">
@@ -38,7 +55,7 @@
 				</div>
 				<div class="productInformation">
 					<h4>Long Arm Lazy Flexible Accessory phone Mount Desk Stand Cell Phone Holder</h4>	
-					<table class="tblDisplay" border="1" cellpadding="10" cellspacing="5">
+					<table class="tblDisplay" border="1" cellpadding="10">
 					<thead>
 						<tr>
 							<th>PRODUCT NAME</th>
