@@ -1,6 +1,13 @@
 (function(){
 	document.getElementById('logo').addEventListener('click', () => { location.href ='../index.html'});
 
+	const addToCart = () => {
+		const inCart = document.querySelector('.circle').value;
+		alert(inCart);
+	}
+
+	document.getElementById('addToCartBtn').addEventListener("click", addToCart);
+})();
 
 
 const slideMobileMenu = () => {
@@ -17,12 +24,7 @@ window.onclick = (event) => {
 				openMenu.classList.remove('showMenu');
 			}	
 		}
-		/*for (counter = 0; counter < dropdowns.length; counter++) {
-			
-		}*/
 	}
 }
 
 document.querySelector('.mobileMenu').addEventListener("click", slideMobileMenu);
-
-})();
