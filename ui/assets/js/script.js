@@ -8,7 +8,7 @@ const slideMobileMenu = () => {
 	}
 
 window.onclick = (event) => {
-	if (!event.target.matches('.mobileMenu')) {
+	 if (!event.target.matches('.mobileMenu')) {
 		const dropdowns = document.querySelector('.menuDropContent');
 		for(const counter of dropdowns) {
 			const openMenu = dropdowns[counter];
@@ -17,9 +17,7 @@ window.onclick = (event) => {
 				openMenu.classList.remove('showMenu');
 			}	
 		}
-		/*for (counter = 0; counter < dropdowns.length; counter++) {
-			
-		}*/
+		
 	}
 }
 
