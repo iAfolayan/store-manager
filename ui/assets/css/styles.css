@@ -502,7 +502,7 @@ caption>span {
 .mHolder {width: 100%;
 margin-bottom: 15px;
 }
-.modifyProduct>img, .productHolder>a>img {
+.modifyProduct>a>img, .productHolder>a>img {
 	width: 14%;
 	float: right;
 }
@@ -600,7 +600,35 @@ margin-bottom: 15px;
 	color: #000;
 }
 
+.prductDivider input[type=number] {
+	padding: 10px;
+}
+.prductDivider p {
+	display: none;
+	font-size: 12px
+}
+.cartSummary table {
+	width: 100%;
+	float: left;
+}
+.summaryHolder {
+	width: 100%;
+    float: right;
+    text-align: center;
+    border-top: 2px solid #ccc;
+    padding-top: 10px;
+    margin-left: 10px;
+}
 
+.subTotal {
+	color: #F00;
+	font-size: 20px;
+}
+
+.cartBtn {
+	width: 100%
+}
+    
 /*******************************************************/
 /****Content Area Media Queries for phones and tabs*****/
 /*******************************************************/
@@ -628,7 +656,7 @@ margin-bottom: 15px;
 .circle {
 	width: 4%;
 }
-.modifyProduct>img, .productHolder>a>img {
+.modifyProduct>a>img, .productHolder>a>img {
 	width: 8%;
 }
 
@@ -805,7 +833,7 @@ select {
 	color: #000;
 }
 
-.modifyProduct>img, .productHolder>a>img {
+.modifyProduct>a>img, .productHolder>a>img {
 	width: 5%;
 }
 .tblDisplay img {
@@ -817,6 +845,30 @@ select {
 	margin-top: 10px;
 
 	 }
+
+.prductDivider p {
+	display: block;
+}
+.cartSummary table {
+	width: 73%;
+	float: left;
+}
+.summaryHolder {
+	width: 24%;
+    float: right;
+
+}
+.tblDisplay img {
+	width: 15%
+}
+
+.subTotal {
+	font-size: 20px;
+}
+
+.cartBtn {
+	width: 100%
+}
 
 }
 
