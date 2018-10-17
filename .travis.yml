@@ -11,5 +11,3 @@ before_script:
   - npm i -g codeclimate-test-reporter
 script:
   - npm test
-after_script:
-  - CODECLIMATE_REPO_TOKEN=CC_TEST_REPORTER_ID codeclimate-test-reporter < coverage/lcov.info

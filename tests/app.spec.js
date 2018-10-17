@@ -1,14 +1,17 @@
-import { expect } from 'chai';
+import {
+  expect
+} from 'chai';
+import http from 'http';
 import supertest from 'supertest';
 
 import app from '../app/app';
 
-const request = supertest(app);
+const request = supertest(http.createServer(app));
 
-describe('GET /', () => {
+describe('GET /api/v1/', () => {
   it('Should load route', (done) => {
     request
-      .get('/')
+      .get('/api/v1/')
       .end((err, res) => {
         if (err) return done(err);
         expect(res.status).to.equal(200);
