@@ -8,10 +8,8 @@ cache:
   directories:
     - "node_modules"
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+  - npm i -g codeclimate-test-reporter
 script:
   - npm test
 after_script:
-  - ./cc-test-reporter after-build --exit-code 0 $TRAVIS_TEST_RESULT
+  - CODECLIMATE_REPO_TOKEN=CC_TEST_REPORTER_ID codeclimate-test-reporter < coverage/lcov.info
