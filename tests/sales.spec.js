@@ -6,12 +6,17 @@ const request = supertest(app);
 let saleId = null;
 
 const dummyData = {
-  name: 'test name',
+  sellerId: 'SA568',
+  saleAttendantName: 'Afolayan Isaiah',
+  productId: 2,
+  name: 'wireless bluetooth',
   category: 'phone',
+  quantity: 50,
+  price: 'N4000',
+  totalAmount: 75000,
   description: 'test product',
   minimumAllowed: 200,
-  price: 'N4000',
-  image: 'tet.png'
+  date: '2018-10-18:00:00:25GMT'
 };
 
 describe('GET available sale records', () => {
@@ -52,6 +57,21 @@ describe('GET single sale', () => {
         if (err) return done(err);
         expect(res.status).to.equal(200);
         expect(res.body).to.haveOwnProperty('data');
+        expect(res.body.data).to.be.an('object');
+        done();
+      });
+  });
+});
+
+describe('Create Sale Record', () => {
+  it('should create a sale record', (done) => {
+    request
+      .post('/api/v1/sales')
+      .set('Content-Type', 'Application/json')
+      .send(dummyData)
+      .end((err, res) => {
+        expect(res.status).to.equal(201);
+        expect(res.body.msg).to.equal('Sale record was successfully created');
         expect(res.body.data).to.be.an('object');
         done();
       });

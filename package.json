@@ -6,6 +6,7 @@
   "scripts": {
     "test": "nyc --reporter=lcov --reporter=text mocha --require @babel/polyfill --require @babel/register ./tests/*.spec.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc npm test&& nyc report --reporter=text-lcov | coveralls",
     "start": "node dist/index.js",
     "start-dev": "nodemon --exec babel-node --presets=@babel/env app/index.js",
     "build": "rm -rf ./dist && babel app --out-dir dist"
