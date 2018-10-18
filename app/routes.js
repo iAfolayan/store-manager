@@ -21,6 +21,8 @@ router.delete('/checkout/:id', ProductCtrl.removeOne);
 
 router.get('/sales', SaleRecords.getAll);
 
+router.post('/sales', SaleRecords.addSale);
+
 router.get('/sales/:saleId', SaleRecords.getOne);
 
 router.get('/sales/:id', SaleRecords.getOne);

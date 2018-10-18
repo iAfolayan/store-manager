@@ -48,7 +48,6 @@ class ProductCtrl {
     const keys = Object.keys(req.body);
     const product = availableProducts.find(prd => prd.id === parseInt(id, 10));
     const productIndex = availableProducts.findIndex(p => p.id === parseInt(id, 10));
-
     if (product) {
       keys.forEach((key) => {
         product[key] = req.body[key];

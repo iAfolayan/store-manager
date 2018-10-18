@@ -58,6 +58,26 @@ class SalesRecordCtrl {
       msg: 'No data found'
     });
   }
+
+  /**
+   * @description Create a new sale record
+   * @param {*} req - request object
+   * @param {*} res  - response object
+   * @returns {sales} return sales
+   */
+  static addSale(req, res) {
+    const {
+      id, sellerId, saleAttendantName, productId, name, quantity, price, totalAmount, category, date
+    } = req.body;
+    const newSale = {
+      id, sellerId, saleAttendantName, productId, name, quantity, price, totalAmount, category, date
+    };
+    salesRecords.push(newSale);
+    res.status(201).json({
+      msg: 'Sale record was successfully created',
+      data: newSale
+    });
+  }
 }
 
 export default SalesRecordCtrl;
