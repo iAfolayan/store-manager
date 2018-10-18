@@ -1,24 +1,14 @@
-engines:
-  eslint:
-    enabled: true
-    channel: "eslint-3"
-    checks:
-      import/no-unresolved:
-        enabled: false
-      no-underscore-dangle:
-        enabled: false
-  duplication:
-    enabled: true
-    config:
-      languages:
-      - javascript
-
-ratings:
-  paths:
-  - "**.js"
-
+version: "2"
 exclude_paths:
 - tests/**
 - node_modules/**
 - coverage/**
 - .nyc_output/
+file-lines:
+  enabled: false
+return-statements:
+  enabled: false
+similar-code:
+  enabled: false
+identical-code:
+  enabled: false
