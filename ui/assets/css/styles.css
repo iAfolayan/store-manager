@@ -170,19 +170,21 @@ nav>ul>li>a {
 .usrChild>ul>li>a:hover, .prdChild>ul>li>a:hover, .rptChild>ul>li>a:hover { color: #FFF }
 
 /* PRODUCT STYLING */
+
 /*Styles books page*/
 .mainPage {
 	width: 94%;
-	/* min-height: 200px; */
-	/* float: left; */
 	padding: 10px;
 	margin: 0 auto;
-	/* margin-top: 0px; */
 	margin-bottom: 50px;
 }
 .searchForm{
 	width: 100%;
 	float: left;
+}
+.filterHolder {
+	margin-top: 10px;
+	width: 94%;
 }
 .searchButton {
 	margin-left: 3px;
@@ -224,7 +226,7 @@ input[type=search] {
 	margin: 0 auto;
 	width: 100%;
 	float: left;
-	margin-top: 50px;
+	margin-top: 100px;
 }
 .card_4_column {
 	width: 100%;
@@ -550,8 +552,8 @@ margin-bottom: 15px;
 	color: #FFF;
 	background-color: #0f488a;
 	position: fixed;
-	z-index: 28;
-	margin-top: 47px;
+	z-index: 50;
+	margin-top: 44px;
 	text-align: center;
 }
 .showMenu {
@@ -632,7 +634,37 @@ margin-bottom: 15px;
 /*******************************************************/
 /****Content Area Media Queries for phones and tabs*****/
 /*******************************************************/
-
+@media only screen and (min-width: 731px){
+	.mainPage, .mainPage hr {
+		width: 80%;
+	}
+	.mobileMenu{
+		width: 7%;
+	}
+	input[type=search] {
+		width: 65%;
+	}
+	.filterHolder {width: 83%}
+	#menuDrop {
+    width: 81%;
+    margin-top: 30px;
+	}
+	.card_4_column {
+		width: 50%;
+	}
+	.modifyProduct>a>img, .productHolder>a>img {
+		width: 8%;
+	}
+	.circle {
+		width: 4%;
+	}
+	.summaryHolder {
+		width: 25%;
+	}
+	.cartSummary {
+    width: 65%;
+	}
+}
 /* Small devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px){
 .pageWrapper {
@@ -645,9 +677,8 @@ margin-bottom: 15px;
 	width: 50%;
 	float: left;
 }
-
-.mainPage hr {
-	width: 75%;
+.mainPage, .mainPage hr {
+	width: 80%;
 }
 .userFormControl {
 	width: 60%;
@@ -658,6 +689,12 @@ margin-bottom: 15px;
 }
 .modifyProduct>a>img, .productHolder>a>img {
 	width: 8%;
+}
+.mobileMenu{
+	width: 7%;
+}
+input[type=search] {
+	width: 65%;
 }
 
 }
@@ -861,7 +898,11 @@ select {
 .tblDisplay img {
 	width: 15%
 }
-
+.filterHolder {
+	margin-left: 20px;
+	margin-top: 10px;
+	width: 25%;
+}
 .subTotal {
 	font-size: 20px;
 }
