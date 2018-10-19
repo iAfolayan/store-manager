@@ -31,11 +31,7 @@ class ProductCtrl {
     if (product) {
       return res.status(200).send({
         msg: 'product successfully found',
-        data: product,
-        request: {
-          type: 'GET',
-          url: 'http://localhost:4000/api/v1/products/'
-        }
+        data: product
       });
     }
     res.status(404).send({ msg: 'product not found' });
@@ -75,9 +71,9 @@ class ProductCtrl {
    */
   static addProduct(req, res) {
     const {
-      id, name, price, description, minimumAllowed, image, category
+      name, price, description, minimumAllowed, image, category
     } = req.body;
-
+    const id = availableProducts.length + 1;
     // Handle Image
     if (req.file) {
       const prdImage = req.file.filename;

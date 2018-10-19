@@ -15,7 +15,8 @@ const dummyData = {
   role: 2,
   gender: 'Female',
   passport: 'grace_festus.jpg',
-  contactAddress: '41 Osholake street, Ebute-meta, Lagos'
+  contactAddress: '41 Osholake street, Ebute-meta, Lagos',
+  createdAt: new Date
 };
 
 describe('Create User', () => {
