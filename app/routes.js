@@ -20,8 +20,6 @@ router.patch('/products/:id', ProductCtrl.updateOne);
 
 router.delete('/products/:id', ProductCtrl.deleteProduct);
 
-router.delete('/checkout/:id', ProductCtrl.removeOne);
-
 router.get('/sales', SaleRecords.getAll);
 
 router.post('/sales', SaleRecords.addSale);
