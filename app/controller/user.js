@@ -41,26 +41,6 @@ class UsersCtrl {
       msg: 'Invalid login details'
     });
   }
-
-  /**
-   * @description - Reset user password
-   * @param {*} req - request object
-   * @param {*} res - response object
-   * @returns {null} - no returns
-   */
-  static resetUserPass(req, res) {
-
-  }
-
-  /**
-   * @description - get all users
-   * @param {*} req - request object
-   * @param {*} res - response object
-   * @returns {null} - No returns
-   */
-  static getAllUsers(req, res) {
-
-  }
 }
 
 export default UsersCtrl;

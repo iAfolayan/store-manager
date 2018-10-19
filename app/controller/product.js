@@ -57,19 +57,14 @@ class ProductCtrl {
         product[key] = req.body[key];
       });
       availableProducts[productIndex] = product;
-      res.status(200).send({
+      return res.status(200).send({
         msg: 'Product successfully updated',
         data: product,
-        request: {
-          type: 'GET',
-          url: `http://localhost:4000/api/v1/products/${product.id}`
-        }
-      });
-    } else {
-      res.status(404).json({
-        msg: 'Product not found',
       });
     }
+    res.status(404).json({
+      msg: 'Product not found',
+    });
   }
 
   /**
@@ -86,56 +81,31 @@ class ProductCtrl {
     // Handle Image
     if (req.file) {
       const prdImage = req.file.filename;
-    } else {
-      const prdImage = 'noImage.jpg';
     }
+    const prdImage = 'noImage.jpg';
 
     // Validate form
     req.checkBody('name', 'Name field is required').notEmpty();
     req.checkBody('category', 'Category field is required').notEmpty();
     req.checkBody('price', 'Price field is required').notEmpty();
     req.checkBody('description', 'Description field is required').notEmpty();
-
-    req.checkBody('quantity', 'Password field is required').notEmpty();
-    req.checkBody('minimumAllowed', 'Passwords do not match').notEmpty();
-
+    req.checkBody('quantity', 'Quantity field is required').notEmpty();
+    req.checkBody('minimumAllowed', 'Minimum field is required').notEmpty();
 
     // Check errors
     const errors = req.validationErrors();
-
     if (errors) {
-      res.status(400).json({
-        errors
-      });
+      res.status(400).json({ errors });
     } else {
       const newProduct = {
         id, name, price, description, minimumAllowed, image, category
       };
-      availableProducts.push(newProduct)
-      //req.flash('success', 'A new product was successfully created');
-      return res.status(201).json({
+      availableProducts.push(newProduct);
+      res.status(201).json({
         msg: 'A new product was successfully created',
-        data: newProduct,
-        request: {
-          type: 'GET',
-          url: `http://localhost:4000/api/v1/products/${newProduct.id}`
-        }
+        data: newProduct
       });
     }
-  }
-
-  /**
-   * @description - Remove product from cart
-   * @param {*} req - request object
-   * @param {*} res - response object
-   * @returns {null} - no returns
-   */
-  static removeOne(req, res) {
-    const { id } = req.params;
-    res.status(200).json({
-      msg: 'Product deleted',
-      id
-    });
   }
 
   /**
@@ -146,9 +116,9 @@ class ProductCtrl {
    */
   static deleteProduct(req, res) {
     const { id } = req.params;
-    const product = availableProducts.find(prd => prd.id === parseInt(id, 10));
-    if (product) {
-      availableProducts.pop(product.id);
+    const productIndex = availableProducts.findIndex(prd => prd.id === parseInt(id, 10));
+    if (productIndex > -1) {
+      availableProducts.splice(productIndex, 1);
       res.status(200).json({
         msg: 'Product Deleted'
       });
