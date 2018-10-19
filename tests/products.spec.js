@@ -10,6 +10,7 @@ const dummyData = {
   category: 'phone',
   description: 'test product',
   minimumAllowed: 200,
+  quantity: 10,
   price: 'N4000',
   image: 'tet.png'
 };
