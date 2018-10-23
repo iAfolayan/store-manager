@@ -46,16 +46,17 @@ to be added later
 Currently,
 <ul>
 <li>Login</li>
-<li>Create User (Sale attendant / Admin)</li>
-<li>Create Product</li>
+<li>Products</li>
+<li>Sales</li>
+<li>Users
   </ul>
 
 # Getting Started
 # Installation
 ### DevDependiences
 npm install
-install POSTMAN app
 run npm run start-dev then navigate to localhost:4000 on POSTMAN
+install POSTMAN app (https://www.getpostman.com/apps)
 # API Endpoint Route
 <table>
   <tr>
@@ -64,8 +65,8 @@ run npm run start-dev then navigate to localhost:4000 on POSTMAN
     <td>TASK</td>
   </tr>
   <tr>
-    <td>POST</td>
-    <td>api/v1/products/</td>
+    <td>POST /api/v1/</td>
+    <td>products/</td>
     <td>Create A Product</td>
   </tr>
   <tr>
