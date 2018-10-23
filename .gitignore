@@ -9,6 +9,7 @@ npm-debug.log*
 #distribution
 dist
 bundle
+app
 
 # Runtime data
 pids
