@@ -23,7 +23,7 @@ A web application that helps in managing store and product inventory records.
 # Technologies
 Currently,
 <ul>
-<li> HyperText Mark-up Language (HTML) </li>
+<li>HyperText Mark-up Language (HTML) </li>
 <li>Cascade Style Sheet (CSS)</li>
 <li>Vanilla Javascript</li>
 <li>PostgreSQL Database(raw SQL): This will be implemented later.</li>
@@ -52,6 +52,8 @@ Currently,
 
 # Getting Started
 # Installation
+### DevDependiences
+npm install
 install POSTMAN app
 run npm run start-dev then navigate to localhost:4000 on POSTMAN
 # API Endpoint Route
@@ -73,13 +75,13 @@ run npm run start-dev then navigate to localhost:4000 on POSTMAN
   </tr>
   <tr>
     <td>GET</td>
-    <td>api/v1/orders/</td>
-    <td>Get all order</td>
+    <td>api/v1/sales/</td>
+    <td>Get all sale records</td>
   </tr>
   <tr>
     <td>GET</td>
-    <td>api/v1/orders/orderId</td>
-    <td>Get selected order</td>
+    <td>api/v1/sales/saleId</td>
+    <td>Get selected sale</td>
   </tr>
   </table>
   
