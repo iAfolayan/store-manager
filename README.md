@@ -66,7 +66,17 @@ run npm run start-dev then navigate to localhost:4000 on POSTMAN
   <tr>
     <td>POST</td>
     <td>api/v1/products/</td>
-    <td>Create An Product</td>
+    <td>Create A Product</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>api/v1/products</td>
+    <td>Get all products</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>api/v1/products/:productId</td>
+    <td>Get a single product</td>
   </tr>
    <tr>
     <td>PATCH</td>
@@ -79,9 +89,19 @@ run npm run start-dev then navigate to localhost:4000 on POSTMAN
     <td>Get all sale records</td>
   </tr>
   <tr>
+    <td>POST</td>
+    <td>api/v1/sales/</td>
+    <td>Create a sale record</td>
+  </tr>
+  <tr>
     <td>GET</td>
     <td>api/v1/sales/saleId</td>
     <td>Get selected sale</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>api/v1/sales/seller/:sid</td>
+    <td>Get all sales records for a single sale attendant</td>
   </tr>
   </table>
   
