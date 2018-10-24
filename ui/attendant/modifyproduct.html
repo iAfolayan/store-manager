@@ -74,7 +74,18 @@
 
 			<div class="modifyProduct">
 				<h3>Modify Product</h3>
-				<table class="tblDisplay" border="1" cellpadding="10" cellspacing="5">
+				<div class="modal">
+						<div class="modal-content">
+								<span class="close-button">×</span>
+								<h1>Are you sure you want to delete this product?</h1>
+								<section>
+									<button class="deleteBtn" data-respone="yes">Yes</button>
+									<button class="editBtn" data-respone="yes">No</button>
+								</section>
+						</div>
+				</div>
+				<div class="tableContainer">
+					<table class="tblDisplay" border="1" cellpadding="10" cellspacing="5">
 					<thead>
 						<tr>
 							<th>S/N</th>
@@ -92,60 +103,66 @@
 							<td>1.</td>
 							<td>Wireless Speaker</td>
 							<td>Phone</td>
-							<td>N2500</td>
+							<td>&#8358;2500</td>
 							<td>250</td>
 							<td>23</td>
 							<td>240</td>
 							<td>
-								<a href="editProduct.html" class="editBtn" title="Edit product"> Edit</a>
-								<a href="deleteProduct.html" class="deleteBtn" title="Delete product"> Delete</a>
-								
+								<a href="editProduct.html">
+									<button class="editBtn modifyBtn">Edit </button>
+								</a>
+									<button class="deleteBtn trigger modifyBtn">Delete</button>
 							</td>
 						</tr>
 						<tr>
 							<td>2.</td>
 							<td>Phone</td>
 							<td>Phone Accessory</td>
-							<td>N2500</td>
+							<td>&#8358;2500</td>
 							<td>250</td>
 							<td>20</td>
 							<td>250</td>
 							<td>
-								<a href="editProduct.html" class="editBtn" title="Edit product"> Edit</a>
-								<a href="deleteProduct.html" class="deleteBtn" title="Delete product"> Delete</a>
-								
-							</td>
+									<a href="editProduct.html">
+										<button class="editBtn modifyBtn">Edit </button>
+									</a>
+										<button class="deleteBtn trigger modifyBtn">Delete</button>
+								</td>
 						</tr>
 						<tr>
 							<td>3.</td>
 							<td>Laptop</td>
 							<td>Laptop</td>
-							<td>N75000</td>
+							<td>&#8358;75000</td>
 							<td>250</td>
 							<td>1</td>
 							<td>240</td>
 							<td>
-								<a href="editProduct.html?prdID=1" class="editBtn" title="Edit product"> Edit</a>
-								<a href="deleteProduct.html?prdID=1" class="deleteBtn" title="Delete product"> Delete</a>
-								
-							</td>
+									<a href="editProduct.html">
+										<button class="editBtn modifyBtn">Edit </button>
+									</a>
+										<button class="deleteBtn trigger modifyBtn">Delete</button>
+								</td>
 						</tr>
 						<tr>
 							<td>4.</td>
 							<td>Wireless Speaker</td>
 							<td>Phone</td>
-							<td>N2500</td>
+							<td>&#8358;2500</td>
 							<td>250</td>
 							<td>23</td>
 							<td>240</td>
 							<td>
-								<a href="editProduct.html?prdID=1" class="editBtn" title="Edit product"> Edit</a>
-								<a href="deleteProduct.html?prdID=1" class="deleteBtn" title="Delete product"> Delete</a>
-								
-							</td>
+									<a href="editProduct.html">
+										<button class="editBtn modifyBtn">Edit </button>
+									</a>
+										<button class="deleteBtn trigger modifyBtn">Delete</button>
+								</td>
 						</tr>
 					</tbody>
 				</table>
+				</div>
+			
 			</div>		
 			<div class="clearAll"></div>
 			<footer>
