@@ -9,7 +9,7 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "start": "node dist/index.js",
     "postinstall": "npm run build",
-    "start-dev": "nodemon --exec babel-node --presets=@babel/env v1/index.js",
+    "start-dev": "nodemon --exec babel-node --presets=@babel/env api/v1/index.js",
     "build": "rm -rf ./dist && babel api --out-dir dist"
   },
   "repository": {
@@ -18,7 +18,9 @@
   },
   "keywords": [
     "Store",
-    "Manager"
+    "Manager",
+    "postgresSQL",
+    "pg"
   ],
   "author": "Afolayan Isaiah",
   "license": "ISC",
@@ -60,6 +62,7 @@
     "jsonwebtoken": "^8.3.0",
     "morgan": "^1.9.1",
     "multer": "^1.4.1",
-    "nyc": "^13.0.0"
+    "nyc": "^13.0.0",
+    "pg": "^7.5.0"
   }
 }

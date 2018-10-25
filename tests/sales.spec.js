@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import supertest from 'supertest';
-import app from '../app/app';
+import app from '../api/v1/app';
 
 const request = supertest(app);
 let saleId = null;

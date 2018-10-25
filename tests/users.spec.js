@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import supertest from 'supertest';
-import app from '../app/app';
+import app from '../api/v1/app';
 
 const request = supertest(app);
 // let userId = null;
@@ -16,7 +16,7 @@ const dummyData = {
   gender: 'Female',
   passport: 'grace_festus.jpg',
   contactAddress: '41 Osholake street, Ebute-meta, Lagos',
-  createdAt: new Date
+  createdAt: new Date()
 };
 
 describe('Create User', () => {
