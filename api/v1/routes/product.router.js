@@ -7,6 +7,7 @@ router.route('/')
   .get(productcontroller.getProducts);
 
 router.route('/:productId')
-  .get(productcontroller.getOneProduct);
+  .get(productcontroller.getOneProduct)
+  .delete(productcontroller.deleteAProduct);
 
 export default router;

@@ -34,6 +34,23 @@ const getOneProduct = (req, res) => {
   });
 };
 
+/**
+ * @description - Delete product
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @returns {null} - no response
+ */
+const deleteAProduct = (req, res) => {
+  const { productId } = req.params;
+  client.query(`DELETE FROM products WHERE id=${productId}`, (err, data) => {
+    if (err) {
+      return helper.sendMessage(res, 500, 'Internal server error');
+    }
+    if (data.rowCount === 0) return helper.sendMessage(res, 404, 'Product not found');
+    return helper.sendMessage(res, 200, 'Product deleted');
+  });
+};
+
 export default {
-  getProducts, getOneProduct
+  getProducts, getOneProduct, deleteAProduct
 };
