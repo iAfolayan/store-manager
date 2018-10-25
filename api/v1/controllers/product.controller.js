@@ -51,6 +51,35 @@ const deleteAProduct = (req, res) => {
   });
 };
 
+/**
+ * @description - Create a product
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @returns {data} - Return the created product
+ */
+const createProduct = (req, res) => {
+  const createdat = new Date();
+  const query = 'INSERT INTO products(prdname, price, quantity, description, category, minimumallowed, image, createdat) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *';
+  const {
+    prdname,
+    price,
+    quantity,
+    description,
+    category,
+    minimumallowed,
+    image,
+  } = req.body;
+
+  const values = [prdname, price, quantity, description, category, minimumallowed, image, createdat];
+  client.query(query, values, (err, data) => {
+    if (err) {
+      return helper.sendMessage(res, 500, 'Internal server error');
+    }
+    if (data.rowCount === 0) return helper.sendMessage(res, 404, 'Unable to create product');
+    return helper.sendMessage(res, 201, 'Product created successful', data.rows[0]);
+  });
+};
+
 export default {
-  getProducts, getOneProduct, deleteAProduct
+  getProducts, getOneProduct, deleteAProduct, createProduct
 };
