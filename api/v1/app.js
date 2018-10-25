@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(expressValidator());
 app.use(morgan('dev'));
 
-app.use('/', routes);
+app.use('/api/v1/', routes);
 
 // Error Handling
 app.use((req, res, next) => {
