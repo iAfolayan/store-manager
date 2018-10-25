@@ -17,6 +17,23 @@ const getProducts = (req, res) => {
   });
 };
 
+/**
+ * @description - Get a single product
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @returns {data} - Returns product detail
+ */
+const getOneProduct = (req, res) => {
+  const { productId } = req.params;
+  client.query(`SELECT * FROM products WHERE id=${productId}`, (err, data) => {
+    if (err) {
+      return helper.sendMessage(res, 500, 'Internal server error');
+    }
+    if (data.rowCount === 0) return helper.sendMessage(res, 404, 'Product not found');
+    return helper.sendMessage(res, 200, 'Record retrieved successfully', data.rows[0]);
+  });
+};
+
 export default {
-  getProducts
+  getProducts, getOneProduct
 };
