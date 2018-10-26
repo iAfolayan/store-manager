@@ -630,6 +630,44 @@ margin-bottom: 15px;
 .cartBtn {
 	width: 100%
 }
+
+/* User profile Styling */
+.userprofileHolder {
+	width: 100%;
+	padding: 20px;
+}
+.userprofile {
+	width: 20%;
+	float: left;
+}
+
+.userprofile>img {
+	width: 100%;
+	box-shadow: #0f488a 0px 0px 2px 0px;
+}
+
+.userprofile>img:hover {
+	transition: ease-in-out .2s;
+	border-radius: 100%;
+}
+.userprofileHolder section>table {
+	width: 75%;
+	float: right;
+	border: 1px solid #ccc;
+	padding: 30px;
+}
+
+.userprofileHolder section>table td:first-child {
+	font-weight: bold;
+
+}
+.userprofileHolder section>table td {
+	border-bottom: 1px solid #ccc;
+}
+.modifyProduct a>button {
+	width:43%;
+}
+/* Ending of user Profile styling */
     
 /*******************************************************/
 /****Content Area Media Queries for phones and tabs*****/
@@ -909,6 +947,9 @@ select {
 
 .cartBtn {
 	width: 100%
+}
+.modifyProduct a>button {
+	width:43%;
 }
 
 }
