@@ -1,5 +1,6 @@
 (function(){
 	document.getElementById('logo').addEventListener('click', () => { location.href ='../index.html'});
+	document.getElementById('submitBtn').addEventListener('click', () => { location.href ='../attendant/admin.html'});
 })();
 
 
