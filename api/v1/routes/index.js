@@ -1,5 +1,7 @@
 import express from 'express';
 import productRoutes from './product.router';
+import authRoutes from './auth.router';
+import middleware from '../controllers/middleware.controller';
 
 const router = express.Router();
 
@@ -9,6 +11,8 @@ router.get('/', (req, res) => {
   });
 });
 
-router.use('/products', productRoutes);
+router.use('/products', middleware.isUserAuthorized, productRoutes);
+
+router.use('/auth', authRoutes);
 
 export default router;
