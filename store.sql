@@ -1,8 +1,3 @@
-DROP DATABASE IF EXISTS store;
-CREATE DATABASE store;
-
-\c store;
-
 CREATE TABLE users (
     id SERIAL PRIMARY KEY AUTO_INCREMENT,
     staffid VARCHAR(20),
