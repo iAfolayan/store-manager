@@ -6,7 +6,7 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database store;' -U postgres
+  - psql -U postgres -d store-test-db -a -f store.sql
 
 script:
   - npm test
