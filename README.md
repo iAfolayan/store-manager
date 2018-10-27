@@ -27,7 +27,7 @@ Store manager app project is broken down into small task with pivotal tracker bo
 API Endpoints is hosted at (https://store-manager-iafolayan.herokuapp.com/api/v1/)
 
 # UI Templates
-The application is hosted online on gh-pages with (https://iafolayan.github.io/store-manager/ui/)
+The application is hosted online on gh-pages with (https://iafolayan.github.io/store-manager)
 
 # API Documentation
 to be added later

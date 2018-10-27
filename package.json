@@ -4,7 +4,7 @@
   "description": "A RESTful API for store Manager",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=lcov --reporter=text mocha --require @babel/polyfill --require @babel/register ./tests/*.spec.js",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --require @babel/polyfill --require @babel/register ./tests/*.spec.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "start": "node dist/index.js",
@@ -59,6 +59,7 @@
     "express": "^4.16.4",
     "express-messages": "^1.0.1",
     "express-validator": "^5.3.0",
+    "generate-password": "^1.4.0",
     "jsonwebtoken": "^8.3.0",
     "morgan": "^1.9.1",
     "multer": "^1.4.1",
