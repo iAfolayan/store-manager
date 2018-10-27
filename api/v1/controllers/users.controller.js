@@ -4,7 +4,17 @@ import helper from '../utils';
 
 const login = (req, res) => {
   const { staffid, password } = req.body;
-  client.query(`SELECT * FROM users WHERE staffid = ${staffid} AND password = ${password}`, (err, data) => {
+
+  // Form validation
+  req.checkBody('staffid', 'StaffId field is required').notEmpty();
+  req.checkBody('password', 'Password field is required').notEmpty();
+
+  // check Errors
+  const errors = req.validationErrors();
+  if (errors) {
+    return helper.sendMessage(res, 400, errors[0].msg);
+  }
+  client.query(`SELECT * FROM users WHERE staffid = '${staffid}' AND password = '${password}'`, (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal server error');
     }
@@ -17,7 +27,7 @@ const login = (req, res) => {
     });
     helper.sendMessage(res, 200, 'Login successful', token);
   });
-}
+};
 
 export default {
   login
