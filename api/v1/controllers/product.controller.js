@@ -80,6 +80,34 @@ const createProduct = (req, res) => {
   });
 };
 
+/**
+ * @description - Update product
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @returns {data} - Return data
+ */
+const updateAProduct = (req, res) => {
+  const { productId } = req.params;
+  const {
+    prdname,
+    price,
+    quantity,
+    description,
+    category,
+    minimumallowed,
+    image,
+  } = req.body;
+
+  const query = `UPDATE products SET prdname='${prdname}', price=${price}, quantity=${quantity}, description='${description}', category='${category}', minimumallowed=${minimumallowed}, image='${image}' WHERE id = ${productId} RETURNING *`;
+  client.query(query, (err, data) => {
+    if (err) {
+      return helper.sendMessage(res, 500, 'Internal server error');
+    }
+    if (data.rowCount === 0) return helper.sendMessage(res, 404, 'Unable to update product');
+    return helper.sendMessage(res, 200, 'Product updated successful', data.rows[0]);
+  });
+};
+
 export default {
-  getProducts, getOneProduct, deleteAProduct, createProduct
+  getProducts, getOneProduct, deleteAProduct, createProduct, updateAProduct
 };

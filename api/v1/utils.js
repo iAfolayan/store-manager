@@ -15,6 +15,6 @@ export default {
     if (data) {
       responseObj.data = data;
     }
-    response.status(code).json(responseObj);
+    return response.status(code).json(responseObj);
   }
 };
