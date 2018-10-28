@@ -58,10 +58,10 @@ const deleteAProduct = (req, res) => {
  * @returns {data} - Return the created product
  */
 const createProduct = (req, res) => {
-  const createdat = new Date();
-  const query = 'INSERT INTO products(prdname, price, quantity, description, category, minimumallowed, image, createdat) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *';
+  const createdon = new Date().toISOString();
+  const query = 'INSERT INTO products(productname, price, quantity, description, category, minimumallowed, image, createdon) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *';
   const {
-    prdname,
+    productname,
     price,
     quantity,
     description,
@@ -70,7 +70,7 @@ const createProduct = (req, res) => {
     image,
   } = req.body;
 
-  const values = [prdname, price, quantity, description, category, minimumallowed, image, createdat];
+  const values = [productname, price, quantity, description, category, minimumallowed, image, createdon];
   client.query(query, values, (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal server error');
@@ -89,7 +89,7 @@ const createProduct = (req, res) => {
 const updateAProduct = (req, res) => {
   const { productId } = req.params;
   const {
-    prdname,
+    productname,
     price,
     quantity,
     description,
@@ -98,7 +98,7 @@ const updateAProduct = (req, res) => {
     image,
   } = req.body;
 
-  const query = `UPDATE products SET prdname='${prdname}', price=${price}, quantity=${quantity}, description='${description}', category='${category}', minimumallowed=${minimumallowed}, image='${image}' WHERE id = ${productId} RETURNING *`;
+  const query = `UPDATE products SET productname='${productname}', price=${price}, quantity=${quantity}, description='${description}', category='${category}', minimumallowed=${minimumallowed}, image='${image}' WHERE id = ${productId} RETURNING *`;
   client.query(query, (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal server error');

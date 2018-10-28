@@ -8,7 +8,7 @@ const UsersData = [{
   phoneNumber: '08032167911',
   role: 1,
   gender: 'Male',
-  passport: 'admin.png',
+  avatar: 'admin.png',
   contactAddress: '41, Osholake street, Ebute-meta, Lagos'
 },
 {
@@ -21,7 +21,7 @@ const UsersData = [{
   phoneNumber: '08037911',
   role: 1,
   gender: 'Female',
-  passport: 'admina.png',
+  avatar: 'admina.png',
   contactAddress: '42, Osholake street, Ebute-meta, Lagos'
 },
 {
@@ -34,7 +34,7 @@ const UsersData = [{
   phoneNumber: '07032167911',
   role: 2,
   gender: 'Female',
-  passport: 'adminadmin.png',
+  avatar: 'adminadmin.png',
   contactAddress: '43, Osholake street, Ebute-meta, Lagos'
 },
 {
@@ -47,7 +47,7 @@ const UsersData = [{
   phoneNumber: '0703225911',
   role: 2,
   gender: 'Female',
-  passport: 'admimin.png',
+  avatar: 'admimin.png',
   contactAddress: '44, Osholake street, Ebute-meta, Lagos'
 },
 {
@@ -60,7 +60,7 @@ const UsersData = [{
   phoneNumber: '07032167918',
   role: 2,
   gender: 'Male',
-  passport: 'admdmin.png',
+  avatar: 'admdmin.png',
   contactAddress: '45, Osholake street, Ebute-meta, Lagos'
 }];
 

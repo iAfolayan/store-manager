@@ -1,11 +1,8 @@
 import jwt from 'jsonwebtoken';
 import passwordGen from 'generate-password';
-import multer from 'multer';
+import bcrypt from 'bcrypt';
 import client from '../db/index';
 import helper from '../utils';
-
-const upload = multer({ dest: './uploads/images/' });
-
 
 const login = (req, res) => {
   const { staffid, password } = req.body;
@@ -19,19 +16,34 @@ const login = (req, res) => {
   if (errors) {
     return helper.sendMessage(res, 400, errors[0].msg);
   }
-  client.query(`SELECT * FROM users WHERE staffid = '${staffid}' AND password = '${password}'`, (err, data) => {
+
+  client.query(`SELECT * FROM users WHERE staffid = '${staffid}'`, (err, data) => {
     if (err) {
-      console.log(err);
       return helper.sendMessage(res, 500, 'Internal server error');
     }
     if (data.rowCount === 0) return helper.sendMessage(res, 401, 'Invalid login credentials');
-    const token = jwt.sign({
-      id: staffid,
-      role: data.rows[0].role
-    }, process.env.SECRET, {
-      expiresIn: '1d'
+
+    // Compare password
+    bcrypt.compare(password, data.rows[0].password, (err, respass) => {
+      if (!respass) return helper.sendMessage(res, 401, 'Invalid login credentials');
+      const token = jwt.sign({
+        id: staffid,
+        role: data.rows[0].role
+      }, process.env.SECRET, {
+        expiresIn: '1d'
+      });
+      helper.sendMessage(res, 200, 'Login successful', token);
     });
-    helper.sendMessage(res, 200, 'Login successful', token);
+  });
+};
+
+const getAllUsers = (req, res) => {
+  client.query('SELECT * FROM users', (err, data) => {
+    if (err) {
+      return helper.sendMessage(res, 500, 'Internal server error');
+    }
+    if (data.rowCount === 0) return helper.sendMessage(res, 404, 'No user found');
+    return helper.sendMessage(res, 200, 'Record retrieved successfully', data.rows);
   });
 };
 
@@ -47,6 +59,7 @@ const createUser = (req, res) => {
     gender,
     contactaddress
   } = req.body;
+
   const password = passwordGen.generate({
     length: 10,
     numbers: true,
@@ -55,13 +68,12 @@ const createUser = (req, res) => {
   });
 
   // Validate user pofile image
-  let passport = null;
+  let avatar = null;
   if (req.file) {
-    passport = req.body.userImage;
+    avatar = req.body.filename;
   } else {
-    passport = 'defaultimage.jpg';
+    avatar = 'defaultimage.jpg';
   }
-  const query = `INSERT INTO users(staffid, title, password, firstname, lastname, emailaddress, phonenumber, role, gender, passport, contactaddress) VALUES('${staffid}', '${title}', '${password}', '${firstname}', '${lastname}', '${emailaddress}', '${phonenumber}', ${role}, '${gender}', '${passport}', '${contactaddress}') RETURNING *`;
 
   // Form validation
   req.checkBody('staffid', 'StaffId field is required').notEmpty();
@@ -78,19 +90,24 @@ const createUser = (req, res) => {
   // check Errors
   const errors = req.validationErrors();
 
-  // check if image is upload
-
   if (errors) {
-    return helper.sendMessage(res, 401, errors[0].msg);
+    return helper.sendMessage(res, 404, errors[0].msg);
   }
-  client.query(query, (err, data) => {
-    if (err) {
-      return helper.sendMessage(res, 500, 'Internal server error');
-    }
-    return helper.sendMessage(res, 201, 'New user successfully created', data);
+  client.query(`SELECT * FROM users WHERE staffid = '${staffid}'`, (err, data) => {
+    if (data.rowCount === 1) return helper.sendMessage(res, 403, 'Duplicate staff id found');
+  });
+  // password
+  bcrypt.hash(password, 10, (errr, hash) => {
+    const query = `INSERT INTO users(staffid, title, password, firstname, lastname, emailaddress, phonenumber, role, gender, avatar, contactaddress) VALUES('${staffid}', '${title}', '${hash}', '${firstname}', '${lastname}', '${emailaddress}', '${phonenumber}', ${role}, '${gender}', '${avatar}', '${contactaddress}') RETURNING *`;
+    client.query(query, (err, data) => {
+      if (err) {
+        return helper.sendMessage(res, 500, 'Internal server error');
+      }
+      return helper.sendMessage(res, 201, 'New user successfully created', data);
+    });
   });
 };
 
 export default {
-  login, createUser
+  login, createUser, getAllUsers
 };

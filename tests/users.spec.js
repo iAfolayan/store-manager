@@ -24,44 +24,44 @@ const user = {
   password: 'admin'
 };
 
-describe('Login', () => {
-  it('should login a user', (done) => {
-    request
-      .post('/api/v1/auth/login')
-      .set('Content-Type', 'Application/json')
-      .send(user)
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        expect(res.body.msg).to.equal('Login successful');
-        expect(res.body.data).to.exist;
-        done();
-      });
-  });
+// describe('Login', () => {
+//   it('should login a user', (done) => {
+//     request
+//       .post('/api/v1/auth/login')
+//       .set('Content-Type', 'Application/json')
+//       .send(user)
+//       .end((err, res) => {
+//         expect(res.status).to.equal(200);
+//         expect(res.body.msg).to.equal('Login successful');
+//         expect(res.body.data).to.exist;
+//         done();
+//       });
+//   });
 
-  it('should return 400 if staffid is empty', (done) => {
-    request
-      .post('/api/v1/auth/login')
-      .set('Content-Type', 'Application/json')
-      .send({})
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        expect(res.body.status).to.be.false;
-        done();
-      });
-  });
+//   it('should return 400 if staffid is empty', (done) => {
+//     request
+//       .post('/api/v1/auth/login')
+//       .set('Content-Type', 'Application/json')
+//       .send({})
+//       .end((err, res) => {
+//         expect(res.status).to.equal(400);
+//         expect(res.body.status).to.be.false;
+//         done();
+//       });
+//   });
 
-  it('should return 400 if password is empty', (done) => {
-    request
-      .post('/api/v1/auth/login')
-      .set('Content-Type', 'Application/json')
-      .send({})
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        expect(res.body.status).to.be.false;
-        done();
-      });
-  });
-});
+//   it('should return 400 if password is empty', (done) => {
+//     request
+//       .post('/api/v1/auth/login')
+//       .set('Content-Type', 'Application/json')
+//       .send({})
+//       .end((err, res) => {
+//         expect(res.status).to.equal(400);
+//         expect(res.body.status).to.be.false;
+//         done();
+//       });
+//   });
+// });
 
 /* describe('Create User', () => {
  before((done) => {
@@ -75,7 +75,7 @@ describe('Login', () => {
         done();
       });
   }); 
-  
+
   it('should create a user', (done) => {
     request
       .post('/api/v1/auth/signup')
