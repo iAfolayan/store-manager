@@ -21,6 +21,7 @@ const login = (req, res) => {
   }
   client.query(`SELECT * FROM users WHERE staffid = '${staffid}' AND password = '${password}'`, (err, data) => {
     if (err) {
+      console.log(err);
       return helper.sendMessage(res, 500, 'Internal server error');
     }
     if (data.rowCount === 0) return helper.sendMessage(res, 401, 'Invalid login credentials');

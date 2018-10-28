@@ -4,7 +4,7 @@
   "description": "A RESTful API for store Manager",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --require @babel/polyfill --require @babel/register ./tests/*.spec.js",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --require @babel/polyfill --require @babel/register ./tests/*.spec.js --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "start": "node dist/index.js",
