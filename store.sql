@@ -1,6 +1,6 @@
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY AUTO_INCREMENT,
-    staffid VARCHAR(20),
+    id serial PRIMARY KEY,
+    staffid VARCHAR(50),
     title VARCHAR(10),
     password VARCHAR(50),
     firstname VARCHAR(50),
