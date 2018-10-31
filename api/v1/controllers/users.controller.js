@@ -27,7 +27,7 @@ const login = (req, res) => {
     bcrypt.compare(password, data.rows[0].password, (err, respass) => {
       if (!respass) return helper.sendMessage(res, 401, 'Invalid login credentials');
       const token = jwt.sign({
-        id: staffid,
+        id: data.rows[0].id,
         role: data.rows[0].role
       }, process.env.SECRET, {
         expiresIn: '1d'
@@ -94,7 +94,7 @@ const createUser = (req, res) => {
     return helper.sendMessage(res, 404, errors[0].msg);
   }
   client.query(`SELECT * FROM users WHERE staffid = '${staffid}'`, (err, data) => {
-    if (data.rowCount === 1) return helper.sendMessage(res, 403, 'Duplicate staff id found');
+    if (data.rowCount === 1) return helper.sendMessage(res, 409, 'Duplicate staff id found');
   });
   // password
   bcrypt.hash(password, 10, (errr, hash) => {
@@ -108,6 +108,12 @@ const createUser = (req, res) => {
   });
 };
 
+const resetpassword = (req, res) => {
+  res.status(400).json({
+    msg: 'Email is required',
+  });
+};
+
 export default {
-  login, createUser, getAllUsers
+  login, createUser, getAllUsers, resetpassword
 };
