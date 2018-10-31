@@ -3,17 +3,17 @@ import supertest from 'supertest';
 import app from '../api/v1/app';
 
 const request = supertest(app);
-let productId = null;
+// let productId = null;
 
-const dummyData = {
-  name: 'test name',
-  category: 'phone',
-  description: 'test product',
-  minimumAllowed: 200,
-  quantity: 10,
-  price: '4000',
-  image: 'tet.png'
-};
+// const dummyData = {
+//   name: 'test name',
+//   category: 'phone',
+//   description: 'test product',
+//   minimumAllowed: 200,
+//   quantity: 10,
+//   price: '4000',
+//   image: 'tet.png'
+// };
 
 describe('GET /api/v1', () => {
   it('Should load route', (done) => {

@@ -14,5 +14,7 @@ router.post('/signup', upload.single('useravatar'), middleware.isUserAuthorized,
 
 router.get('/users', middleware.isUserAuthorized, middleware.isUserAdmin, UserController.getAllUsers);
 
+router.post('/resetpassword', UserController.resetpassword);
+
 export default router;
 /* M#EpCgk9xX */
