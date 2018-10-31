@@ -2,9 +2,9 @@ import jwt from 'jsonwebtoken';
 import helper from '../utils';
 
 const isUserAuthorized = (req, res, next) => {
-  const { data } = req.headers;
+  const { authorization } = req.headers;
 
-  jwt.verify(data, process.env.SECRET, (err, decoded) => {
+  jwt.verify(authorization, process.env.SECRET, (err, decoded) => {
     if (err || !decoded) {
       return helper.sendMessage(res, 401, 'Invalid token, please login');
     }

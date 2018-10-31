@@ -6,7 +6,6 @@ import helper from '../utils';
 
 const login = (req, res) => {
   const { staffid, password } = req.body;
-console.log(req.body);
   // Form validation
   req.checkBody('staffid', 'StaffId field is required').notEmpty();
   req.checkBody('password', 'Password field is required').notEmpty();

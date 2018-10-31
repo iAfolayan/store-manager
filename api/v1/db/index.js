@@ -15,7 +15,7 @@ const client = new Pool({
 
 // Connect DB
 client.connect((err) => {
-  if (err) return console.log('err', err);
+  if (!err) return console.log('Connected');
 });
 
 export default client;
