@@ -31,21 +31,21 @@ const user = {
   password: 'admin'
 };
 
-describe('Login', () => {
-  it('should login a user', (done) => {
-    request
-      .post('/api/v1/auth/login')
-      .set('Content-Type', 'Application/json')
-      .send(user)
-      .end((err, res) => {
-        console.log(res.body);
-        token = res.body.data;
-        userId = res.body.data.id;
-        expect(res.status).to.equal(200);
-        expect(res.body.msg).to.equal('Login successful');
-        done();
-      });
-  });
+// describe('Login', () => {
+//   it('should login a user', (done) => {
+//     request
+//       .post('/api/v1/auth/login')
+//       .set('Content-Type', 'Application/json')
+//       .send(user)
+//       .end((err, res) => {
+//         console.log(res.body);
+//         token = res.body.data;
+//         userId = res.body.data.id;
+//         expect(res.status).to.equal(200);
+//         expect(res.body.msg).to.equal('Login successful');
+//         done();
+//       });
+//   });
 
   // it('should return 400 if staffid is empty', (done) => {
   //   request
@@ -70,7 +70,7 @@ describe('Login', () => {
   //       done();
   //     });
   // });
-});
+//});
 
 /* describe('Create User', () => {
  before((done) => {
