@@ -82,7 +82,7 @@ const createSalesRecord = (req, res) => {
 const getOneSaleRecord = (req, res) => {
   let query = `SELECT * FROM sales INNER JOIN sales_item ON (sales.id = sales_item.salesid) INNER JOIN products ON (sales_item.productid = products.id) WHERE sales.id = ${req.params.salesid}`;
   if (req.decoded.role === 2) {
-    query += ` AND attendantid = ${id}`;
+    query += ` AND attendantid = ${req.decoded.id}`;
   }
 
   client.query(query, (err, data) => {
