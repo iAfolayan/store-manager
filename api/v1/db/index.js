@@ -17,12 +17,12 @@ if (process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() === 'production')
     database
   };
 }
-
+console.log(credential);
 const client = new Pool(credential);
 
 // Connect DB
 client.connect((err) => {
-  if (!err) return console.log('connected');
+  if (err) return console.log(err);
 });
 
 export default client;
