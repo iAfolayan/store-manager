@@ -6,6 +6,7 @@ dotenv.config();
 const database = process.env.NODE_ENV === 'test' ? process.env.POSTGRES_DB_TEST : process.env.POSTGRES_DB;
 
 let credential = null;
+console.log('>>>>>>', process.env.NODE_ENV, '>>>>>>');
 if (process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() === 'production') {
   credential = process.env.DATABASE_URL;
 } else {
