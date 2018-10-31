@@ -1,10 +1,11 @@
 import express from 'express';
-import getAllSales from '../controllers/sales.controller';
+import salescontroller from '../controllers/sales.controller';
 import middleware from '../controllers/middleware.controller';
 
 const router = express.Router();
 
 router.route('/')
-  .get(middleware.isUserAuthorized, middleware.isUserAdmin, getAllSales);
+  .get(middleware.isUserAuthorized, middleware.isUserAdmin, salescontroller.getAllSales)
+  .post(middleware.isUserAuthorized, salescontroller.createSalesRecord);
 
 export default router;
