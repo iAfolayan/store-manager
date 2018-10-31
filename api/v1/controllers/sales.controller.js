@@ -73,4 +73,27 @@ const createSalesRecord = (req, res) => {
   });
 };
 
-export default { getAllSales, createSalesRecord };
+/**
+ * @description - Get single sale record for both Amdmin and a sale attendant
+ * @param {*} req - request Object
+ * @param {*} res - response Object
+ * @returns {data} - Returns Single data
+ */
+const getOneSaleRecord = (req, res) => {
+  let query = `SELECT * FROM sales INNER JOIN sales_item ON (sales.id = sales_item.salesid) INNER JOIN products ON (sales_item.productid = products.id) WHERE sales.id = ${req.params.salesid}`;
+  if (req.decoded.role === 2) {
+    query += ` AND attendantid = ${id}`;
+  }
+
+  client.query(query, (err, data) => {
+    if (err) {
+      return helper.sendMessage(res, 500, 'Internal server error');
+    }
+    if (err) return helper.sendMessage(res, 404, 'Record not found');
+    return helper.sendMessage(res, 200, 'Record found successfully', data.rows[0]);
+  });
+};
+
+export default {
+  getAllSales, createSalesRecord, getOneSaleRecord
+};
