@@ -16,7 +16,7 @@ const isUserAuthorized = (req, res, next) => {
 const isUserAdmin = (req, res, next) => {
   const { role } = req.decoded;
   if (role !== 1) {
-    return helper.sendMessage(res, 403, 'Only an admin can do this');
+    return helper.sendMessage(res, 403, 'Permission denied');
   }
   next();
 };
