@@ -65,6 +65,18 @@ describe('Login', () => {
         done();
       });
   });
+  it('should return a message when passed an unregistered staffid', (done) => {
+    request
+      .post('/api/v1/auth/login')
+      .accept('Content-Type', 'Application/json')
+      .send({ staffid: 'WS001' })
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('msg');
+        done();
+      });
+  });
 });
 
 describe('Create User', () => {
@@ -92,7 +104,21 @@ describe('Create User', () => {
         done();
       });
   });
-}); 
+
+  it('should return a message when passed an invalid email', (done) => {
+    request
+      .post('/api/v1/auth/signup')
+      .set('Content-Type', 'Application/json')
+      .set('authorization', token)
+      .send({ ...dummyData, emailaddress: 'invalidEmail' })
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('msg');
+        done();
+      });
+  });
+});
 
 // describe('Password Reset > ', () => {
 //   it('returns error message if password reset body is empty', (done) => {
@@ -109,19 +135,18 @@ describe('Create User', () => {
 //       });
 //   });
 
-//   it('should return a message when passed an invalid email', (done) => {
-//     request
-//       .post('api/v1/resetpassword')
-//       .accept('Content-Type', 'Application/json')
-//       .send({ email: 'invalidEmail' })
-//       .end((err, res) => {
-//         expect(res.status).to.equal(400);
-//         expect(res.body).to.be.an('object');
-//         expect(res.body).to.have.property('message');
-//         expect(res.body.message).to.equal('Provide your valid email');
-//         done();
-//       });
-//   });
+// it('should return a message when passed an invalid email', (done) => {
+//   request
+//     .post('api/v1/resetpassword')
+//     .accept('Content-Type', 'Application/json')
+//     .send({ email: 'invalidEmail' })
+//     .end((err, res) => {
+//       expect(res.status).to.equal(400);
+//       expect(res.body).to.be.an('object');
+//       expect(res.body).to.have.property('message');
+//       done();
+//     });
+// });
 
 //   it('should return a message when passed an unregistered email', (done) => {
 //     request

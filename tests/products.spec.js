@@ -3,17 +3,23 @@ import supertest from 'supertest';
 import app from '../api/v1/app';
 
 const request = supertest(app);
-// let productId = null;
+let productId = 'wryheth';
+let token = '';
 
-// const dummyData = {
-//   name: 'test name',
-//   category: 'phone',
-//   description: 'test product',
-//   minimumAllowed: 200,
-//   quantity: 10,
-//   price: '4000',
-//   image: 'tet.png'
-// };
+const dummyData = {
+  productname: 'test name',
+  category: 'phone',
+  description: 'test product',
+  minimumallowed: 200,
+  quantity: 10,
+  price: '4000',
+  image: 'tet.png'
+};
+
+const user = {
+  staffid: 'SM001',
+  password: 'admin'
+};
 
 describe('GET /api/v1', () => {
   it('Should load route', (done) => {
@@ -27,7 +33,34 @@ describe('GET /api/v1', () => {
       });
   });
 });
-
+describe('Product routes', () => {
+  before((done) => {
+    // runs before all tests in this block
+    request
+      .post('/api/v1/auth/login')
+      .set('Content-Type', 'Application/json')
+      .send(user)
+      .end((err, res) => {
+        token = res.body.data;
+        done();
+      });
+  });
+  describe('Create Product', () => {
+    it('should create a product', (done) => {
+      request
+        .post('/api/v1/products')
+        .set('Content-Type', 'Application/json')
+        .set('authorization', token)
+        .send(dummyData)
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.body.msg).to.equal('A new product was successfully created');
+          expect(res.body.data).to.be.an('object');
+          done();
+        });
+    });
+  });
+});
 // describe('GET available products', () => {
 //   it('should get all available products', (done) => {
 //     request
@@ -53,6 +86,21 @@ describe('GET /api/v1', () => {
 //         done();
 //       });
 //   });
+// });
+
+// it('returns error message when product id is invalid', (done) => {
+//   request
+//     .get(`api/v1/products/${productId}`)
+//     .set('authorization', token)
+//     .set('Content-Type', 'Application/json')
+//     .end((err, res) => {
+//       console.log(res)
+//       expect(res.status).to.equal(400);
+//       expect(res.body).to.be.an('object');
+//       expect(res.body.msg).to
+//         .equal('Invalid Parameter: use integer parameters!');
+//       done();
+//     });
 // });
 
 // describe('GET single product', () => {
@@ -83,20 +131,6 @@ describe('GET /api/v1', () => {
 //   });
 // });
 
-// describe('Create Product', () => {
-//   it('should create a product', (done) => {
-//     request
-//       .post('/api/v1/products')
-//       .set('Content-Type', 'Application/json')
-//       .send(dummyData)
-//       .end((err, res) => {
-//         expect(res.status).to.equal(201);
-//         expect(res.body.msg).to.equal('A new product was successfully created');
-//         expect(res.body.data).to.be.an('object');
-//         done();
-//       });
-//   });
-// });
 
 // describe('Update Product', () => {
 //   it('should update a product', (done) => {

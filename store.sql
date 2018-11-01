@@ -2,7 +2,7 @@ CREATE TABLE users (
     id serial PRIMARY KEY,
     staffid VARCHAR(50),
     title VARCHAR(10),
-    password VARCHAR(50),
+    password VARCHAR(100),
     firstname VARCHAR(50),
     lastname VARCHAR(50),
     emailAddress VARCHAR(50),
@@ -15,14 +15,14 @@ CREATE TABLE users (
 
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
-  productName VARCHAR(50),
-  price INT(11),
-  quantity INT(11),
+  productname VARCHAR(50),
+  price INTEGER,
+  quantity INTEGER,
   description TEXT,
   category VARCHAR(50),
-  minimumAllowed INT(11),
+  minimumallowed INTEGER,
   image VARCHAR(50),
-  createdOn DATE
+  createdon DATE
 );
 
 CREATE TABLE sales (
@@ -32,21 +32,21 @@ CREATE TABLE sales (
   productId INTEGER REFERENCES products(id),
   productName VARCHAR(50),
   category VARCHAR(50),
-  quantity INT(11),
-  price INT(11),
-  totalAmount INT(11),
+  quantity INTEGER,
+  price INTEGER,
+  totalAmount INTEGER,
   description TEXT,
-  minimumAllowed INT(11),
+  minimumAllowed INTEGER,
   createdOn DATE
   
 );
 
 CREATE TABLE sales_item (
 	id serial NOT NULL,
-	salesid int NULL,
-	productid int NOT NULL,
-	quantity int NOT NULL DEFAULT 1,
-	price int NOT NULL,
+	salesid INTEGER NULL,
+	productid INTEGER NOT NULL,
+	quantity INTEGER NOT NULL DEFAULT 1,
+	price INTEGER NOT NULL,
 	CONSTRAINT sales_item_pk PRIMARY KEY (id),
 	CONSTRAINT sales_item_products_fk FOREIGN KEY (productid) REFERENCES products(id),
 	CONSTRAINT sales_item_sales_fk FOREIGN KEY (salesid) REFERENCES sales(id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -72,3 +72,22 @@ INSERT INTO sales (id,saleAttendant,staffId,productId,productName,category,quant
 (1,'Afolayan Isaiah','SM045',2,'wireless','Mobile',20,50,1000,'wireless phone book',10,'2018-10-25 11:23:16.525'),
 (1,'Afolayan Isaiah','SM005',1,'wireless','Mobile',20,50,1000,'wireless phone book',10,'2018-10-25 11:23:16.525'),
 (1,'Afolayan Isaiah','SM005',2,'wireless','Mobile',20,50,1000,'wireless phone book',10,'2018-10-25 11:23:16.525');
+
+INSERT INTO sales_item (id,salesid,productid,quantity,price) VALUES 
+(1,1,3,20,300)
+,(2,1,1,120,400)
+,(3,1,11,20,300)
+,(4,2,3,20,300)
+,(5,2,1,120,400)
+,(6,2,11,20,300)
+,(7,3,3,20,300)
+,(8,3,1,120,400)
+,(9,3,11,20,300)
+,(10,4,3,20,300)
+;
+INSERT INTO sales_item (id,salesid,productid,quantity,price) VALUES 
+(11,4,1,120,400)
+,(12,4,11,20,300)
+,(13,5,3,20,300)
+,(14,5,1,120,400)
+;

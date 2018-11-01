@@ -1,6 +1,7 @@
 import express from 'express';
 import salescontroller from '../controllers/sales.controller';
 import middleware from '../controllers/middleware.controller';
+import Validation from '../controllers/Validation';
 
 const router = express.Router();
 
@@ -9,6 +10,6 @@ router.route('/')
   .post(middleware.isUserAuthorized, salescontroller.createSalesRecord);
 
 router.route('/:salesid')
-  .get(middleware.isUserAuthorized, salescontroller.getOneSaleRecord);
+  .get(Validation.checkParamValid('salesid'), middleware.isUserAuthorized, salescontroller.getOneSaleRecord);
 
 export default router;

@@ -73,6 +73,7 @@ const createProduct = (req, res) => {
   const values = [productname, price, quantity, description, category, minimumallowed, image, createdon];
   client.query(query, values, (err, data) => {
     if (err) {
+      console.log(err);
       return helper.sendMessage(res, 500, 'Internal server error');
     }
     if (data.rowCount === 0) return helper.sendMessage(res, 404, 'Unable to create product');
