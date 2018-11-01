@@ -56,21 +56,39 @@ const createSalesRecord = (req, res) => {
   if (errors) {
     return helper.sendMessage(res, 404, errors[0].msg);
   }
+  validateProductQuantity(items).then(() => {
+    const query = `INSERT INTO sales(buyername, buyeremail, buyeraddress, buyerphone, attendantid) VALUES('${buyername}', '${buyeremail}', '${buyeraddress}', '${buyerphone}', '${userid}') RETURNING *`;
+    client.query(query, (err, data) => {
+      if (err) {
+        return helper.sendMessage(res, 500, 'Internal server error');
+      }
+      const salesid = data.rows[0].id;
 
-  const query = `INSERT INTO sales(buyername, buyeremail, buyeraddress, buyerphone, attendantid) VALUES('${buyername}', '${buyeremail}', '${buyeraddress}', '${buyerphone}', '${userid}') RETURNING *`;
-  client.query(query, (err, data) => {
-    if (err) {
-      return helper.sendMessage(res, 500, 'Internal server error');
-    }
-    const salesid = data.rows[0].id;
-
-    /* Insert the item */
-    Promise.all(insertItems(items, salesid))
-      .then(() => helper.sendMessage(res, 201, 'Sales Record was successfully created'))
-      .catch(() => {
-        helper.sendMessage(res, 400, 'Item not Inserted');
-      });
+      /* Insert the item */
+      Promise.all(insertItems(items, salesid))
+        .then(() => helper.sendMessage(res, 201, 'Sales Record was successfully created'))
+        .catch(() => {
+          helper.sendMessage(res, 400, 'One or more item was not Inserted');
+        });
+    });
+  }).catch((error) => {
+    helper.sendMessage(res, 400, error);
   });
+};
+
+const validateProductQuantity = (items) => {
+  const itemPromises = items.map(eachItem => new Promise((resolve, reject) => {
+    client.query(`SELECT * FROM products WHERE id = ${eachItem.productid}`, (err, data) => {
+      if (err || !data.rowCount) {
+        reject(`Product with id ${eachItem.productid} does not exist`);
+      } else if (data.rows[0].quantity - eachItem.quantity < data.rows[0].minimumallowed) {
+        reject(`Minimum allowed exceeded for product with id ${eachItem.productid}`);
+      } else {
+        resolve();
+      }
+    });
+  }));
+  return Promise.all(itemPromises);
 };
 
 /**
