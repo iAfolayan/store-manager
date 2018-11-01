@@ -14,19 +14,10 @@ app.use(morgan('dev'));
 app.use('/api/v1/', routes);
 
 // Error Handling
-app.use((req, res, next) => {
-  const error = new Error('Not Found');
-  error.status = 404;
-  next(error);
-});
-
-app.use((error, req, res) => {
-  res.status(error.status || 500);
-  res.json({
-    error: {
-      msg: error.message,
-    },
-  });
-});
+app.use('*', (req, res) => {
+  res.status(404).json({
+    msg: 'This is Store Manager, the page you are looking for is not found',
+  })
+})
 
 export default app;
