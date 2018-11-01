@@ -90,27 +90,25 @@ ALTER TABLE sales_item OWNER TO postgres;
 GRANT ALL ON TABLE sales_item TO postgres;
 GRANT INSERT, SELECT, UPDATE, REFERENCES(salesid) ON sales_item TO postgres;
 
-INSERT INTO users (id,staffid,title,password,firstname,lastname,emailAddress,phoneNumber,role,gender,avatar,contactAddress) VALUES 
-(1,'SM001','Miss','$2b$10$B4RDZ2IhVzc/xhPijuP7QunAF8jtVmaK/m5RQrOQnprhWZo5A4n4K','Afolayan','Isaiah','iafolayanibikunle@gmail.com','08032167911',1,'Male','admin.png','41, Osholake street, Ebute-meta, Lagos')
-,(2,'SM005','Mrs.','qwerty','admin','Admin','iafolayan@gmail.com','08032167911',1,'Female','me.jpg','43 Olowosoki')
-,(3,'SM0035','Mrs.','m<hJ{NcTSU','admin','Admin','iafolayanii@gmail.com','08032167911',1,'Female','me.jpg','43 Olowosoki')
-,(4,'SM035','Mrs.','xcf[JKMBGC','admin','Admin','iafolayii@gmail.com','08032167911',1,'Female','me.jpg','43 Olowosoki')
+INSERT INTO users (id,staffid,title,password,firstname,lastname,emailaddress,phonenumber,role,gender,avatar,contactaddress) VALUES 
+(1,'SM001','Miss','$2b$10$B4RDZ2IhVzc/xhPijuP7QunAF8jtVmaK/m5RQrOQnprhWZo5A4n4K','Afolayan','Isaiah','undefined','undefined',1,'Male','null','undefined')
+,(2,'SM002','Miss','$2b$10$ztopqc.8x.hxyPVPIGVHVeKUav1t0SbGdX7cmwiRWchGicX4pB2v.','Afolayan','Isaiah','undefined','undefined',2,'Male','defaultimage.jpg','undefined')
+,(3,'SM003','Miss','$2b$10$bkX9dpsyj3WvIP6KvPugNeZ3zJe8V9u7xcSR/CyLQVp19hDfTL.Re','Afolayan','Isaiah','undefined','undefined',2,'Male','defaultimage.jpg','undefined')
+,(7,'SM0058','Miss','$2b$10$bR22qMAYgxiWNfeYhFPQYeV5qZtCoizr.icvsKnu4SqaIiazXWPRK','Afolayan','Isaiah','iafolakunle@gmail.com','08032167911',1,'Male','defaultimage.jpg','41, Osholake street, Ebute-meta, Lagos')
 ;
 
-INSERT INTO products (id,productName,price,quantity,description,category,minimumAllowed,image,createdOn) VALUES 
-(1,'Wireless bluetooth',3000,780,'Wireless cord bluetooth','Mobile',25,' image.jpg','2018-10-25 00:00:00.000')
-,(2,'Wireless bluetooth',30,780,'Wireless cord bluetooth','Mobile',25,' image.jpg','2018-10-25 11:20:26.314')
-,(3,'new products',50,780,'Wirdfdfdeless bluetooth','Mooobile',255,' image.jpg','2018-10-25 11:23:16.525')
+INSERT INTO products (id,productname,price,quantity,description,category,minimumallowed,image,createdon) VALUES 
+(1,'Wireless bluetooth',3000,780,'Wireless cord bluetooth','Mobile',25,' image.jpg','2018-10-25')
+,(3,'new products',50,780,'Wirdfdfdeless bluetooth','Mooobile',255,' image.jpg','2018-10-25')
+,(11,'Wireless-Phone',3000,780,'Tis is s ihfh kjf fhcff h gcu hi g iuwf gkf eufg j g jjbjc','Mobile',25,' image.jpg','2018-10-28')
+
+INSERT INTO sales (id,buyername,buyeremail,buyeraddress,buyerphone,attendantid) VALUES 
+(1,'Afolayan Isaiah','afolayan@gmil.com','41 gfjhgjg dgkfilu giug km bkkb bjdkjcl','08032167911',3)
+,(2,'Afolayan Isaiah','afolayan@gmil.com','41 gfjhgjg dgkfilu giug km bkkb bjdkjcl','08032167911',3)
+,(3,'Afolayan Isaiah','afolayan@gmil.com','41 gfjhgjg dgkfilu giug km bkkb bjdkjcl','08032167911',3)
+,(4,'Afolayan Isaiah','afolayan@gmil.com','41 gfjhgjg dgkfilu giug km bkkb bjdkjcl','08032167911',3)
+,(5,'Afolayan Isaiah','afolayan@gmil.com','41 gfjhgjg dgkfilu giug km bkkb bjdkjcl','08032167911',3)
 ;
-
-INSERT INTO sales (id,saleAttendant,staffId,productId,productName,category,quantity,price,totalAmount,description,minimumAllowed,createdOn) VALUES 
-(1,'Afolayan Isaiah','SM005',2,'wireless','Mobile',20,50,1000,'wireless phone book',10,'2018-10-25 11:23:16.525'),
-(1,'Afolayan Isaiah','SM005',2,'wireless','Mobile',20,50,1000,'wireless phone book',10,'2018-10-25 11:23:16.525'),
-(1,'Afolayan Isaiah','SM035',1,'wireless','Mobile',20,50,1000,'wireless phone book',10,'2018-10-25 11:23:16.525'),
-(1,'Afolayan Isaiah','SM045',2,'wireless','Mobile',20,50,1000,'wireless phone book',10,'2018-10-25 11:23:16.525'),
-(1,'Afolayan Isaiah','SM005',1,'wireless','Mobile',20,50,1000,'wireless phone book',10,'2018-10-25 11:23:16.525'),
-(1,'Afolayan Isaiah','SM005',2,'wireless','Mobile',20,50,1000,'wireless phone book',10,'2018-10-25 11:23:16.525');
-
 INSERT INTO sales_item (id,salesid,productid,quantity,price) VALUES 
 (1,1,3,20,300)
 ,(2,1,1,120,400)
