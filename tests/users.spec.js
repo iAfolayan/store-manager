@@ -79,7 +79,7 @@ describe('Login', () => {
   });
 });
 
-describe('Create User', () => {
+/* describe('Create User', () => {
   it('should create a user', (done) => {
     request
       .post('/api/v1/auth/signup')
@@ -91,7 +91,7 @@ describe('Create User', () => {
         expect(res.body.data).to.be.an('object');
         done();
       });
-  });
+  }); */
 
   it('should return a message when passed an invalid email', (done) => {
     request
