@@ -100,7 +100,7 @@ INSERT INTO users (id,staffid,title,password,firstname,lastname,emailaddress,pho
 INSERT INTO products (id,productname,price,quantity,description,category,minimumallowed,image,createdon) VALUES 
 (1,'Wireless bluetooth',3000,780,'Wireless cord bluetooth','Mobile',25,' image.jpg','2018-10-25')
 ,(3,'new products',50,780,'Wirdfdfdeless bluetooth','Mooobile',255,' image.jpg','2018-10-25')
-,(11,'Wireless-Phone',3000,780,'Tis is s ihfh kjf fhcff h gcu hi g iuwf gkf eufg j g jjbjc','Mobile',25,' image.jpg','2018-10-28')
+,(11,'Wireless-Phone',3000,780,'Tis is s ihfh kjf fhcff h gcu hi g iuwf gkf eufg j g jjbjc','Mobile',25,' image.jpg','2018-10-28');
 
 INSERT INTO sales (id,buyername,buyeremail,buyeraddress,buyerphone,attendantid) VALUES 
 (1,'Afolayan Isaiah','afolayan@gmil.com','41 gfjhgjg dgkfilu giug km bkkb bjdkjcl','08032167911',3)
