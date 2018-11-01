@@ -3,7 +3,7 @@ import supertest from 'supertest';
 import app from '../api/v1/app';
 
 const request = supertest(app);
-let productId = 'wryheth';
+const productId = 'wryheth';
 let token = '';
 
 const dummyData = {
@@ -54,7 +54,7 @@ describe('Product routes', () => {
         .send(dummyData)
         .end((err, res) => {
           expect(res.status).to.equal(201);
-          expect(res.body.msg).to.equal('A new product was successfully created');
+          expect(res.body.msg).to.equal('Product created successful');
           expect(res.body.data).to.be.an('object');
           done();
         });

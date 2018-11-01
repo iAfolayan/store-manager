@@ -120,9 +120,7 @@ INSERT INTO sales_item (id,salesid,productid,quantity,price) VALUES
 ,(8,3,1,120,400)
 ,(9,3,11,20,300)
 ,(10,4,3,20,300)
-;
-INSERT INTO sales_item (id,salesid,productid,quantity,price) VALUES 
-(11,4,1,120,400)
+,(11,4,1,120,400)
 ,(12,4,11,20,300)
 ,(13,5,3,20,300)
 ,(14,5,1,120,400)
