@@ -1,56 +1,94 @@
+-- Drop table
+
+-- DROP TABLE users
+
 CREATE TABLE users (
-    id serial PRIMARY KEY,
-    staffid VARCHAR(50),
-    title VARCHAR(10),
-    password VARCHAR(100),
-    firstname VARCHAR(50),
-    lastname VARCHAR(50),
-    emailAddress VARCHAR(50),
-    phonenumber VARCHAR(20),
-    role SMALLINT,
-    gender VARCHAR(10),
-    avatar VARCHAR(50),
-    contactAddress TEXT
+	id serial NOT NULL,
+	staffid varchar(25) NOT NULL,
+	title varchar(20) NULL,
+	password varchar(100) NOT NULL,
+	firstname varchar(50) NOT NULL,
+	lastname varchar(50) NOT NULL,
+	emailaddress varchar(50) NOT NULL,
+	phonenumber varchar(20) NOT NULL,
+	role int2 NOT NULL,
+	gender varchar(20) NULL,
+	avatar varchar(50) NOT NULL,
+	contactaddress text NOT NULL,
+	CONSTRAINT users_pk PRIMARY KEY (id)
 );
+CREATE INDEX users_emailaddress_idx ON users USING btree (emailaddress);
+
+-- Permissions
+
+ALTER TABLE users OWNER TO postgres;
+GRANT ALL ON TABLE users TO postgres;
+
+
+-- Drop table
+
+-- DROP TABLE products
 
 CREATE TABLE products (
-  id SERIAL PRIMARY KEY,
-  productname VARCHAR(50),
-  price INTEGER,
-  quantity INTEGER,
-  description TEXT,
-  category VARCHAR(50),
-  minimumallowed INTEGER,
-  image VARCHAR(50),
-  createdon DATE
+	id serial NOT NULL,
+	productname varchar(20) NOT NULL,
+	price int4 NOT NULL,
+	quantity int4 NOT NULL,
+	description text NULL,
+	category varchar(20) NOT NULL,
+	minimumallowed int4 NOT NULL,
+	image bpchar(20) NOT NULL,
+	createdon date NOT NULL,
+	CONSTRAINT products_pkey PRIMARY KEY (id)
 );
 
+-- Permissions
+
+ALTER TABLE products OWNER TO postgres;
+GRANT ALL ON TABLE products TO postgres;
+GRANT INSERT, SELECT, UPDATE, REFERENCES(productname) ON products TO postgres;
+GRANT INSERT, SELECT, UPDATE, REFERENCES(createdon) ON products TO postgres;
+
+-- Drop table
+
+-- DROP TABLE sales
+
 CREATE TABLE sales (
-  id SERIAL PRIMARY KEY,
-  saleAttendant VARCHAR(50),
-  staffId VARCHAR(20) REFERENCES users(staffid),
-  productId INTEGER REFERENCES products(id),
-  productName VARCHAR(50),
-  category VARCHAR(50),
-  quantity INTEGER,
-  price INTEGER,
-  totalAmount INTEGER,
-  description TEXT,
-  minimumAllowed INTEGER,
-  createdOn DATE
-  
+	id serial NOT NULL,
+	buyername varchar(50) NOT NULL,
+	buyeremail varchar(50) NOT NULL,
+	buyeraddress text NOT NULL,
+	buyerphone varchar(20) NULL,
+	attendantid int4 NOT NULL,
+	CONSTRAINT sales_pkey PRIMARY KEY (id),
+	CONSTRAINT sales_users_fk FOREIGN KEY (attendantid) REFERENCES users(id)
 );
+
+-- Permissions
+
+ALTER TABLE sales OWNER TO postgres;
+GRANT ALL ON TABLE sales TO postgres;
+
+-- Drop table
+
+-- DROP TABLE sales_item
 
 CREATE TABLE sales_item (
 	id serial NOT NULL,
-	salesid INTEGER NULL,
-	productid INTEGER NOT NULL,
-	quantity INTEGER NOT NULL DEFAULT 1,
-	price INTEGER NOT NULL,
+	salesid int2 NULL,
+	productid int2 NOT NULL,
+	quantity int4 NOT NULL DEFAULT 1,
+	price int4 NOT NULL,
 	CONSTRAINT sales_item_pk PRIMARY KEY (id),
 	CONSTRAINT sales_item_products_fk FOREIGN KEY (productid) REFERENCES products(id),
 	CONSTRAINT sales_item_sales_fk FOREIGN KEY (salesid) REFERENCES sales(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+-- Permissions
+
+ALTER TABLE sales_item OWNER TO postgres;
+GRANT ALL ON TABLE sales_item TO postgres;
+GRANT INSERT, SELECT, UPDATE, REFERENCES(salesid) ON sales_item TO postgres;
 
 INSERT INTO users (id,staffid,title,password,firstname,lastname,emailAddress,phoneNumber,role,gender,avatar,contactAddress) VALUES 
 (1,'SM001','Miss','$2b$10$B4RDZ2IhVzc/xhPijuP7QunAF8jtVmaK/m5RQrOQnprhWZo5A4n4K','Afolayan','Isaiah','iafolayanibikunle@gmail.com','08032167911',1,'Male','admin.png','41, Osholake street, Ebute-meta, Lagos')
