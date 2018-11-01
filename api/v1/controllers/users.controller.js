@@ -90,19 +90,20 @@ const createUser = (req, res) => {
   const errors = req.validationErrors();
 
   if (errors) {
-    return helper.sendMessage(res, 404, errors[0].msg);
+    return helper.sendMessage(res, 400, errors[0].msg);
   }
   client.query(`SELECT * FROM users WHERE staffid = '${staffid}'`, (err, data) => {
     if (data.rowCount === 1) return helper.sendMessage(res, 409, 'Duplicate staff id found');
-  });
-  // password
-  bcrypt.hash(password, 10, (errr, hash) => {
-    const query = `INSERT INTO users(staffid, title, password, firstname, lastname, emailaddress, phonenumber, role, gender, avatar, contactaddress) VALUES('${staffid}', '${title}', '${hash}', '${firstname}', '${lastname}', '${emailaddress}', '${phonenumber}', ${role}, '${gender}', '${avatar}', '${contactaddress}') RETURNING *`;
-    client.query(query, (err, data) => {
-      if (err) {
-        return helper.sendMessage(res, 500, 'Internal server error');
-      }
-      return helper.sendMessage(res, 201, 'New user successfully created', data);
+    // password
+    bcrypt.hash(password, 10, (errr, hash) => {
+      const query = `INSERT INTO users(staffid, title, password, firstname, lastname, emailaddress, phonenumber, role, gender, avatar, contactaddress) VALUES('${staffid}', '${title}', '${hash}', '${firstname}', '${lastname}', '${emailaddress}', '${phonenumber}', ${role}, '${gender}', '${avatar}', '${contactaddress}') RETURNING *`;
+      client.query(query, (err, data) => {
+        if (err) {
+          console.log(err)
+          return helper.sendMessage(res, 500, 'Internal server error');
+        }
+        return helper.sendMessage(res, 201, 'New user successfully created', data);
+      });
     });
   });
 };
