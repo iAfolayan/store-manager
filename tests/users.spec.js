@@ -80,18 +80,6 @@ describe('Login', () => {
 });
 
 describe('Create User', () => {
-//  before((done) => {
-//     // runs before all tests in this block
-//     request
-//       .post('/api/v1/auth/login')
-//       .set('Content-Type', 'Application/json')
-//       .send(user)
-//       .end((err, res) => {
-//         token = res.body.data;
-//         done();
-//       });
-//   })
-
   it('should create a user', (done) => {
     request
       .post('/api/v1/auth/signup')
