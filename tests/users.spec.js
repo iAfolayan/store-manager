@@ -78,21 +78,7 @@ describe('Login', () => {
       });
   });
 });
-
-/* describe('Create User', () => {
-  it('should create a user', (done) => {
-    request
-      .post('/api/v1/auth/signup')
-      .set('Content-Type', 'Application/json')
-      .set('authorization', token)
-      .send(dummyData)
-      .end((err, res) => {
-        expect(res.status).to.equal(201);
-        expect(res.body.data).to.be.an('object');
-        done();
-      });
-  }); */
-
+describe('Signup ', () => {
   it('should return a message when passed an invalid email', (done) => {
     request
       .post('/api/v1/auth/signup')
