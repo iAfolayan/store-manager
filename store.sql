@@ -97,7 +97,7 @@ INSERT INTO users (id,staffid,title,password,firstname,lastname,emailaddress,pho
 ,(7,'SM0058','Miss','$2b$10$bR22qMAYgxiWNfeYhFPQYeV5qZtCoizr.icvsKnu4SqaIiazXWPRK','Afolayan','Isaiah','iafolakunle@gmail.com','08032167911',1,'Male','defaultimage.jpg','41, Osholake street, Ebute-meta, Lagos')
 ;
 
-INSERT INTO products (id,productname,price,quantity,description,category,minimumallowed,image,createdon) VALUES 
+/* INSERT INTO products (id,productname,price,quantity,description,category,minimumallowed,image,createdon) VALUES 
 (1,'Wireless bluetooth',3000,780,'Wireless cord bluetooth','Mobile',25,' image.jpg','2018-10-25')
 ,(3,'new products',50,780,'Wirdfdfdeless bluetooth','Mooobile',255,' image.jpg','2018-10-25')
 ,(11,'Wireless-Phone',3000,780,'Tis is s ihfh kjf fhcff h gcu hi g iuwf gkf eufg j g jjbjc','Mobile',25,' image.jpg','2018-10-28');
@@ -124,4 +124,4 @@ INSERT INTO sales_item (id,salesid,productid,quantity,price) VALUES
 ,(12,4,11,20,300)
 ,(13,5,3,20,300)
 ,(14,5,1,120,400)
-;
+; */
