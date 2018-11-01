@@ -1,8 +1,14 @@
+DROP DATABASE IF EXISTS storetestdb;
+CREATE DATABASE storetestdb;
+
+\connect storetestdb;
+
+
 -- Drop table
 
 -- DROP TABLE users
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
 	id serial NOT NULL,
 	staffid varchar(25) NOT NULL,
 	title varchar(20) NULL,
@@ -29,7 +35,7 @@ GRANT ALL ON TABLE users TO postgres;
 
 -- DROP TABLE products
 
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS products (
 	id serial NOT NULL,
 	productname varchar(20) NOT NULL,
 	price int4 NOT NULL,
@@ -53,7 +59,7 @@ GRANT INSERT, SELECT, UPDATE, REFERENCES(createdon) ON products TO postgres;
 
 -- DROP TABLE sales
 
-CREATE TABLE sales (
+CREATE TABLE IF NOT EXISTS sales (
 	id serial NOT NULL,
 	buyername varchar(50) NOT NULL,
 	buyeremail varchar(50) NOT NULL,
@@ -73,7 +79,7 @@ GRANT ALL ON TABLE sales TO postgres;
 
 -- DROP TABLE sales_item
 
-CREATE TABLE sales_item (
+CREATE TABLE IF NOT EXISTS sales_item (
 	id serial NOT NULL,
 	salesid int2 NULL,
 	productid int2 NOT NULL,

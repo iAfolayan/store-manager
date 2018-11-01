@@ -11,8 +11,7 @@ const request = supertest(app);
 let token = '';
 
 const dummyData = {
-  id: 78,
-  staffid: 'SM005',
+  staffid: 'SM0062',
   title: 'Miss',
   password: 'admin',
   firstname: 'Grace',
