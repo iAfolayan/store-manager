@@ -20,6 +20,7 @@ document.querySelector('.mobileMenu').addEventListener("click", slideMobileMenu)
 /* MODAL SCRIPT */
 const modal = document.querySelector(".modal");
     const trigger = document.querySelector(".trigger");
+    const checkoutTrigger = document.querySelector('.cartBtn');
     const closeButton = document.querySelector(".close-button");
 
   	const toggleModal = () => {
@@ -32,6 +33,8 @@ const modal = document.querySelector(".modal");
         }
     }
 
-    trigger.addEventListener("click", toggleModal);
+
+    //trigger.addEventListener("click", toggleModal);
+   checkoutTrigger.addEventListener("click", toggleModal);
     closeButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);
