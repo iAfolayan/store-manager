@@ -45,10 +45,9 @@ const createSalesRecord = (req, res) => {
 
   // Form validation
   req.checkBody('buyername', 'Buyer name field is required').notEmpty();
-  req.checkBody('buyeremail', 'Buyer Email field is required').isEmail();
-  req.checkBody('buyeraddress', 'Buyer Address field is required').notEmpty();
   req.checkBody('buyerphone', 'Buyer Phone address field is required').notEmpty();
-  req.checkBody('buyerphone', 'Incomplete Phone Number must be minimum of 11 characters').isLength({ min: 11 });
+  req.checkBody('buyerphone', 'Incomplete Phone Number must be minimum of 11 characters')
+    .isLength({ min: 11 });
 
   // check Errors
   const errors = req.validationErrors();

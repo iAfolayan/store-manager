@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import passwordGen from 'generate-password';
 import bcrypt from 'bcrypt';
 import client from '../db/index';
 import helper from '../utils';
@@ -50,6 +49,7 @@ const createUser = (req, res) => {
   const {
     staffid,
     title,
+    password,
     firstname,
     lastname,
     emailaddress,
@@ -58,13 +58,6 @@ const createUser = (req, res) => {
     gender,
     contactaddress
   } = req.body;
-
-  const password = passwordGen.generate({
-    length: 10,
-    numbers: true,
-    excludeSimilarCharacters: true,
-    symbols: true
-  });
 
   // Validate user pofile image
   let avatar = null;
@@ -81,10 +74,16 @@ const createUser = (req, res) => {
   req.checkBody('emailaddress', 'Email address field is required').notEmpty();
   req.checkBody('emailaddress', 'Invalid Email Address').isEmail();
   req.checkBody('phonenumber', 'Phone Number field is required').notEmpty();
-  req.checkBody('phonenumber', 'Incomplete Phone Number must be minimum of 11 characters').isLength({ min: 11 });
+  req.checkBody('phonenumber', 'Invalid Phone Number, Only integer allowed').isNumeric();
+  req.checkBody('phonenumber', 'Incomplete Phone Number must be minimum of 11 characters')
+    .isLength({ min: 11 });
   req.checkBody('role', 'Select type of User').notEmpty('');
   req.checkBody('gender', 'Select gender').notEmpty();
   req.checkBody('contactaddress', 'User contat address field is required').notEmpty();
+
+  if (!phonenumber.match(/^[0-9]+$/)) {
+    return helper.sendMessage(res, 400, 'Invalid Phone Number, Only integer allowed');
+  }
 
   // check Errors
   const errors = req.validationErrors();
@@ -96,24 +95,21 @@ const createUser = (req, res) => {
     if (data.rowCount === 1) return helper.sendMessage(res, 409, 'Duplicate staff id found');
     // password
     bcrypt.hash(password, 10, (errr, hash) => {
-      const query = `INSERT INTO users(staffid, title, password, firstname, lastname, emailaddress, phonenumber, role, gender, avatar, contactaddress) VALUES('${staffid}', '${title}', '${hash}', '${firstname}', '${lastname}', '${emailaddress}', '${phonenumber}', ${role}, '${gender}', '${avatar}', '${contactaddress}') RETURNING *`;
-      client.query(query, (err, data) => {
+      const query = `INSERT INTO users(staffid, title, password, firstname, lastname,
+         emailaddress, phonenumber, role, gender, avatar, contactaddress)
+          VALUES('${staffid}', '${title}', '${hash}', '${firstname}',
+           '${lastname}', '${emailaddress}', '${phonenumber}', ${role},
+            '${gender}', '${avatar}', '${contactaddress}') RETURNING *`;
+      client.query(query, (err, dataResult) => {
         if (err) {
-          console.log(err)
           return helper.sendMessage(res, 500, 'Internal server error');
         }
-        return helper.sendMessage(res, 201, 'New user successfully created', data);
+        return helper.sendMessage(res, 201, 'New user successfully created', dataResult.rows);
       });
     });
   });
 };
 
-const resetpassword = (req, res) => {
-  res.status(400).json({
-    msg: 'Email is required',
-  });
-};
-
 export default {
-  login, createUser, getAllUsers, resetpassword
+  login, createUser, getAllUsers
 };

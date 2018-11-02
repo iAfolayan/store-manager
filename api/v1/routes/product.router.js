@@ -10,11 +10,26 @@ const router = express.Router();
 
 router.route('/')
   .get(middleware.isUserAuthorized, productcontroller.getProducts)
-  .post(upload.single('productimage'), middleware.isUserAuthorized, middleware.isUserAdmin, productcontroller.createProduct);
+  
+  .post(upload.single('productimage'),
+    middleware.isUserAuthorized,
+    middleware.isUserAdmin,
+    productcontroller.createProduct);
 
 router.route('/:productId')
-  .get(Validation.checkParamValid('productId'), middleware.isUserAuthorized, middleware.isUserAdmin, productcontroller.getOneProduct)
-  .delete(Validation.checkParamValid('productId'), middleware.isUserAuthorized, middleware.isUserAdmin, productcontroller.deleteAProduct)
-  .put(Validation.checkParamValid('productId'), middleware.isUserAuthorized, middleware.isUserAdmin, productcontroller.updateAProduct);
+  .get(Validation.checkParamValid('productId'),
+    middleware.isUserAuthorized,
+    middleware.isUserAdmin,
+    productcontroller.getOneProduct)
+
+  .delete(Validation.checkParamValid('productId'),
+    middleware.isUserAuthorized,
+    middleware.isUserAdmin,
+    productcontroller.deleteAProduct)
+
+  .put(Validation.checkParamValid('productId'),
+    middleware.isUserAuthorized,
+    middleware.isUserAdmin,
+    productcontroller.updateAProduct);
 
 export default router;

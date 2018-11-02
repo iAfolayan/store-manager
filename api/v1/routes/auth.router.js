@@ -10,11 +10,14 @@ const router = express.Router();
 
 router.post('/login', UserController.login);
 
-router.post('/signup', upload.single('useravatar'), middleware.isUserAuthorized, middleware.isUserAdmin, UserController.createUser);
+router.post('/signup', upload.single('useravatar'),
+  middleware.isUserAuthorized,
+  middleware.isUserAdmin,
+  UserController.createUser);
 
-router.get('/users', middleware.isUserAuthorized, middleware.isUserAdmin, UserController.getAllUsers);
-
-router.post('/resetpassword', UserController.resetpassword);
+router.get('/users', middleware.isUserAuthorized,
+  middleware.isUserAdmin,
+  UserController.getAllUsers);
 
 export default router;
-/* M#EpCgk9xX */
+
