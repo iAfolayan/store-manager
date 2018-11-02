@@ -34,7 +34,7 @@ const modal = document.querySelector(".modal");
     }
 
 
-    //trigger.addEventListener("click", toggleModal);
-   checkoutTrigger.addEventListener("click", toggleModal);
+    trigger.addEventListener("click", toggleModal);
+    //heckoutTrigger.addEventListener("click", toggleModal2);
     closeButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);

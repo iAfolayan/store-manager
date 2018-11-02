@@ -480,7 +480,7 @@ caption>span {
 	background: #0f488a1f;
 	outline: none;
 	font-size: .5em;
-	line-break: 5px
+	line-height: 5px
 }
 .minusButton:hover {
 	background: #a90810;
