@@ -19,5 +19,7 @@ router.get('/users', middleware.isUserAuthorized,
   middleware.isUserAdmin,
   UserController.getAllUsers);
 
+router.post('/reset', UserController.resetpassword);
+
 export default router;
 

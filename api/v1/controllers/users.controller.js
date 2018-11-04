@@ -110,6 +110,34 @@ const createUser = (req, res) => {
   });
 };
 
+const resetpassword = (req, res) => {
+  const { emailaddress } = req.body;
+
+  // Validate Email
+  req.checkBody('emailaddress', 'Email Address field is required').notEmpty();
+  req.checkBody('emailaddress', 'Invalid Email address').isEmail();
+
+  // check Errors
+  const errors = req.validationErrors();
+
+  if (errors) {
+    return helper.sendMessage(res, 400, errors[0].msg);
+  } 
+
+  if (!emailaddress.trim()) {
+    return helper.sendMessage(res, 400, 'Email address input is not valid.');
+  } 
+  client.query(`SELECT * FROM users WHERE emailaddress='${emailaddress}'`, (err, data) => {
+    if (err) {
+      return helper.sendMessage(res, 500, 'Internal Server Error');
+    }
+    if (data.rowCount === 0) {
+      return helper.sendMessage(res, 404, `${emailaddress} is not found`);
+    }
+    return helper.sendMessage(res, 200, `A mail has been sent to ${emailaddress}. Kindly check and follow the link to reset your password`);
+  })
+}
+
 export default {
-  login, createUser, getAllUsers
+  login, createUser, getAllUsers, resetpassword
 };
