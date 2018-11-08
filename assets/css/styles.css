@@ -130,10 +130,9 @@ label {
 	text-transform: uppercase;
 }
 footer {
-	width: 93%;
+	width: 95%;
 	text-align: center;
 	color: #fff;
-	/* margin-top: 73px; */
 	position: fixed;
 	bottom: 0%;
 	padding-top: 2px;
@@ -462,7 +461,6 @@ caption>span {
 .summaryHolder { 
 	margin-top: 25px;
 	padding-top: 10px;
-	width: 90%;
 	border-top: 2px solid #ccc;
 	 }
 .prductDivider {
@@ -644,9 +642,9 @@ overflow: auto;
 	width: 90%;
 	float: left;
     text-align: center;
-    border-top: 2px solid #ccc;
     padding-top: 10px;
-    margin-left: 10px;
+		margin-left: 10px;
+		margin-bottom: 50px;
 }
 
 .subTotal {
