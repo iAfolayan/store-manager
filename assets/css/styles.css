@@ -130,9 +130,27 @@ label {
 	text-transform: uppercase;
 }
 footer {
-	margin-top: 50px;
+	width: 93%;
 	text-align: center;
 	color: #fff;
+	/* margin-top: 73px; */
+	position: fixed;
+	bottom: 0%;
+	padding-top: 2px;
+	padding-bottom: 20px;
+	background: #fff;
+	z-index: 9;
+}
+.logincover footer{
+	width: 100% !important;
+	background: none !important
+}
+.appTitle {
+	display: block;
+	margin-top: -7px;
+}
+.appTitle h3 {
+	text-transform: uppercase
 }
 
 /* DASHBOARD */
@@ -188,7 +206,7 @@ nav>ul>li>a {
 }
 .filterHolder {
 	margin-top: 10px;
-	width: 94%;
+	width: 80%;
 }
 .searchButton {
 	margin-left: 3px;
@@ -209,7 +227,7 @@ input[type=search] {
 	border-radius: 4px;
 }
 .mainHeader {
-	width: 100%;
+	width: 95%;
 	/* height: 40px; */
 	/* padding-top: 20px; */
 	margin-bottom: 5px;
@@ -230,12 +248,13 @@ input[type=search] {
 	margin: 0 auto;
 	width: 100%;
 	float: left;
-	margin-top: 100px;
+	margin-top: 55px;
 }
 .card_4_column {
 	width: 100%;
 	float: left;
 	margin-bottom: 20px;
+	padding-bottom: 40px;
 	/* text-align: center; */
 }
 .productHolderCard{
@@ -300,7 +319,7 @@ input[type=search] {
 	max-height: 70px;
 	max-width:200px;
 	margin:15px auto;
-	/* display: flex; */
+	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: 25px;
@@ -340,7 +359,7 @@ article {
 button {
 	background-color: #5791da;
 	color: #fff;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	padding: 8px;
 	border: none;
 	margin-bottom: 10px;
@@ -376,7 +395,7 @@ button:hover {
 .userFormControl, .modifyProduct {
 	margin: 0 auto;
 	width: 85%;
-	margin-top: 100px;
+	margin-top: 50px;
 	border-radius:10px;
 }
 .userFormControl label {
@@ -437,13 +456,13 @@ caption>span {
 .productImageHolder , .summaryHolder{
 	float: left;
 	width: 100%;
-	padding: 10px;
+	/* padding: 10px; */
 	text-align: center;
 }
 .summaryHolder { 
 	margin-top: 25px;
 	padding-top: 10px;
-	width: 100%;
+	width: 90%;
 	border-top: 2px solid #ccc;
 	 }
 .prductDivider {
@@ -463,7 +482,7 @@ caption>span {
 .productInformation, .cartSummary {
 	float: left;
 	width: 100%;
-	padding:10px;
+	/* padding:10px; */
 }
 .cartSummary { width: 70% }
 .cartSummary input[type=number] {
@@ -513,7 +532,7 @@ margin-bottom: 15px;
 overflow: auto;
 }
 .modifyProduct>a>img, .productHolder>a>img {
-	width: 14%;
+	width: 10%;
 	float: right;
 }
 
@@ -591,17 +610,17 @@ overflow: auto;
 }
 
 .circle {
-	width: 8%;
+	width: 6%;
 	background-color: #F44336;
-	border-radius: 100%;
+	border-radius: 50%;
 	color: #FFF;
 	text-align: center;
-	font-size: 12px;
+	font-size: 10px;
 	float: right;
 	line-height: 20px;
 	cursor: pointer;
 	z-index: 5;
-	box-shadow: #0f488a 0px 0px 2px 0px;
+	/* box-shadow: #0f488a 0px 0px 2px 0px; */
 	position: relative;
 }
 
@@ -622,8 +641,8 @@ overflow: auto;
 	float: left;
 }
 .summaryHolder {
-	width: 100%;
-    float: right;
+	width: 90%;
+	float: left;
     text-align: center;
     border-top: 2px solid #ccc;
     padding-top: 10px;
@@ -862,6 +881,7 @@ label {
 	width: 15%;
 	display: block;
 	float: left;
+	z-index: 999;
 }
 .card_4_column {
 	width: 25%;
@@ -1016,7 +1036,7 @@ select {
 .filterHolder {
 	margin-left: 20px;
 	margin-top: 10px;
-	width: 25%;
+	width:80%;
 }
 .subTotal {
 	font-size: 20px;
@@ -1055,6 +1075,16 @@ select {
 	width: 75%;
 	float: right;
 	padding: 30px;
+}
+
+footer {
+	width: 83%;
+}
+.logincover footer{
+	width: 40% !important;
+}
+.appTitle {
+	display: none
 }
 }
 
