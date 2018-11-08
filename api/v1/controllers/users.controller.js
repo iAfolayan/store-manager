@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import cuid from 'cuid';
 import client from '../db/index';
 import helper from '../utils';
 
@@ -122,11 +123,11 @@ const resetpassword = (req, res) => {
 
   if (errors) {
     return helper.sendMessage(res, 400, errors[0].msg);
-  } 
+  }
 
   if (!emailaddress.trim()) {
     return helper.sendMessage(res, 400, 'Email address input is not valid.');
-  } 
+  }
   client.query(`SELECT * FROM users WHERE emailaddress='${emailaddress}'`, (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal Server Error');
@@ -135,9 +136,68 @@ const resetpassword = (req, res) => {
       return helper.sendMessage(res, 404, `${emailaddress} is not found`);
     }
     return helper.sendMessage(res, 200, `A mail has been sent to ${emailaddress}. Kindly check and follow the link to reset your password`);
-  })
-}
+  });
+};
+
+const changePassword = (req, res) => {
+  const { newPassword, confirmPassword } = req.body;
+  const { id } = req.decoded;
+
+  // Form Validate
+  req.checkBody('newPassword', 'New Password field is required').notEmpty();
+  req.checkBody('confirmPassword', 'Confirm password field is required').notEmpty();
+  req.checkBody('confirmPassword', 'Passwords do not match').equals(newPassword);
+
+  // check Errors
+  const errors = req.validationErrors();
+
+  if (errors) {
+    return helper.sendMessage(res, 400, errors[0].msg);
+  }
+
+  if (!newPassword.trim() || !confirmPassword.trim()) {
+    return helper.sendMessage(res, 400, 'Input is not valid.');
+  }
+
+  client.query(`UPDATE users SET password = ${newPassword} WHERE id=${id}`, (err, data) => {
+    if (err) {
+      return helper.sendMessage(res, 500, 'Internal Server Error');
+    }
+
+    if (data.rowCount === 0) {
+      return helper.sendMessage(res, 404, 'Invalid User');
+    }
+
+    return helper.sendMessage(res, 201, 'Password Updated successfully');
+  });
+};
+
+const makeUserAnAdmin = (req, res) => {
+  const { id } = req.body;
+  client.query(`UPDATE users SET role = 2 WHERE id=${id}`, (err, data) => {
+    if (err) {
+      return helper.sendMessage(res, 500, 'Internal Server Error');
+    }
+    return helper.sendMessage(res, 200, 'You have successfully make a user an Admin');
+  });
+};
+
+const disabledUserAcoount = (req, res) => {
+  const { id } = req.body;
+  client.query(`UPDATE users SET role = 3 WHERE id=${id}`, (err, data) => {
+    if (err) {
+      return helper.sendMessage(res, 500, 'Internal Server Error');
+    }
+    return helper.sendMessage(res, 200, 'Account disabled Successfully');
+  });
+};
 
 export default {
-  login, createUser, getAllUsers, resetpassword
+  login,
+  createUser,
+  getAllUsers,
+  resetpassword,
+  changePassword,
+  makeUserAnAdmin,
+  disabledUserAcoount
 };

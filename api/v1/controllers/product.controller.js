@@ -1,3 +1,4 @@
+import cuid from 'cuid';
 import client from '../db/index';
 import helper from '../utils';
 
