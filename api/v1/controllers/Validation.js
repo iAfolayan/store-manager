@@ -9,8 +9,8 @@ class Validation {
   */
   static checkParamValid(value) {
     return (req, res, next) => {
-      if (!req.params[value].match(/^[0-9]+$/)) {
-        res.status(400).send({ msg: 'Invalid Parameter: use integer parameters!' });
+      if (req.params[value].match(/^[0-9]+$/)) {
+        res.status(400).send({ msg: 'Invalid Parameter: enter a valid Parameter!' });
       } else { next(); }
     };
   }

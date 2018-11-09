@@ -6,10 +6,10 @@ CREATE DATABASE storetestdb;
 
 -- Drop table
 
--- DROP TABLE users
+-- DROP TABLE public.users
 
-CREATE TABLE IF NOT EXISTS users (
-	id serial NOT NULL,
+CREATE TABLE users (
+	id varchar(50) NOT NULL,
 	staffid varchar(25) NOT NULL,
 	title varchar(20) NULL,
 	password varchar(100) NOT NULL,
@@ -21,9 +21,9 @@ CREATE TABLE IF NOT EXISTS users (
 	gender varchar(20) NULL,
 	avatar varchar(50) NOT NULL,
 	contactaddress text NOT NULL,
-	CONSTRAINT users_pk PRIMARY KEY (id)
+	CONSTRAINT users_pk PRIMARY KEY (id),
+	CONSTRAINT users_un UNIQUE (staffid, emailaddress, phonenumber)
 );
-CREATE INDEX users_emailaddress_idx ON users USING btree (emailaddress);
 
 -- Permissions
 
@@ -33,10 +33,10 @@ GRANT ALL ON TABLE users TO postgres;
 
 -- Drop table
 
--- DROP TABLE products
+-- DROP TABLE public.products
 
-CREATE TABLE IF NOT EXISTS products (
-	id serial NOT NULL,
+CREATE TABLE products (
+	id varchar(50) NOT NULL,
 	productname varchar(20) NOT NULL,
 	price int4 NOT NULL,
 	quantity int4 NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS products (
 	minimumallowed int4 NOT NULL,
 	image bpchar(20) NOT NULL,
 	createdon date NOT NULL,
-	CONSTRAINT products_pkey PRIMARY KEY (id)
+	CONSTRAINT products_pk PRIMARY KEY (id)
 );
 
 -- Permissions
@@ -57,18 +57,19 @@ GRANT INSERT, SELECT, UPDATE, REFERENCES(createdon) ON products TO postgres;
 
 -- Drop table
 
--- DROP TABLE sales
+-- DROP TABLE Sales
 
-CREATE TABLE IF NOT EXISTS sales (
-	id serial NOT NULL,
+CREATE TABLE sales (
+	id varchar(50) NOT NULL,
 	buyername varchar(50) NOT NULL,
 	buyeremail varchar(50) NOT NULL,
 	buyeraddress text NOT NULL,
 	buyerphone varchar(20) NULL,
-	attendantid int4 NOT NULL,
+	attendantid varchar(50) NOT NULL,
 	CONSTRAINT sales_pkey PRIMARY KEY (id),
 	CONSTRAINT sales_users_fk FOREIGN KEY (attendantid) REFERENCES users(id)
 );
+
 
 -- Permissions
 
@@ -77,17 +78,17 @@ GRANT ALL ON TABLE sales TO postgres;
 
 -- Drop table
 
--- DROP TABLE sales_item
+-- DROP TABLE public.sales_item
 
-CREATE TABLE IF NOT EXISTS sales_item (
-	id serial NOT NULL,
-	salesid int2 NULL,
-	productid int2 NOT NULL,
+CREATE TABLE sales_item (
+	id varchar(50) NOT NULL,
+	salesid varchar(50) NULL,
+	productid varchar(50) NOT NULL,
 	quantity int4 NOT NULL DEFAULT 1,
 	price int4 NOT NULL,
 	CONSTRAINT sales_item_pk PRIMARY KEY (id),
 	CONSTRAINT sales_item_products_fk FOREIGN KEY (productid) REFERENCES products(id),
-	CONSTRAINT sales_item_sales_fk FOREIGN KEY (salesid) REFERENCES sales(id) ON UPDATE CASCADE ON DELETE CASCADE
+	CONSTRAINT sales_item_sales_fk FOREIGN KEY (salesid) REFERENCES sales(id)
 );
 
 -- Permissions

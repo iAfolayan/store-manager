@@ -26,7 +26,7 @@ const getProducts = (req, res) => {
  */
 const getOneProduct = (req, res) => {
   const { productId } = req.params;
-  client.query(`SELECT * FROM products WHERE id=${productId}`, (err, data) => {
+  client.query(`SELECT * FROM products WHERE id='${productId}'`, (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal server error');
     }
@@ -43,7 +43,7 @@ const getOneProduct = (req, res) => {
  */
 const deleteAProduct = (req, res) => {
   const { productId } = req.params;
-  client.query(`DELETE FROM products WHERE id=${productId}`, (err, data) => {
+  client.query(`DELETE FROM products WHERE id='${productId}'`, (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal server error');
     }
@@ -60,8 +60,9 @@ const deleteAProduct = (req, res) => {
  */
 const createProduct = (req, res) => {
   const createdon = new Date().toISOString();
-  const query = 'INSERT INTO products(productname, price, quantity, description, category, minimumallowed, image, createdon) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *';
+  const query = 'INSERT INTO products(id, productname, price, quantity, description, category, minimumallowed, image, createdon) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *';
   const {
+    id = cuid(),
     productname,
     price,
     quantity,
@@ -105,11 +106,11 @@ const createProduct = (req, res) => {
     return helper.sendMessage(res, 400, errors[0].msg);
   }
 
-  const values = [productname, price, quantity, description, category,
+  const values = [id, productname, price, quantity, description, category,
     minimumallowed, image, createdon];
   client.query(query, values, (err, data) => {
     if (err) {
-      return helper.sendMessage(res, 400, errors[0].msg);
+      return helper.sendMessage(res, 500, 'Internal Server Error');
     }
     if (data.rowCount === 0) return helper.sendMessage(res, 404, 'Unable to create product');
     return helper.sendMessage(res, 201, 'Product created successful', data.rows[0]);
@@ -137,7 +138,7 @@ const updateAProduct = (req, res) => {
   const query = `UPDATE products SET productname='${productname}',
    price=${price}, quantity=${quantity}, description='${description}',
     category='${category}', minimumallowed=${minimumallowed},
-     image='${image}' WHERE id = ${productId} RETURNING *`;
+     image='${image}' WHERE id = '${productId}' RETURNING *`;
   client.query(query, (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal server error');
@@ -148,5 +149,9 @@ const updateAProduct = (req, res) => {
 };
 
 export default {
-  getProducts, getOneProduct, deleteAProduct, createProduct, updateAProduct
+  getProducts,
+  getOneProduct,
+  deleteAProduct,
+  createProduct,
+  updateAProduct
 };

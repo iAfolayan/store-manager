@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 
@@ -15,6 +16,7 @@ const client = new Pool({
 
 // Connect DB
 client.connect((err) => {
+  // eslint-disable-next-line no-console
   if (!err) return console.log('Connected');
 });
 

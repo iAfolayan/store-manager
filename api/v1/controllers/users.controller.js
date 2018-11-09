@@ -48,6 +48,7 @@ const getAllUsers = (req, res) => {
 
 const createUser = (req, res) => {
   const {
+    id = cuid(),
     staffid,
     title,
     password,
@@ -96,9 +97,9 @@ const createUser = (req, res) => {
     if (data.rowCount === 1) return helper.sendMessage(res, 409, 'Duplicate staff id found');
     // password
     bcrypt.hash(password, 10, (errr, hash) => {
-      const query = `INSERT INTO users(staffid, title, password, firstname, lastname,
+      const query = `INSERT INTO users(id, staffid, title, password, firstname, lastname,
          emailaddress, phonenumber, role, gender, avatar, contactaddress)
-          VALUES('${staffid}', '${title}', '${hash}', '${firstname}',
+          VALUES('${id}','${staffid}', '${title}', '${hash}', '${firstname}',
            '${lastname}', '${emailaddress}', '${phonenumber}', ${role},
             '${gender}', '${avatar}', '${contactaddress}') RETURNING *`;
       client.query(query, (err, dataResult) => {
