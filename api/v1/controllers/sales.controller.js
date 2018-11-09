@@ -1,3 +1,4 @@
+import cuid from 'cuid';
 import client from '../db/index';
 import helper from '../utils';
 
@@ -39,7 +40,7 @@ const insertItems = (items, salesid) => {
      */
 const createSalesRecord = (req, res) => {
   const {
-    buyername, buyeremail, buyeraddress, buyerphone, items
+    id= cuid(), buyername, buyeremail, buyeraddress, buyerphone, items
   } = req.body;
   const userid = req.decoded.id;
 
@@ -56,7 +57,7 @@ const createSalesRecord = (req, res) => {
     return helper.sendMessage(res, 404, errors[0].msg);
   }
   validateProductQuantity(items).then(() => {
-    const query = `INSERT INTO sales(buyername, buyeremail, buyeraddress, buyerphone, attendantid) VALUES('${buyername}', '${buyeremail}', '${buyeraddress}', '${buyerphone}', '${userid}') RETURNING *`;
+    const query = `INSERT INTO sales(id, buyername, buyeremail, buyeraddress, buyerphone, attendantid) VALUES(${id}, '${buyername}', '${buyeremail}', '${buyeraddress}', '${buyerphone}', '${userid}') RETURNING *`;
     client.query(query, (err, data) => {
       if (err) {
         return helper.sendMessage(res, 500, 'Internal server error');
@@ -77,10 +78,13 @@ const createSalesRecord = (req, res) => {
 
 const validateProductQuantity = (items) => {
   const itemPromises = items.map(eachItem => new Promise((resolve, reject) => {
-    client.query(`SELECT * FROM products WHERE id = ${eachItem.productid}`, (err, data) => {
+    client.query(`SELECT * FROM products WHERE id = '${eachItem.productid}
+    `, (err, data) => {
       if (err || !data.rowCount) {
+        // eslint-disable-next-line prefer-promise-reject-errors
         reject(`Product with id ${eachItem.productid} does not exist`);
       } else if (data.rows[0].quantity - eachItem.quantity < data.rows[0].minimumallowed) {
+        // eslint-disable-next-line prefer-promise-reject-errors
         reject(`Minimum allowed exceeded for product with id ${eachItem.productid}`);
       } else {
         resolve();
