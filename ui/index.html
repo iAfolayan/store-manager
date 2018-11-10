@@ -6,13 +6,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Store Manager</title>
 	<link rel="stylesheet" href="assets/css/styles.css">
+	<script type="text/javascript" src="assets/js/jwt-decode.min.js"></script>
 </head>
 <body class="logincover">
 	<div class="pageWrapper">
 		<div class="formElement">
 		<div id="logo"></div>
 		<h1>Store Manager</h1>
-		
+		<form action="" id="loginForm">
 		  <div>
 		  	<label for="staffId"> Staff ID
 		  		<input type="text" name="staffId" value="" class="formInput" placeholder="Enter staff ID" id="staffId">
@@ -24,10 +25,14 @@
 		  	</label>
 		  </div>
 		  <div>
-		  	<input type="submit" name="submitBtn" class="loginBtn" id="submitBtn" value="Login">
+				<a href="attendant/admin.html">
+					<input type="submit" name="submitBtn" class="loginBtn" id="submitBtn" value="Login">
+				</a>
 		  	<span class="recPassword">Forget password? <a href="forgetPassword.html">Click here</a></span>
-		  </div>
-		  <div class="result"></div>			
+			</div>
+		</form>
+		<br /><br />
+		<div class="message"></div>			
 		</div>
 		<footer>
 			<hr>
@@ -35,5 +40,6 @@
 		</footer>
 	</div>
 	<script type="text/javascript" src="assets/js/script.js"></script>
+	<script type="text/javascript" src="assets/js/login.js"></script>
 </body>
 </html>

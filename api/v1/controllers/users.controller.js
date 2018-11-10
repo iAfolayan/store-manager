@@ -5,9 +5,9 @@ import client from '../db/index';
 import helper from '../utils';
 
 const login = (req, res) => {
-  const { staffid, password } = req.body;
+  const { staffId, password } = req.body;
   // Form validation
-  req.checkBody('staffid', 'StaffId field is required').notEmpty();
+  req.checkBody('staffId', 'StaffId field is required').notEmpty();
   req.checkBody('password', 'Password field is required').notEmpty();
 
   // check Errors
@@ -16,7 +16,7 @@ const login = (req, res) => {
     return helper.sendMessage(res, 400, errors[0].msg);
   }
 
-  client.query(`SELECT * FROM users WHERE staffid = '${staffid}'`, (err, data) => {
+  client.query(`SELECT * FROM users WHERE staffid = '${staffId}'`, (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal server error');
     }
@@ -27,7 +27,9 @@ const login = (req, res) => {
       if (!respass) return helper.sendMessage(res, 401, 'Invalid login credentials');
       const token = jwt.sign({
         id: data.rows[0].id,
-        role: data.rows[0].role
+        staffId: data.rows[0].staffid,
+        role: data.rows[0].role,
+        firstname: data.rows[0].firstname
       }, process.env.SECRET, {
         expiresIn: '1d'
       });
@@ -37,7 +39,7 @@ const login = (req, res) => {
 };
 
 const getAllUsers = (req, res) => {
-  client.query('SELECT * FROM users', (err, data) => {
+  client.query('SELECT staffid, firstname, lastname, phonenumber, role, password FROM users', (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal server error');
     }
@@ -49,7 +51,7 @@ const getAllUsers = (req, res) => {
 const createUser = (req, res) => {
   const {
     id = cuid(),
-    staffid,
+    staffId,
     title,
     password,
     firstname,
@@ -70,7 +72,7 @@ const createUser = (req, res) => {
   }
 
   // Form validation
-  req.checkBody('staffid', 'StaffId field is required').notEmpty();
+  req.checkBody('staffId', 'Staff Number field is required').notEmpty();
   req.checkBody('firstname', 'Firstname field is required').notEmpty();
   req.checkBody('lastname', 'Lastname field is required').notEmpty();
   req.checkBody('emailaddress', 'Email address field is required').notEmpty();
@@ -83,23 +85,23 @@ const createUser = (req, res) => {
   req.checkBody('gender', 'Select gender').notEmpty();
   req.checkBody('contactaddress', 'User contat address field is required').notEmpty();
 
-  if (!phonenumber.match(/^[0-9]+$/)) {
-    return helper.sendMessage(res, 400, 'Invalid Phone Number, Only integer allowed');
-  }
-
   // check Errors
   const errors = req.validationErrors();
 
   if (errors) {
     return helper.sendMessage(res, 400, errors[0].msg);
   }
-  client.query(`SELECT * FROM users WHERE staffid = '${staffid}'`, (err, data) => {
+
+  if (!phonenumber.match(/^[0-9]+$/)) {
+    return helper.sendMessage(res, 400, 'Invalid Phone Number, Only integer allowed');
+  }
+  client.query(`SELECT * FROM users WHERE staffid = '${staffId}'`, (err, data) => {
     if (data.rowCount === 1) return helper.sendMessage(res, 409, 'Duplicate staff id found');
     // password
     bcrypt.hash(password, 10, (errr, hash) => {
       const query = `INSERT INTO users(id, staffid, title, password, firstname, lastname,
          emailaddress, phonenumber, role, gender, avatar, contactaddress)
-          VALUES('${id}','${staffid}', '${title}', '${hash}', '${firstname}',
+          VALUES('${id}','${staffId}', '${title}', '${hash}', '${firstname}',
            '${lastname}', '${emailaddress}', '${phonenumber}', ${role},
             '${gender}', '${avatar}', '${contactaddress}') RETURNING *`;
       client.query(query, (err, dataResult) => {
