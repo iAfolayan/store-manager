@@ -8,5 +8,4 @@ if (!token) {
 }
 
 const decoded = jwt_decode(token);
-console.log(decoded);
 logger.textContent = decoded;
