@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
-// const url = 'https://store-manager-iafolayan.herokuapp.com/api/v1/auth/login';
-const url = 'http://localhost:4000/api/v1/auth/login';
+// const url = 'http://localhost:4000/api/v1/auth/login';
+
+const url = 'https://store-manager-iafolayan.herokuapp.com/api/v1/auth/login';
+
 // eslint-disable-next-line no-undef
 const loginForm = document.getElementById('loginForm');
 
@@ -12,15 +14,13 @@ const login = (event) => {
     staffId: loginForm.staffId.value,
     password: loginForm.password.value
   };
-  const myHeaders = new Headers({
-    'Content-Type': 'application/json',
-    'X-Custom-Header': 'token'
-  });
 
   fetch(url, {
     mode: 'no-cors',
     method: 'POST',
-    headers: myHeaders,
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(data),
   })
     .then(res => res.json())
