@@ -7,10 +7,10 @@ import app from '../api/v1/app';
 dotenv.config();
 
 const request = supertest(app);
-
 let token = '';
 
 const dummyData = {
+  id: 54,
   staffid: 'SM0062',
   title: 'Miss',
   password: 'admin',
@@ -23,8 +23,15 @@ const dummyData = {
   avatar: 'grace_festus.jpg',
   contactaddress: '656 wertyuiop[jfh g fuy fu',
 };
+/* const token = jwt.sign({
+  id: dummyData.rows[0].id,
+  staffId: dummyData.rows[0].staffid,
+  role: dummyData.rows[0].role,
+  firstname: dummyData.rows[0].firstname
+}, process.env.SECRET).toString(); */
+
 const user = {
-  staffid: 'SM001',
+  staffId: 'SM001',
   password: 'admin'
 };
 
@@ -37,12 +44,11 @@ describe('Login', () => {
       .end((err, res) => {
         token = res.body.data;
         expect(res.status).to.equal(200);
-        expect(res.body.msg).to.equal('Login successful');
         done();
       });
   });
 
-  it('should return 400 if staffid is empty', (done) => {
+  it('should return 400 if staffId is empty', (done) => {
     request
       .post('/api/v1/auth/login')
       .set('Content-Type', 'Application/json')
@@ -65,7 +71,7 @@ describe('Login', () => {
         done();
       });
   });
-  it('should return a message when passed an unregistered staffid', (done) => {
+  it('should return a message when passed an unregistered staffId', (done) => {
     request
       .post('/api/v1/auth/login')
       .accept('Content-Type', 'Application/json')
