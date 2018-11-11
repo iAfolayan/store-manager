@@ -6,12 +6,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Store Manager | Admin </title>
 	<link rel="stylesheet" href="../assets/css/styles.css">
+	<script type="text/javascript" src="../assets/js/jwt-decode.min.js"></script>
+	<script type="text/javascript" src="../assets/js/authUsers.js"></script>
 </head>
 <body>
 	<div class="bodyWrapper">
 		<div class="sidebar">
 			<div id="logo"></div>
-			<h3>Welcome! iAfolayan</h3>
+			<h3>Welcome! <span id="loggerName">iAfolayan</span></h3>
 			<hr>
 			<nav> 
 				<ul>
@@ -21,6 +23,7 @@
 							<ul>
 								<li><a href="createsaleattendant.html" title="Create new User">Create new User</a></li>
 								<li><a href="viewsalerecord.html" title="View Sales Record">View Sale Records</a></li>
+								<li><a href="viewusers.html" title="View Users">View Users</a></li>
 							</ul>
 						</div>
 					</li>
@@ -52,11 +55,13 @@
 					<div class="mobileMenu">
 						<img src="../assets/images/menu.png" title="Menu" alt="">
 					</div>
-
-					<form action="#" method="POST" >
+					<div class="appTitle">
+						<h3>Store Manager</h3>
+					</div>
+				<!-- 	<form action="#" method="POST" >
 						<input type="search" name="" value="" placeholder="Search key" class="formInput">
 						<input type="submit" name="" class="searchButton" value="Go!">
-					</form>
+					</form> -->
 				</div>
 
 			</div>	
@@ -64,6 +69,7 @@
 				<div id="logo"></div><hr />
 				<a href="admin.html" title="Home page">Home</a>
 				<a href="createsaleattendant.html" title="Create new User">Create new User</a>
+				<a href="viewusers.html" title="View Users">View Users</a>
 				<a href="viewsalerecord.html" title="View Sales Record">View Sale Records</a>
 				<a href="createproduct.html" title="Create new Product">Create new product</a>
 				<a href="modifyproduct.html" title="Modify Product">Modify product</a>
@@ -74,15 +80,20 @@
 
 			<div class="userFormControl">
 				<h3>Create new User</h3>
-				<form action="#" method="POST" enctype="multipart/form-data">
+				<form action="#"id='signupForm' method="POST" enctype="multipart/form-data">
 					<div class="column_6 inputMargin">
-						<label for="title"> Title: <sup>*</sup>
+						<label for="title"> Title:
 							<input type="text" name="title" class="formInput" value="" required id="title" placeholder="eg. Mr., Mrs, Miss">
 						</label>
 					</div>
 					<div class="column_6"> 
-						<label for="staffID"> Staff Number: <sup>*</sup>
-							<input type="text" class="formInput" name="staffID" id="staffID" required  placeholder="Staff ID eg. SM00XX">
+						<label for="staffId"> Staff Number: <sup>*</sup>
+							<input type="text" class="formInput" name="staffId" id="staffId" required  placeholder="Staff ID eg. SM00XX">
+						</label>
+					</div>
+					<div>
+						<label for="password"> Password: <sup>*</sup>
+							<input type="password" class="formInput" name="password" id="password" required placeholder="Enter Password" value="">
 						</label>
 					</div>
 					<div>
@@ -96,8 +107,8 @@
 						</label>
 					</div>
 					<div>
-						<label for="emailAdress"> Email Address: <sup>*</sup>
-							<input type="email" class="formInput" name="emailAdress" id="emailAdress" required placeholder="Enter Email Address eg. someone@somewhere.com" value="">
+						<label for="emailaddress"> Email Address: <sup>*</sup>
+							<input type="email" class="formInput" name="emailaddress" id="emailaddress" required placeholder="Enter Email Address eg. someone@somewhere.com" value="">
 						</label>
 					</div>
 					<div class="column_6 inputMargin">
@@ -106,11 +117,11 @@
 						</label>
 					</div>
 					<div class="column_6">
-						<label for="user"> Type of User: <sup>*</sup>
-							<select name="" id="user" class="formInput">
+						<label for="role"> Type of User: <sup>*</sup>
+							<select name="" id="role" class="formInput">
 								<option value="">Select user type</option>
-								<option value="2" selected>Sale Attendant</option>
 								<option value="1">Admin</option>
+								<option value="2" selected>Sale Attendant</option>
 							</select>
 						</label>
 					</div>
@@ -128,14 +139,16 @@
 							<input type="file" class="formInput" name="profileImage" id="profileImage">
 						</label>
 					</div>
+					<br>
 					<div>
 						<label for="address"> Contact Address: <sup>*</sup>
-							<textarea name="address" placeholder="Staff Contact Address" class="formInput"></textarea>
+							<textarea name="address" placeholder="Staff Contact Address" id="address" class="formInput"></textarea>
 						</label>
 					</div>
 					<div class="btnSpacing">
-						<input type="submit" name="createUser" id="createUser" class="loginBtn" value="Create">
+						<input type="submit" name="newUser" id="newUser" class="loginBtn" value="Create User">
 					</div>
+					<div class="message"></div>
 				</form>
 			</div>		
 			<div class="clearAll"></div>
@@ -147,5 +160,7 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="../assets/js/script.js"></script>
+	<script type="text/javascript" src="../assets/js/authUsers.js"></script>
+	<script type="text/javascript" src="../assets/js/signup.js"></script>
 </body>
 </html>
