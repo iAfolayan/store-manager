@@ -34,7 +34,7 @@ const login = (event) => {
       window.location = decoded.role === 1 ? 'attendant/admin.html' : 'attendant/index.html';
       return userFeedbackMessage(response.msg, 'success');
     })
-    .catch(error => userFeedbackMessage(error, 'error'));
+    .catch(err => userFeedbackMessage('Unable to log you in, please check your network', 'error'));
 };
 const submitBtn = document.getElementById('submitBtn');
 
