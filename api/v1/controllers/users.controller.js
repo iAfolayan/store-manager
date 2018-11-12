@@ -83,7 +83,7 @@ const createUser = (req, res) => {
     .isLength({ min: 11 });
   req.checkBody('role', 'Select type of User').notEmpty('');
   req.checkBody('gender', 'Select gender').notEmpty();
-  req.checkBody('contactaddress', 'User contat address field is required').notEmpty();
+  req.checkBody('contactaddress', 'User contact address field is required').notEmpty();
 
   // check Errors
   const errors = req.validationErrors();

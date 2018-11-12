@@ -2,10 +2,10 @@
 // Check if token exist
 
 const token = localStorage.getItem('authorization');
-const logger = document.getElementById('logger');
 if (!token) {
   window.location = '../index.html';
 }
 
 const decoded = jwt_decode(token);
-logger.textContent = decoded;
+
+if (decoded.role !== 1) window.location = 'index.html';

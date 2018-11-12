@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const url = 'https://store-manager-iafolayan.herokuapp.com/api/v1/auth/signup';
+// const url = 'http://localhost:4000/api/v1/auth/signup';
 
 const signupForm = document.getElementById('signupForm');
 
