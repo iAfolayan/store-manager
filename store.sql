@@ -6,7 +6,7 @@ CREATE DATABASE storetestdb;
 
 -- Drop table
 
--- DROP TABLE public.users
+-- DROP TABLE users
 
 CREATE TABLE users (
 	id varchar(50) NOT NULL,
@@ -33,7 +33,7 @@ GRANT ALL ON TABLE users TO postgres;
 
 -- Drop table
 
--- DROP TABLE public.products
+-- DROP TABLE products
 
 CREATE TABLE products (
 	id varchar(50) NOT NULL,
