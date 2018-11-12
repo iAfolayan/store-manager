@@ -80,5 +80,5 @@ function userFeedbackMessage(msg, type) {
 // Logout
 function logout() {
   localStorage.removeItem('authorization');
-  window.location = '../index.html';
+  window.location = '/';
 }
