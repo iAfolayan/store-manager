@@ -57,7 +57,7 @@ GRANT INSERT, SELECT, UPDATE, REFERENCES(createdon) ON products TO postgres;
 
 -- Drop table
 
--- DROP TABLE IF EXISTS sales CASCADE;
+-- DROP TABLE sales
 
 CREATE TABLE sales (
 	id varchar(50) NOT NULL,
@@ -78,7 +78,7 @@ GRANT ALL ON TABLE sales TO postgres;
 
 -- Drop table
 
-DROP TABLE IF EXISTS sales_item CASCADE;
+-- DROP TABLE sales_item
 
 CREATE TABLE sales_item (
 	id varchar(50) NOT NULL,
