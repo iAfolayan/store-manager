@@ -8,5 +8,6 @@ if (!token) {
 
 const decoded = jwt_decode(token);
 
-// if (decoded.role !== 1) window.location = 'index.html';
+if (decoded.role !== 1) window.location = 'index.html';
 
+// document.querySelector('#logger').innerHTML = `${decoded.firstname}`;

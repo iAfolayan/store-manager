@@ -196,14 +196,14 @@ nav>ul>li>a {
 }
 
 #usrManagement, #prdManagement, #rptManagement{
-	font-size: 18px;
+	font-size: 15px;
 }
 .usrChild>ul>li , .prdChild>ul>li, .rptChild>ul>li{
 	line-height: 30px;
 	margin: 0;
 	padding-left: 15px;
 	display: block;
-	font-size: 15px;
+	font-size: 12px;
 }
 .usrChild>ul>li:hover, .prdChild>ul>li:hover, .rptChild>ul>li:hover {
 	background-color: #041a33;

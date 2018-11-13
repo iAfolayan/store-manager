@@ -9,7 +9,7 @@ import helper from '../utils';
  * @returns {data} - Return all products
  */
 const getProducts = (req, res) => {
-  client.query('SELECT * FROM products', (err, data) => {
+  client.query('SELECT * FROM products ORDER BY createdon DESC', (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal server error');
     }
@@ -87,7 +87,7 @@ const createProduct = (req, res) => {
   if (req.file) {
     image = req.body.filename;
   } else {
-    image = 'defaultimage.jpg';
+    image = 'defaultImage.jpg';
   }
   if (!price.toString().match(/^[0-9]+$/)) {
     return helper.sendMessage(res, 400, 'Invalid Price, Only integer allowed');

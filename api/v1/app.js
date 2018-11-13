@@ -19,7 +19,7 @@ app.use('/api/v1/', routes);
 // Error Handling
 app.use('*', (req, res) => {
   res.status(404).json({
-    msg: 'This is Store Manager, the page you are looking for is not found',
+    msg: 'Ooops!!!, the page you are looking for is not found',
   });
 });
 
