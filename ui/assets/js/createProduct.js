@@ -8,6 +8,7 @@ const createProductFun = (event) => {
   event.preventDefault();
 
   const formData = {
+    
     productname: createProductForm.prdName.value,
     price: createProductForm.prdPrice.value,
     quantity: createProductForm.prdQuantity.value,
