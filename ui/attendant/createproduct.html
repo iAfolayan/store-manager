@@ -6,12 +6,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Store Manager | Admin </title>
 	<link rel="stylesheet" href="../assets/css/styles.css">
+	<script type="text/javascript" src="../assets/js/jwt-decode.min.js"></script>
+	<script type="text/javascript" src="../assets/js/authUsers.js"></script>
 </head>
 <body>
 	<div class="bodyWrapper">
 			<div class="sidebar">
 					<div id="logo"></div>
-					<h3>Welcome! <span id="loggerName">iAfolayan</span></h3>
+					<h3>Welcome! <span id="logger"></span></h3>
 					<hr>
 					<nav> 
 						<ul>
@@ -80,9 +82,10 @@
 
 			<div class="userFormControl">
 				<h3>Create New Product</h3>
-				<form action="#" method="POST" enctype="multipart/form-data">
+				<div class="message"></div>
+				<form action="#" method="POST" id="createProductForm" enctype="multipart/form-data">
 					<div>
-						<label for="productName"> Product Name: <sup>*</sup>
+						<label for="productName">Name: <sup>*</sup>
 							<input type="text" class="formInput" name="productName" id="prdName" required placeholder="Enter prodct name eg. Wireless Bluetooth" value="">
 						</label>
 					</div>
@@ -97,28 +100,27 @@
 						</label>
 					</div>
 					<div>
-						<label for="prdImage"> Product Image: <sup>*</sup>
-							<input type="file" class="formInput" name="prdImage" id="prdImage" required>
+						<label for="prdImage"> Image:
+							<input type="file" class="formInput" name="prdImage" id="prdImage">
 						</label>
 					</div>
 					<div>
-						<label for="prdDescription"> Product Description: <sup>*</sup>
+						<label for="prdDescription"> Description: <sup>*</sup>
 							<textarea name="prdDescription" id="prdDescription" placeholder="Product Description" class="formInput"></textarea>
 						</label>
 					</div>
 					<div class="column_6 inputMargin">
 						<label for="quantity"> Quantity: <sup>*</sup>
-						<input type="number" class="formInput" name="prdQuantity" id="prdQuantity" required placeholder="Enter product quantity in stock eg. 2500" value="">
+						<input type="number" class="formInput" name="prdQuantity" id="prdQuantity" min="1" required placeholder="Enter product quantity in stock eg. 2500" value="">
 						</label>
 					</div>
 					<div class="column_6">
-						<label for="prdMinimum"> Minimum Allowed: <sup>*</sup>
-							<input type="number" class="formInput" name="prdMinimum" id="prdMinimum" placeholder="Minimum value">
+						<label for="prdMinimum"> Minimum Quantity Allowed: <sup>*</sup>
+							<input type="number" class="formInput" name="prdMinimum" id="prdMinimum" min="1" placeholder="Minimum value">
 						</label>
 					</div>
-					
 					<div class="btnSpacing">
-						<input type="submit" name="createUser" id="createUser" class="loginBtn" value="Create">
+						<input type="submit" name="newProduct" id="newProduct" class="loginBtn" value="Create">
 					</div>
 				</form>
 			</div>		
@@ -131,5 +133,6 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="../assets/js/script.js"></script>
+	<script type="text/javascript" src="../assets/js/createProduct.js"></script>
 </body>
 </html>
