@@ -137,7 +137,7 @@ Store Manager is a web application that helps store owners manage sales and prod
 
 ## Products [/products/]
 Only admin can access this routes
-### Create a Product [POST /]
+### Create a Product [POST /products]
 
 + Request (application/json)
 
@@ -196,13 +196,13 @@ Only admin can access this routes
                 "createdon": "2018-11-12T23:00:00.000Z"
             }
             
-### Get a Product [GET /products/:id]
+### Get a Product [GET /products/:productid]
 
 + Response 200 (application/json)
 
    + Headers
    
-                Location: /products/:id
+                Location: /products/:productid
 
    + Body
    
@@ -221,7 +221,7 @@ Only admin can access this routes
                     "createdon": "2018-11-12T23:00:00.000Z"
                 }
             }
-### Edit a Product [PUT /:id]
+### Edit a Product [PUT /products/:productid]
 
 + Request (application/json)
 
@@ -241,7 +241,7 @@ Only admin can access this routes
 
    + Headers
 
-                Location: /products/:id
+                Location: /products/:productid
 
    + Body
    
@@ -260,13 +260,13 @@ Only admin can access this routes
                     "createdon": "2018-11-12T23:00:00.000Z"
                 }
             }
-### Delete a Product [DELETE /:id]
+### Delete a Product [DELETE /products/:productid]
 
 + Response 200 (application/json)
 
    + Headers
    
-            Location: /products/:id
+            Location: /products/:productid
 
    + Body
    
@@ -276,7 +276,7 @@ Only admin can access this routes
            
 ## Sales [/sales/]
 
-### Create a Sale [POST /]
+### Create a Sale [POST /sales]
 
 + Request (application/json)
 
