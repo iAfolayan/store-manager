@@ -30,7 +30,7 @@ API Endpoints is hosted at (https://store-manager-iafolayan.herokuapp.com/api/v1
 The application is hosted online on gh-pages with (https://iafolayan.github.io/store-manager)
 
 # API Documentation
-to be added later
+For store Manager documentation (https://storemanageriafolayan.docs.apiary.io)
 
 # Features
 <ul>
@@ -73,12 +73,7 @@ to be added later
     <td>/api/v1/sales/saleId</td>
     <td>Fetch a single sale record</td>
   </tr>
-   <tr>
-    <td>GET</td>
-    <td>/api/v1/sales/seller/staffid</td>
-    <td>Fetch all sale records for a single attendant</td>
-  </tr>
-   <tr>
+  <tr>
     <td>GET</td>
     <td>/api/v1/users</td>
     <td>Fetch all available users</td>

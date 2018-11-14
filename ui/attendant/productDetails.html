@@ -6,12 +6,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Store Manager | Admin </title>
 	<link rel="stylesheet" href="../assets/css/styles.css">
+	<script type="text/javascript" src="../assets/js/jwt-decode.min.js"></script>
 </head>
 <body>
 	<div class="bodyWrapper">
 			<div class="sidebar">
 					<div id="logo"></div>
-					<h3>Welcome! <span id="loggerName">iAfolayan</span></h3>
+					<h3>Welcome! <span id="logger">iAfolayan</span></h3>
 					<hr>
 					<nav> 
 						<ul>
@@ -80,13 +81,12 @@
 			</div>
 
 			<div class="modifyProduct">
-				<h3>Product details</h3>
+				<h3 class="pageTitle_">Product details</h3>
 				<div class="productImageHolder">
-					<img src="../assets/images/4.PNG" alt="product Name" title="product Name">
-					<h4>Quantity: 250</h4>
-				</div>
-				<div class="productInformation">
-					<h4>Long Arm Lazy Flexible Accessory phone Mount Desk Stand Cell Phone Holder</h4>	
+					<img class="prodImage" src="" alt="product Image" title="product Image">
+					</div>
+					<div class="productInformation">
+					<h4 class="proName">product.productname</h4>
 					<table class="tblDisplay" border="1" cellpadding="10" cellspacing="5">
 					<thead>
 						<tr>
@@ -98,25 +98,19 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>Wireless Speaker</td>
-							<td>Phone</td>
-							<td>N2500</td>
-							<td>250</td>
+							<td class="proNametd"></td>
+							<td class="category"></td>
+							<td class="price">&#8358;</td>
+							<td class="quantity"></td>
 						</tr>
 					</tbody>
-				</table>
-				<article>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</article>
-				<section class="proDetails">
-						<a href="editProduct.html" title="Edit product">Edit Product</a>
-				</section>
-				</div>
+					</table>
+					<article class="article"></article>
+					<section class="proDetails">
+					<a class="editLink" href="" title="Edit product">Edit Product</a>
+					</section>
+					</div>
+				
 			</div>		
 			<div class="clearAll"></div>
 			<footer>
@@ -127,5 +121,6 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="../assets/js/script.js"></script>
+	<script type="text/javascript" src="../assets/js/singleproduct.js"></script>
 </body>
 </html>

@@ -6,46 +6,24 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Store Manager | Sale Attendant </title>
 	<link rel="stylesheet" href="../assets/css/styles.css">
+	<script type="text/javascript" src="../assets/js/jwt-decode.min.js"></script>
 </head>
 <body>
 	<div class="bodyWrapper">
-			<div class="sidebar">
-					<div id="logo"></div>
-					<h3>Welcome! <span id="loggerName">iAfolayan</span></h3>
-					<hr>
-					<nav> 
-						<ul>
-							<li><a href="admin.html">Home</a></li>
-							<li id="usrManagement">User Management
-								<div class="usrChild">
-									<ul>
-										<li><a href="createsaleattendant.html" title="Create new User">Create new User</a></li>
-										<li><a href="viewsalerecord.html" title="View Sales Record">View Sale Records</a></li>
-										<li><a href="viewusers.html" title="View Users">View Users</a></li>
-									</ul>
-								</div>
-							</li>
-							<li id="prdManagement">Product Management
-								<div class="prdChild">
-									<ul>
-										<li><a href="createproduct.html" title="Create new Product">Create new product</a></li>
-										<li><a href="modifyproduct.html" title="Modify Product">Modify product</a></li>
-									</ul>
-								</div>
-							</li>
-							<li id="rptManagement">Report Management
-								<div class="rptChild">
-									<ul>
-										<li><a href="saleCreatedReport.html" title="Create new Product">Sale Record</a></li>
-										<li><a href="productReport.html" title="Modify Product">Products Sold</a></li>
-										<li><a href="worthReport.html" title="Modify Product">Worth of Goods Sold</a></li>
-									</ul>
-								</div>
-							</li>
-							<li onclick="logout();"><a href="#" title="Logout"> Logout</a></li>
-						</ul>
-					</nav>
-				</div>
+		<div class="sidebar">
+			<div id="logo"></div>
+			<h3>Welcome! Olumide</h3>
+			<hr>
+			<nav> 
+				<ul>
+					<li><a href="index.html" title="Attendant Home">Home</a></li>
+          <li><a href="viewsalerecords.html" title="View Sale Records">View Sale Records</a></li>
+					<li><a href="userprofile.html">User Profile</a></li>
+					<li><a href="changepassword.html">Change password</a></li>
+					<li onclick="logout();"><a href="#" title="Logout">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
 		<div class="mainPage">
 			<div class="mainHeader">
 				
@@ -57,7 +35,6 @@
 					<div class="appTitle">
 						<h3>Store Manager</h3>
 					</div>
-
 					<!-- <form action="#" method="POST" >
 						<input type="search" name="" value="" placeholder="Search key" class="formInput">
 						<input type="submit" name="" class="searchButton" value="Go!">
@@ -66,12 +43,13 @@
 
 			</div>	
 			<div id="menuDrop" class="menuDropContent">
-				<div id="logo"></div><hr />
+				<div id="logo"></div><hr>
 				<a href="index.html" title="Attendant Home">Home</a>
-				<a href="viewsalerecords.html" title="View Sale Records">View Sales Record</a>
+				<a href="viewsalerecords.html" title="View Sale Records">View Sale Records</a>
 				<a href="userprofile.html">User Profile</a>
-				<a href="changepassword.html">Change password</a>
-			</div>		
+				<a href="changepassword.html" title="Change password">Change Password</a>
+				<a onclick="logout();" href="#">Logout</a>
+			</div>			
 			<div class="modifyProduct">
 				<a href="checkout.html" title="Checkout">
 					<sup>
@@ -81,14 +59,12 @@
 				</a>
 
 				<h3>Product details </h3>
-				<a href="checkout.html" title="Checkout">
 					<div class="productImageHolder">
-						<img src="../assets/images/4.PNG" alt="product Name" title="product Name">
-						<h4>In Stock: 250</h4>
+						<img class="imageLink" src="" alt="product Name" title="product Name">
+						<h4 class="inStock"></h4>
 					</div>
-				</a>
 				<div class="productInformation">
-					<h4>Long Arm Lazy Flexible Accessory phone Mount Desk Stand Cell Phone Holder</h4>	
+					<h4 class="proName"></h4>	
 					<table class="tblDisplay" border="1" cellpadding="10">
 					<thead>
 						<tr>
@@ -99,22 +75,15 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>Wireless Speaker</td>
-							<td>Phone</td>
-							<td>N2500</td>
+							<td class="proNametd"></td>
+							<td class="category"></td>
+							<td class="price"></td>
 						</tr>
 					</tbody>
 				</table>
-				<article>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</article>
+				<article class="article"></article>
 				<section class="proDetails">
-						<a href="#" title="Add product"><button type="button">Add to Cart</button></a>
+						<a href="#" title="Add product"><button type="button" >Add to Cart</button></a>
 				</section>
 				</div>
 			</div>		
@@ -127,5 +96,7 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="../assets/js/script.js"></script>
+	<script type="text/javascript" src="../assets/js/addproductToCart.js"></script>
+
 </body>
 </html>

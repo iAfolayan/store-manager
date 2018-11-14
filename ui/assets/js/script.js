@@ -73,7 +73,7 @@ function userFeedbackMessage(msg, type) {
   }
 
   setTimeout(() => {
-    body.querySelector('.message').remove();
+    body.querySelector('.message').setAttribute('style', 'display: none;');
   }, 5000);
 }
 
