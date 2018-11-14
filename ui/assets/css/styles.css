@@ -975,6 +975,10 @@ select {
 	padding: 10px;
 }
 
+.productImageHolder>img {
+	width:70%;
+}
+
 .productInformation {
 	width: 70%;
 }

@@ -19,7 +19,6 @@ router.route('/')
 router.route('/:productId')
   .get(Validation.checkParamValid('productId'),
     middleware.isUserAuthorized,
-    middleware.isUserAdmin,
     productcontroller.getOneProduct)
 
   .delete(Validation.checkParamValid('productId'),

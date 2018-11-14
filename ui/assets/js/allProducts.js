@@ -10,6 +10,8 @@ const decoded = jwt_decode(token);
 const addToCart = '<a href="#"><button type="button">Add to Cart</button></a>';
 
 const userMenu = (decoded.role === 1) ? '' : addToCart;
+
+const detailMenu = (decoded.role === 1) ? '/attendant/productDetails.html' : '/attendant/addproduct.html';
 /**
  * @classdesc - getAllAvailableProducts returns all product in Array format
  * @param {*} id - Product Id
@@ -25,7 +27,7 @@ const getAllAvailableProducts = (id, prdTitle, prdImage, prdDescription, prdPric
     <div class="product-title" data-product=${id}>
               <h5><strong>${prdTitle}</h5>
           </div>
-          <a href="productDetails.html">
+          <a href="${detailMenu}?${id}">
             <div class="img-holder">
                 <img src="../assets/images/${prdImage}" alt="">
                   <div class="img-overlay">
@@ -46,6 +48,7 @@ const getAllAvailableProducts = (id, prdTitle, prdImage, prdDescription, prdPric
   `;
 
 const url = 'https://store-manager-iafolayan.herokuapp.com/api/v1/products';
+// const url = 'http://localhost:4000/api/v1/products';
 
 fetch(url, {
   method: 'GET',
