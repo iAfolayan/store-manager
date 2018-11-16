@@ -5,12 +5,13 @@ if (!token) window.location = '..index.html';
 
 const productid = window.location.search;
 
+console.log(window.location);
+
 const decoded = jwt_decode(token);
 
 if (decoded.role !== 1) window.location = 'addproduct.html';
 
-
-const url = `https://store-manager-iafolayan.herokuapp.com/api/v1/products/${productid.substring(1)}`;
+const url = `${hostedServer}products/${productid.substring(1)}`;
 
 fetch(url, {
   method: 'GET',

@@ -8,12 +8,13 @@
 	<link rel="stylesheet" href="../assets/css/styles.css">
 	<script type="text/javascript" src="../assets/js/jwt-decode.min.js"></script>
 	<script type="text/javascript" src="../assets/js/authUsers.js"></script>
+	<script type="text/javascript" src="../assets/js/isAdmin.js"></script>
 </head>
 <body>
 	<div class="bodyWrapper">
 			<div class="sidebar">
 					<div id="logo"></div>
-					<h3>Welcome! <span id="logger"></span></h3>
+					<h3 class="logger"></h3>
 					<hr>
 					<nav> 
 						<ul>
@@ -21,6 +22,7 @@
 							<li id="usrManagement">User Management
 								<div class="usrChild">
 									<ul>
+										<li><a href="category.html" title="Create Category">Create Category</a></li>
 										<li><a href="createsaleattendant.html" title="Create new User">Create new User</a></li>
 										<li><a href="viewsalerecord.html" title="View Sales Record">View Sale Records</a></li>
 										<li><a href="viewusers.html" title="View Users">View Users</a></li>
@@ -31,7 +33,7 @@
 								<div class="prdChild">
 									<ul>
 										<li><a href="createproduct.html" title="Create new Product">Create new product</a></li>
-										<li><a href="modifyproduct.html" title="Modify Product">Modify product</a></li>
+										<li><a href="products.html" title="Modify Product">Modify product</a></li>
 									</ul>
 								</div>
 							</li>
@@ -72,8 +74,9 @@
 				<a href="createsaleattendant.html" title="Create new User">Create new User</a>
 				<a href="viewusers.html" title="View Users">View Users</a>
 				<a href="viewsalerecord.html" title="View Sales Record">View Sale Records</a>
+				<a href="category.html" title="Create Category">Create Category</a>
 				<a href="createproduct.html" title="Create new Product">Create new product</a>
-				<a href="modifyproduct.html" title="Modify Product">Modify product</a>
+				<a href="products.html" title="Modify Product">Modify product</a>
 				<a href="saleCreatedReport.html" title="Create new Product">Sale Record</a>
 				<a href="productReport.html" title="Modify Product">Products Sold</a>
 				<a href="worthReport.html" title="Modify Product">Worth of Goods Sold</a>
@@ -82,7 +85,7 @@
 
 			<div class="userFormControl">
 				<h3>Create New Product</h3>
-				<div class="message"></div>
+				<div id="messageBox"></div>
 				<form action="#" method="POST" id="createProductForm" enctype="multipart/form-data">
 					<div>
 						<label for="productName">Name: <sup>*</sup>

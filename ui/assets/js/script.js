@@ -1,13 +1,4 @@
-/* eslint-disable require-jsdoc */
 /* eslint-disable no-undef */
-// eslint-disable-next-line func-names
-(function () {
-  document.getElementById('logo').addEventListener('click', () => {
-    location.href = '../index.html';
-  });
-}());
-
-
 const slideMobileMenu = () => {
   document.querySelector('#menuDrop').classList.toggle('showMenu');
 };
@@ -24,11 +15,12 @@ document.querySelector('.mobileMenu').addEventListener('click', slideMobileMenu)
 
 /* MODAL SCRIPT */
 const modal = document.querySelector('.modal');
-const trigger = document.querySelector('.trigger');
+// const trigger = document.querySelector('.trigger');
 const checkoutTrigger = document.querySelector('.cartBtn');
 const closeButton = document.querySelector('.close-button');
+let deleteprodId = null;
 
-const toggleModal = () => {
+const toggleDeleteModal = () => {
   modal.classList.toggle('show-modal');
 };
 
@@ -38,13 +30,20 @@ const windowOnClick = (newevent) => {
   }
 };
 
+// trigger.addEventListener('click', toggleModal);
+closeButton.addEventListener('click', toggleDeleteModal);
+// window.addEventListener('click', windowOnClick);
 
-trigger.addEventListener('click', toggleModal);
-// heckoutTrigger.addEventListener("click", toggleModal2);
-closeButton.addEventListener('click', toggleModal);
-window.addEventListener('click', windowOnClick);
+/**
+ * @classdesc deleteAction - Delete action
+ * @param {*} prodId - Product Id
+ * @returns {null} - No return
+ */
+function deleteAction(prodId) {
+  deleteprodId = prodId;
+  toggleDeleteModal();
+}
 
-/* General message function */
 /**
  *
  * @param {*} msg - Feedback message
@@ -54,30 +53,52 @@ window.addEventListener('click', windowOnClick);
 
 // eslint-disable-next-line require-jsdoc
 function userFeedbackMessage(msg, type) {
-  const body = document.querySelector('body');
+ 
+  const messageBox = document.querySelector('#messageBox');
 
-  const message = document.querySelector('.message');
-
-  message.textContent = msg;
-
-  switch (type) {
-  case 'success':
-    message.classList.add('success');
-    break;
-  case 'error':
-    message.classList.add('danger');
-    break;
-  default:
-    message.classList.add('message');
-    break;
-  }
+  messageBox.textContent = msg;
+  messageBox.classList.add(type);
 
   setTimeout(() => {
-    body.querySelector('.message').setAttribute('style', 'display: none;');
+    messageBox.setAttribute('style', 'display: none;');
   }, 5000);
 }
 
+/**
+ * @classdesc deleteproduct - Delete product
+ * @param {*} shouldDelete - return a Boolean value
+ * @returns {null} No returns
+ */
+function deleteproduct() {
+  toggleDeleteModal();
+
+  const url = `${hostedServer}products/${deleteprodId}`;
+
+  fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: token
+    }
+  })
+    .then(data => data.json())
+    .then((response) => {
+      if (response.status !== true) return userFeedbackMessage(response.msg, 'error');
+      productRow = document.querySelector(`#${deleteprodId}`);
+      productList = document.querySelector('.prdDisplay_');
+      productList.removeChild(productRow);
+      userFeedbackMessage(response.msg, 'success');
+    })
+    .catch(error => userFeedbackMessage(error, 'error'));
+}
+/* General message function */
+
+
 // Logout
+/**
+ * classDec - Logout - Remove user token from localstorage
+ * @returns {null} - 
+ */
 function logout() {
   localStorage.removeItem('authorization');
   window.location = '/';

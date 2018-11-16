@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
-const url = 'https://store-manager-iafolayan.herokuapp.com/api/v1/products';
-// const url = 'http://localhost:4000/api/v1/products/';
+const url = `${hostedServer}products/`;
 
 const createProductForm = document.getElementById('createProductForm');
 
@@ -8,7 +7,6 @@ const createProductFun = (event) => {
   event.preventDefault();
 
   const formData = {
-    
     productname: createProductForm.prdName.value,
     price: createProductForm.prdPrice.value,
     quantity: createProductForm.prdQuantity.value,

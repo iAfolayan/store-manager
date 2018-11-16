@@ -48,7 +48,7 @@ const deleteAProduct = (req, res) => {
       return helper.sendMessage(res, 500, 'Internal server error');
     }
     if (data.rowCount === 0) return helper.sendMessage(res, 404, 'Product not found');
-    return helper.sendMessage(res, 200, 'Product deleted');
+    return helper.sendMessage(res, 200, 'Product deleted successfully');
   });
 };
 
