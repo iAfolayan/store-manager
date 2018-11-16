@@ -1,7 +1,14 @@
 /* eslint-disable no-undef */
-// const url = 'http://localhost:4000/api/v1/auth/login';
+const { host } = window.location;
+let hostedServer = null;
 
-const url = 'https://store-manager-iafolayan.herokuapp.com/api/v1/auth/login';
+if (host === 'localhost:4000') {
+  hostedServer = 'http://localhost:4000/api/v1/';
+} else {
+  hostedServer = 'https://store-manager-iafolayan.herokuapp.com/api/v1/';
+}
+
+const url = `${hostedServer}auth/login`;
 
 // eslint-disable-next-line no-undef
 const loginForm = document.getElementById('loginForm');

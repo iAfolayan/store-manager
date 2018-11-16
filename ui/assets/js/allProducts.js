@@ -1,11 +1,5 @@
 /* eslint-disable no-undef */
 // Protect page if user did not login
-const token = localStorage.getItem('authorization');
-if (!token) {
-  window.location = '../index.html';
-}
-
-const decoded = jwt_decode(token);
 
 const addToCart = '<a href="#"><button type="button">Add to Cart</button></a>';
 
@@ -47,8 +41,7 @@ const getAllAvailableProducts = (id, prdTitle, prdImage, prdDescription, prdPric
   </div>
   `;
 
-const url = 'https://store-manager-iafolayan.herokuapp.com/api/v1/products';
-// const url = 'http://localhost:4000/api/v1/products';
+const url = `${hostedServer}products/`;
 
 fetch(url, {
   method: 'GET',
@@ -64,6 +57,7 @@ fetch(url, {
 
     const body = document.querySelector('body');
     const pageTitle_ = document.querySelector('.pageTitle_');
+    // eslint-disable-next-line no-multi-assign
     const prdDisplay = document.querySelector('.productDisplay').innerHTML = products;
 
     body.inserAfter(pageTitle_, prdDisplay);

@@ -10,7 +10,7 @@ html{
 	width: 100%;
 }
 /* Global messages */
-.message {
+.success, .danger {
 	width: 100%;
 	height: 40px;
 	text-align: center;
@@ -19,7 +19,6 @@ html{
 	border-radius: 5px;
 	margin-bottom: 20px;
 	color: #FFF;
-	display: none;
 	transition: cubic-bezier(0.95, 0.05, 0.795, 0.035)
 }
 .danger {
@@ -450,6 +449,7 @@ textarea {
 	overflow-x: auto;
 	width: 100%;
 	overflow: auto;
+	margin-bottom: 5px;
 }
 
 .tblDisplay img {

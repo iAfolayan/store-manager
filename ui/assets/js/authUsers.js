@@ -1,6 +1,3 @@
-/* eslint-disable no-undef */
-// Check if token exist
-
 const token = localStorage.getItem('authorization');
 if (!token) {
   window.location = '../index.html';
@@ -8,6 +5,11 @@ if (!token) {
 
 const decoded = jwt_decode(token);
 
-if (decoded.role !== 1) window.location = 'index.html';
+const { host } = window.location;
+let hostedServer = null;
 
-// document.querySelector('#logger').innerHTML = `${decoded.firstname}`;
+if (host === 'localhost:4000') {
+  hostedServer = 'http://localhost:4000/api/v1/';
+} else {
+  hostedServer = 'https://store-manager-iafolayan.herokuapp.com/api/v1/';
+}
