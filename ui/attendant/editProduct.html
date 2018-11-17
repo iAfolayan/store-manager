@@ -6,6 +6,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Store Manager | Admin </title>
 	<link rel="stylesheet" href="../assets/css/styles.css">
+	<script type="text/javascript" src="../assets/js/jwt-decode.min.js"></script>
+	<script type="text/javascript" src="../assets/js/authUsers.js"></script>
+	<script type="text/javascript" src="../assets/js/isAdmin.js"></script>
 </head>
 <body>
 	<div class="bodyWrapper">
@@ -82,10 +85,12 @@
 
 			<div class="userFormControl">
 				<h3>Edit Product</h3>
-				<form action="#" method="POST" enctype="multipart/form-data">
+				<div id="messageBox"></div>
+				<form action="#" method="POST" id="editProductForm" enctype="multipart/form-data">
+					<input type="hidden" id="createdon"/>
 					<div>
 						<label for="productName"> Product Name: <sup>*</sup>
-							<input type="text" class="formInput" name="productName" id="prdName" required value="product name">
+							<input type="text" class="formInput" name="productName" id="prdName" required value="">
 						</label>
 					</div>
 					<div>
@@ -100,11 +105,11 @@
 					</div>
 					<div>
 						<label for="price"> Price: <sup>*</sup>
-							<input type="number" class="formInput" name="prdPrice" id="prdPrice" required value="">
+							<input type="number" class="formInput" name="prdPrice" id="prdPrice" min="1" required value="">
 						</label>
 					</div>
 					<div>
-						<label for="prdImage"> Product Image: <sup>*</sup>
+						<label for="prdImage"> Product Image:
 							<input type="file" class="formInput" name="prdImage" id="prdImage" required>
 						</label>
 					</div>
@@ -115,12 +120,12 @@
 					</div>
 					<div class="column_6 inputMargin">
 						<label for="quantity"> Quantity: <sup>*</sup>
-						<input type="number" class="formInput" name="prdQuantity" id="prdQuantity" required value="">
+						<input type="number" class="formInput" name="prdQuantity" id="prdQuantity" min="1" required value="">
 						</label>
 					</div>
 					<div class="column_6">
 						<label for="prdMinimum"> Minimum Allowed:
-							<input type="number" class="formInput" name="prdMinimum" id="prdMinimum">
+							<input type="number" class="formInput" name="prdMinimum" min="1" id="prdMinimum">
 						</label>
 					</div>
 					
@@ -138,5 +143,6 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="../assets/js/script.js"></script>
+	<script type="text/javascript" src="../assets/js/editproduct.js"></script>
 </body>
 </html>

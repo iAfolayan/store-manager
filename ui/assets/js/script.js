@@ -11,11 +11,12 @@ window.onclick = (event) => {
   }
 };
 
-document.querySelector('.mobileMenu').addEventListener('click', slideMobileMenu);
+const mobileMenu = document.querySelector('.mobileMenu');
+
+if (mobileMenu) mobileMenu.addEventListener('click', slideMobileMenu);
 
 /* MODAL SCRIPT */
 const modal = document.querySelector('.modal');
-// const trigger = document.querySelector('.trigger');
 const checkoutTrigger = document.querySelector('.cartBtn');
 const closeButton = document.querySelector('.close-button');
 let deleteprodId = null;
@@ -30,9 +31,7 @@ const windowOnClick = (newevent) => {
   }
 };
 
-// trigger.addEventListener('click', toggleModal);
-closeButton.addEventListener('click', toggleDeleteModal);
-// window.addEventListener('click', windowOnClick);
+if (closeButton) closeButton.addEventListener('click', toggleDeleteModal);
 
 /**
  * @classdesc deleteAction - Delete action
@@ -53,7 +52,6 @@ function deleteAction(prodId) {
 
 // eslint-disable-next-line require-jsdoc
 function userFeedbackMessage(msg, type) {
- 
   const messageBox = document.querySelector('#messageBox');
 
   messageBox.textContent = msg;
@@ -91,15 +89,47 @@ function deleteproduct() {
     })
     .catch(error => userFeedbackMessage(error, 'error'));
 }
-/* General message function */
 
-
-// Logout
 /**
- * classDec - Logout - Remove user token from localstorage
- * @returns {null} - 
+ * @classDec - Logout - Remove user token from localstorage
+ * @returns {null} -
  */
 function logout() {
   localStorage.removeItem('authorization');
   window.location = '/';
+}
+
+/**
+ * @function getSingleProductDetail
+ * @classdesc getSingleProductDetail - return a product detail
+ * @param {*} productid - product Id
+ * @returns {null} - Return data information
+ */
+function getSingleProductDetail(productid) {
+  const url = `${hostedServer}products/${productid.substring(1)}`;
+
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: token
+    }
+  })
+    .then(data => data.json())
+    .then((response) => {
+      if (response.status !== true) return userFeeddbackMessage(response.msg, 'danger');
+
+      const product = response.data;
+      const {
+        productname, price, quantity, description, minimumallowed, createdon
+      } = product;
+
+      document.querySelector('#prdName').value = productname;
+      document.querySelector('#prdPrice').value = price;
+      document.querySelector('#prdQuantity').value = quantity;
+      document.querySelector('#prdDescription').value = description;
+      document.querySelector('#prdMinimum').value = minimumallowed;
+      document.querySelector('#createdon').value = createdon;
+    })
+    .catch(error => userFeedbackMessage(error, 'danger'));
 }

@@ -35,7 +35,7 @@ fetch(url, {
     document.querySelector('.proName').innerHTML = product.productname;
     document.querySelector('.proNametd').textContent = product.productname;
     document.querySelector('.category').textContent = product.category;
-    const nairaSign = '-N';
+    const nairaSign = 'N';
     const { price } = product;
     const priceNaira = nairaSign.concat(price);
     document.querySelector('.price').textContent = priceNaira;

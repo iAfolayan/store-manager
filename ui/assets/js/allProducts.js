@@ -55,11 +55,7 @@ fetch(url, {
     const products = response.data
       .map(product => getAllAvailableProducts(product.id, product.productname, product.image, product.description.substring(0, 36), product.price, product.minimumallowed)).join('');
 
-    const body = document.querySelector('body');
-    const pageTitle_ = document.querySelector('.pageTitle_');
     // eslint-disable-next-line no-multi-assign
-    const prdDisplay = document.querySelector('.productDisplay').innerHTML = products;
-
-    body.inserAfter(pageTitle_, prdDisplay);
+    document.querySelector('.productDisplay').innerHTML = products;
   })
   .catch(err => userFeedbackMessage(err, 'error'));
