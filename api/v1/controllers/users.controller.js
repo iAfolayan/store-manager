@@ -33,7 +33,7 @@ const login = (req, res) => {
       }, process.env.SECRET, {
         expiresIn: '1d'
       });
-      helper.sendMessage(res, 200, 'Login successful', token);
+      helper.sendMessage(res, 200, 'Login successful. Redirecting...', token);
     });
   });
 };
@@ -155,16 +155,16 @@ const changePassword = (req, res) => {
   const errors = req.validationErrors();
 
   if (errors) {
-    return helper.sendMessage(res, 400, errors[0].msg);
+    return helper.sendMessage(res, 400, errors[0].msg, 'danger');
   }
 
   if (!newPassword.trim() || !confirmPassword.trim()) {
-    return helper.sendMessage(res, 400, 'Input is not valid.');
+    return helper.sendMessage(res, 400, 'Input is not valid.', 'danger');
   }
 
   client.query(`UPDATE users SET password = ${newPassword} WHERE id=${id}`, (err, data) => {
     if (err) {
-      return helper.sendMessage(res, 500, 'Internal Server Error');
+      return helper.sendMessage(res, 500, 'Internal Server Error', 'danger');
     }
 
     if (data.rowCount === 0) {
@@ -179,9 +179,9 @@ const makeUserAnAdmin = (req, res) => {
   const { id } = req.body;
   client.query(`UPDATE users SET role = 2 WHERE id=${id}`, (err, data) => {
     if (err) {
-      return helper.sendMessage(res, 500, 'Internal Server Error');
+      return helper.sendMessage(res, 500, 'Internal Server Error', 'danger');
     }
-    return helper.sendMessage(res, 200, 'You have successfully make a user an Admin');
+    return helper.sendMessage(res, 200, 'You have successfully make a user an Admin', 'success');
   });
 };
 
@@ -189,9 +189,9 @@ const disabledUserAcoount = (req, res) => {
   const { id } = req.body;
   client.query(`UPDATE users SET role = 3 WHERE id=${id}`, (err, data) => {
     if (err) {
-      return helper.sendMessage(res, 500, 'Internal Server Error');
+      return helper.sendMessage(res, 500, 'Internal Server Error', 'danger');
     }
-    return helper.sendMessage(res, 200, 'Account disabled Successfully');
+    return helper.sendMessage(res, 200, 'Account disabled Successfully', 'success');
   });
 };
 

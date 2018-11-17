@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 const url = `${hostedServer}products/`;
 
-const createProductForm = document.getElementById('createProductForm');
+const createProductForm = document.querySelector('#createProductForm');
 
 const createProductFun = (event) => {
   event.preventDefault();
@@ -34,6 +34,5 @@ const createProductFun = (event) => {
     });
 };
 
-const newProduct = document.getElementById('newProduct');
-
-newProduct.addEventListener('click', createProductFun);
+document.querySelector('#newProduct')
+  .addEventListener('click', createProductFun);

@@ -78,7 +78,6 @@ const createProduct = (req, res) => {
   req.checkBody('quantity', 'Quantity field is required').notEmpty();
   req.checkBody('quantity', 'Quantity can only be an integer value').isNumeric();
   req.checkBody('description', 'Description field is required').notEmpty();
-  req.checkBody('category', 'Product category field is required').notEmpty();
   req.checkBody('minimumallowed', 'Minimum Allowed field is required').notEmpty();
   req.checkBody('minimumallowed', 'Minimum Allowed can only be an integer value').isNumeric();
 
@@ -89,15 +88,13 @@ const createProduct = (req, res) => {
   } else {
     image = 'defaultImage.jpg';
   }
-  if (!price.toString().match(/^[0-9]+$/)) {
-    return helper.sendMessage(res, 400, 'Invalid Price, Only integer allowed');
-  }
-  if (!quantity.toString().match(/^[0-9]+$/)) {
-    return helper.sendMessage(res, 400, 'Invalid quantity, Only integer allowed');
-  }
-  if (!minimumallowed.toString().match(/^[0-9]+$/)) {
-    return helper.sendMessage(res, 400, 'Invalid quantity, Only integer allowed');
-  }
+  if (!price.toString().match(/^[0-9]+$/)) return helper.sendMessage(res, 400, 'Invalid Price, Only integer allowed');
+
+  if (!quantity.toString().match(/^[0-9]+$/)) return helper.sendMessage(res, 400, 'Invalid quantity, Only integer allowed');
+
+  if (!minimumallowed.toString().match(/^[0-9]+$/)) return helper.sendMessage(res, 400, 'Invalid quantity, Only integer allowed');
+
+  if (category === '') return helper.sendMessage(res, 400, 'Category field is required');
 
   // check Errors
   const errors = req.validationErrors();
@@ -132,18 +129,45 @@ const updateAProduct = (req, res) => {
     description,
     category,
     minimumallowed,
-    image,
   } = req.body;
+
+  // Form validation
+  req.checkBody('productname', 'Product Name field is required').notEmpty();
+  req.checkBody('price', 'Product price field is required').notEmpty();
+  req.checkBody('description', 'Description field is required').notEmpty();
+  req.checkBody('minimumallowed', 'Minimum Allowed field is required').notEmpty();
+  req.checkBody('quantity', 'Quantity field is required').notEmpty();
+  req.checkBody('price', 'Product price field can only be an integer value').isNumeric();
+  req.checkBody('quantity', 'Quantity can only be an integer value').isNumeric();
+  req.checkBody('minimumallowed', 'Minimum Allowed can only be an integer value').isNumeric();
+
+  // Validate user pofile image
+  let image = '';
+  if (req.file) {
+    image = req.body.filename;
+  } else {
+    image = 'defaultImage.jpg';
+  }
+
+  if (category === '') return helper.sendMessage(res, 400, 'Category field is required', 'danger');
+
+  // check Errors
+  const errors = req.validationErrors();
+
+  if (errors) {
+    return helper.sendMessage(res, 400, errors[0].msg, 'danger');
+  }
 
   const query = `UPDATE products SET productname='${productname}',
    price=${price}, quantity=${quantity}, description='${description}',
     category='${category}', minimumallowed=${minimumallowed},
      image='${image}' WHERE id = '${productId}' RETURNING *`;
+
   client.query(query, (err, data) => {
     if (err) {
-      return helper.sendMessage(res, 500, 'Internal server error');
+      return helper.sendMessage(res, 500, 'Internal server error', 'danger');
     }
-    if (data.rowCount === 0) return helper.sendMessage(res, 404, 'Unable to update product');
+    if (data.rowCount === 0) return helper.sendMessage(res, 404, 'Unable to update product', 'danger');
     return helper.sendMessage(res, 200, 'Product updated successful', data.rows[0]);
   });
 };

@@ -6,6 +6,7 @@ if (!token) {
 const decoded = jwt_decode(token);
 
 const { host } = window.location;
+
 let hostedServer = null;
 
 if (host === 'localhost:4000') {

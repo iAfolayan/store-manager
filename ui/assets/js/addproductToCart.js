@@ -1,13 +1,11 @@
 /* eslint-disable no-undef */
-const token = localStorage.getItem('authorization');
 
-if (!token) window.location = '..index.html';
 
 const productid = window.location.search;
 
 // const url = `http://localhost:4000/api/v1/products/`;
 
-const url = `https://store-manager-iafolayan.herokuapp.com/api/v1/products/${productid.substring(1)}`;
+const url = `${hostedServer}products/${productid.substring(1)}`;
 
 fetch(url, {
   method: 'GET',

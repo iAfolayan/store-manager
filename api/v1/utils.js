@@ -7,7 +7,7 @@ export default {
    * @param {*} data - data
    * @returns {data} - returns data
    */
-  sendMessage(response, code, message, data) {
+  sendMessage(response, code, message, data, msgClass) {
     const responseObj = {
       status: code === 200 || code === 201,
       msg: message,
