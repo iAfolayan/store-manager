@@ -1,4 +1,7 @@
 /* eslint-disable no-undef */
+// Get all available categories
+getCategories();
+
 const url = `${hostedServer}products/`;
 
 const createProductForm = document.querySelector('#createProductForm');
