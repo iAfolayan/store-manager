@@ -1,3 +1,6 @@
+// Get available category
+getCategories();
+
 // Get productId fro url
 const productid = window.location.search;
 

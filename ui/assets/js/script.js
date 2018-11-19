@@ -133,3 +133,30 @@ function getSingleProductDetail(productid) {
     })
     .catch(error => userFeedbackMessage(error, 'danger'));
 }
+
+/**
+ * @method - getCategories return all available vategory
+ * @returns Categories
+ */
+function getCategories() {
+  const prdCategory = document.querySelector('#prdCategory');
+  const url = `${hostedServer}category`;
+  const optionForm = optionItem => `<option value="${optionItem}">${optionItem}</option>`;
+
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: token
+    }
+  })
+    .then(data => data.json())
+    .then((response) => {
+      if (response.status !== true) return userFeedbackMessage('Oops!!! Create product category first', 'danger');
+      const categories = response.data
+        .map(category => optionForm(category.catname)).join('');
+
+      // eslint-disable-next-line no-multi-assign
+      prdCategory.innerHTML = categories;
+    });
+}

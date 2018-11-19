@@ -76,6 +76,18 @@ CREATE TABLE sales (
 ALTER TABLE sales OWNER TO postgres;
 GRANT ALL ON TABLE sales TO postgres;
 
+
+-- Drop table
+
+-- DROP TABLE category
+
+CREATE TABLE categories (
+	catid varchar(50) NOT NULL,
+	catname varchar(50) NOT NULL,
+	CONSTRAINT categories_un UNIQUE (catname)
+);
+GRANT ALL ON TABLE categories TO postgres;
+
 -- Drop table
 
 -- DROP TABLE sales_item

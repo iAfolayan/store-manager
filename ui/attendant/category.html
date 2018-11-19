@@ -85,48 +85,16 @@
 			</div>
 
 			<div class="userFormControl">
-				<h3>Create New Product</h3>
+				<h3>Create Category</h3>
 				<div id="messageBox"></div>
-				<form action="#" method="POST" id="createProductForm" enctype="multipart/form-data">
+				<form action="#" method="POST" id="addNewCategory" enctype="multipart/form-data">
 					<div>
-						<label for="productName">Name: <sup>*</sup>
-							<input type="text" class="formInput" name="productName" id="prdName" required placeholder="Enter prodct name eg. Wireless Bluetooth" value="">
-						</label>
-					</div>
-					<div>
-						<label for="category"> Category: <sup>*</sup>
-							<select name="prdCategory" class="formInput" id="prdCategory">
-								<option value="">Select Category</option>
-							</select>
-						</label>
-					</div>
-					<div>
-						<label for="price"> Price: <sup>*</sup>
-							<input type="number" class="formInput" name="prdPrice" id="prdPrice" min="1" required placeholder="Enter price per piece eg. N2500" value="">
-						</label>
-					</div>
-					<div>
-						<label for="prdImage"> Image:
-							<input type="file" class="formInput" name="prdImage" id="prdImage">
-						</label>
-					</div>
-					<div>
-						<label for="prdDescription"> Description: <sup>*</sup>
-							<textarea name="prdDescription" id="prdDescription" placeholder="Product Description" class="formInput"></textarea>
-						</label>
-					</div>
-					<div class="column_6 inputMargin">
-						<label for="quantity"> Quantity: <sup>*</sup>
-						<input type="number" class="formInput" name="prdQuantity" id="prdQuantity" min="1" required placeholder="Enter product quantity in stock eg. 2500" value="">
-						</label>
-					</div>
-					<div class="column_6">
-						<label for="prdMinimum"> Minimum Quantity Allowed: <sup>*</sup>
-							<input type="number" class="formInput" name="prdMinimum" id="prdMinimum" min="1" placeholder="Minimum value">
+						<label for="categoryName">Name: <sup>*</sup>
+							<input type="text" class="formInput" name="categoryName" id="categoryName" required placeholder="eg. Phone" value="">
 						</label>
 					</div>
 					<div class="btnSpacing">
-						<input type="submit" name="newProduct" id="newProduct" class="loginBtn" value="Create">
+						<input type="submit" name="newCategory" id="newCategory" class="loginBtn" value="Add Category">
 					</div>
 				</form>
 			</div>		
@@ -139,6 +107,6 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="../assets/js/script.js"></script>
-	<script type="text/javascript" src="../assets/js/createProduct.js"></script>
+	<script type="text/javascript" src="../assets/js/createCategory.js"></script>
 </body>
 </html>
