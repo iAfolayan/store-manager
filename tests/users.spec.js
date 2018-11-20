@@ -23,12 +23,8 @@ const dummyData = {
   avatar: 'grace_festus.jpg',
   contactaddress: '656 wertyuiop[jfh g fuy fu',
 };
-/* const token = jwt.sign({
-  id: dummyData.rows[0].id,
-  staffId: dummyData.rows[0].staffid,
-  role: dummyData.rows[0].role,
-  firstname: dummyData.rows[0].firstname
-}, process.env.SECRET).toString(); */
+
+const userId = 'cjoas4z9e0000ycsd47jffnp5';
 
 const user = {
   staffId: 'SM001',
@@ -95,6 +91,21 @@ describe('Signup ', () => {
         expect(res.status).to.equal(400);
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('msg');
+        done();
+      });
+  });
+});
+
+describe('PUT /userid Make an Admin >', () => {
+  it('should make a user an Admin', (done) => {
+    request
+      .put(`/api/v1/auth/users/${userId}`)
+      .set('Content-Type', 'Application/json')
+      .set('authorization', token)
+      .send({ })
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.status).to.equal(200);
         done();
       });
   });
