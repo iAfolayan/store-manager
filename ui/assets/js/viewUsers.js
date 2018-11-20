@@ -13,14 +13,14 @@ if (decoded.role !== 1) window.location = '../index.html';
  * @param {*} userLastname Staff Last name
  * @returns {data} - Returns available users
  */
-const tabulateUsers = (sn, id, staffId, userFirstname, userLastname) => `<tr>
+const tabulateUsers = (sn, id, staffId, userFirstname, userLastname) => `<tr id=${id}>
 <td>${sn}.</td>
 <td>${staffId}</td>
 <td>${userLastname}</td>
 <td>${userFirstname}</td>
 <td>
   <button class="editBtn" onclick="makeUserAnAdmin('${id}')">Make Admin</button>
-  <button class="deleteBtn">Disable</button>
+  <button class="deleteBtn" onclick="disableAction('${id}')">Disable</button>
 </td>
 </tr>`;
 

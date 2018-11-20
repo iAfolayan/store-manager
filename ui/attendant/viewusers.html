@@ -81,6 +81,16 @@
 			<div class="modifyProduct">
 				<h3>Users - <small>Management </small></h3>
 				<div id="messageBox"></div>
+				<div class="modal">
+					<div class="modal-content">
+							<span class="close-button">×</span>
+							<h1>Are you sure you want to disable this account?</h1>
+							<section>
+								<button class="deleteBtn" onclick="disabledAccount()">Yes</button>
+								<button class="editBtn" onclick="toggleDeleteModal()">No</button>
+							</section>
+					</div>
+			</div>
 				<div class="tableContainer">
 					<table class="tblDisplay" border="1" cellpadding="5">
 						<thead>

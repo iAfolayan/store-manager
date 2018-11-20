@@ -193,11 +193,14 @@ const makeUserAnAdmin = (req, res) => {
 
 const disabledUserAcoount = (req, res) => {
   const { userId } = req.params;
-  client.query(`UPDATE users SET role = 3 WHERE id=${userId}`, (err, data) => {
+  client.query(`UPDATE users SET role = 3 WHERE id='${userId}'`, (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal Server Error', 'danger');
     }
-    return helper.sendMessage(res, 200, 'Account disabled Successfully', 'success');
+
+    if (data.rowCount === 0) return helper.sendMessage(res, 404, 'Invalid user', 'danger');
+
+    return helper.sendMessage(res, 200, 'You have successfully disabled an account ', 'success');
   });
 };
 

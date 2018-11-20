@@ -24,7 +24,12 @@ router.route('/users/:userId')
   .put(Validation.checkParamValid('userId'),
     middleware.isUserAuthorized,
     middleware.isUserAdmin,
-    UserController.makeUserAnAdmin);
+    UserController.makeUserAnAdmin)
+
+  .patch(Validation.checkParamValid('userId'),
+    middleware.isUserAuthorized,
+    middleware.isUserAdmin,
+    UserController.disabledUserAcoount);
 
 router.post('/reset', UserController.resetpassword);
 
