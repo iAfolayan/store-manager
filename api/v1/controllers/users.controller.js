@@ -39,7 +39,7 @@ const login = (req, res) => {
 };
 
 const getAllUsers = (req, res) => {
-  client.query('SELECT staffid, firstname, lastname, phonenumber, role, password FROM users', (err, data) => {
+  client.query('SELECT id, staffid, firstname, lastname, phonenumber, role FROM users WHERE role != 3 AND role != 1', (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal server error');
     }
@@ -175,19 +175,25 @@ const changePassword = (req, res) => {
   });
 };
 
+// Make a User an Admin
 const makeUserAnAdmin = (req, res) => {
-  const { id } = req.body;
-  client.query(`UPDATE users SET role = 2 WHERE id=${id}`, (err, data) => {
+  const { userId } = req.params;
+
+  client.query(`UPDATE users SET role = 1 WHERE id='${userId}'`, (err, data) => {
     if (err) {
+      console.log(err)
       return helper.sendMessage(res, 500, 'Internal Server Error', 'danger');
     }
+
+    if (data.rowCount === 0) return helper.sendMessage(res, 404, 'Invalid user', 'danger');
+
     return helper.sendMessage(res, 200, 'You have successfully make a user an Admin', 'success');
   });
 };
 
 const disabledUserAcoount = (req, res) => {
-  const { id } = req.body;
-  client.query(`UPDATE users SET role = 3 WHERE id=${id}`, (err, data) => {
+  const { userId } = req.params;
+  client.query(`UPDATE users SET role = 3 WHERE id=${userId}`, (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal Server Error', 'danger');
     }

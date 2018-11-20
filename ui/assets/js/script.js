@@ -20,6 +20,7 @@ const modal = document.querySelector('.modal');
 const checkoutTrigger = document.querySelector('.cartBtn');
 const closeButton = document.querySelector('.close-button');
 let deleteprodId = null;
+let userId = null;
 
 const toggleDeleteModal = () => {
   modal.classList.toggle('show-modal');
@@ -160,3 +161,27 @@ function getCategories() {
       prdCategory.innerHTML = categories;
     });
 }
+
+/**
+ * @method makeUserAnAdmin
+ */
+function makeUserAnAdmin(id) {
+  userId = id;
+  const url = `${hostedServer}auth/users/${userId}`;
+
+  fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: token
+    }
+  })
+    .then(data => data.json())
+    .then((response) => {
+      if (response.status !== true) return userFeedbackMessage(response.msg, 'danger');
+
+      window.location = 'viewusers.html';
+      return userFeedbackMessage(response.msg, 'success');
+    })
+    .catch(error => userFeedbackMessage(error, 'danger'));
+};

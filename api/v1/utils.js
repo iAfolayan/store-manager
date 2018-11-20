@@ -11,6 +11,7 @@ export default {
     const responseObj = {
       status: code === 200 || code === 201,
       msg: message,
+      msgClass
     };
     if (data) {
       responseObj.data = data;

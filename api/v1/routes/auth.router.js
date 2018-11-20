@@ -2,6 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import UserController from '../controllers/users.controller';
 import middleware from '../controllers/middleware.controller';
+import Validation from '../controllers/Validation';
 
 const upload = multer({ dest: './uploads/' });
 
@@ -19,7 +20,12 @@ router.get('/users', middleware.isUserAuthorized,
   middleware.isUserAdmin,
   UserController.getAllUsers);
 
+router.route('/users/:userId')
+  .put(Validation.checkParamValid('userId'),
+    middleware.isUserAuthorized,
+    middleware.isUserAdmin,
+    UserController.makeUserAnAdmin);
+
 router.post('/reset', UserController.resetpassword);
 
 export default router;
-

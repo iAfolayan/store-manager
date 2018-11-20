@@ -6,6 +6,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Store Manager | Admin </title>
 	<link rel="stylesheet" href="../assets/css/styles.css">
+	<script type="text/javascript" src="../assets/js/jwt-decode.min.js"></script>
+	<script type="text/javascript" src="../assets/js/authUsers.js"></script>
+	<script type="text/javascript" src="../assets/js/isAdmin.js"></script>
 </head>
 <body>
 	<div class="bodyWrapper">
@@ -76,9 +79,10 @@
 				<a onclick="logout();" href="#" title="Logout">Logout</a>
 			</div>
 			<div class="modifyProduct">
-				<h3>Users - <small>make user an Admin </small></h3>
+				<h3>Users - <small>Management </small></h3>
+				<div id="messageBox"></div>
 				<div class="tableContainer">
-					<table class="tblDisplay" border="1" cellpadding="10">
+					<table class="tblDisplay" border="1" cellpadding="5">
 						<thead>
 							<tr>
 								<th>S/N</th>
@@ -88,27 +92,8 @@
 								<th>ACTION</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>1.</td>
-								<td>SM001</td>
-								<td>Afolayan</td>
-								<td> Isaiah</td>
-								<td>
-									<button class="editBtn">Make Admin</button>
-									<button class="deleteBtn">Disable</button>
-								</td>
-							</tr>
-							<tr>
-								<td>2.</td>
-								<td>SM003</td>
-								<td>Afolayan</td>
-								<td>Ibikunle</td>
-								<td>
-									<button class="editBtn">Make Admin</button>
-									<button class="deleteBtn">Disable</button>
-								</td>
-							</tr>
+						<tbody class="usersDisplay">
+							
 						</tbody>
 					</table>
 				</div>
@@ -121,6 +106,7 @@
 		
 		</div>
 	</div>
+	<script type="text/javascript" src="../assets/js/viewUsers.js"></script>
 	<script type="text/javascript" src="../assets/js/script.js"></script>
 </body>
 </html>
