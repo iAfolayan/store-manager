@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import jwt from 'jsonwebtoken';
 import supertest from 'supertest';
 import dotenv from 'dotenv';
 import app from '../api/v1/app';
