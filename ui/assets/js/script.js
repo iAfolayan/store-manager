@@ -185,3 +185,42 @@ function makeUserAnAdmin(id) {
     })
     .catch(error => userFeedbackMessage(error, 'danger'));
 };
+
+
+/**
+ * @method disableAction - Disable action
+ * @param {*} usrId - User Id
+ * @returns {null} - No return
+ */
+function disableAction(usrId) {
+  userId = usrId;
+  toggleDeleteModal();
+}
+
+/**
+ * @method disabledAccount
+ * @param {*} shouldDisable - return a Boolean value
+ * @returns {null} No returns
+ */
+function disabledAccount() {
+  toggleDeleteModal();
+
+  const url = `${hostedServer}auth/users/${userId}`;
+
+  fetch(url, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: token
+    }
+  })
+    .then(data => data.json())
+    .then((response) => {
+      if (response.status !== true) return userFeedbackMessage(response.msg, 'danger');
+      userRow = document.querySelector(`#${userId}`);
+      userList = document.querySelector('.usersDisplay');
+      userList.removeChild(userRow);
+      userFeedbackMessage(response.msg, 'success');
+    })
+    .catch(error => userFeedbackMessage(error, 'danger'));
+}

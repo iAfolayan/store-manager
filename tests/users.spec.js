@@ -110,6 +110,21 @@ describe('PUT /userid Make an Admin >', () => {
   });
 });
 
+describe('PUT /userid disable User >', () => {
+  it('should disable user account', (done) => {
+    request
+      .put(`/api/v1/auth/users/${userId}`)
+      .set('Content-Type', 'Application/json')
+      .set('authorization', token)
+      .send({ })
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.status).to.equal(200);
+        done();
+      });
+  });
+});
+
 // describe('Password Reset > ', () => {
 //   it('returns error message if password reset body is empty', (done) => {
 //     request
