@@ -14,7 +14,7 @@
 	<div class="bodyWrapper">
 		<div class="sidebar">
 			<div id="logo"></div>
-			<h3>Welcome! Olumide</h3>
+			<h3 class="logger">Welcome! Olumide</h3>
 			<hr>
 			<nav> 
 				<ul>
@@ -49,14 +49,28 @@
 				<a onclick="logout();" href="#" title="">Logout</a>
 			</div>		
 			<div class="productHolder">
-				<a href="checkout.html" title="CheckOut">
-					<sup>
-						<div class="circle">2</div>
-					</sup>
-					<img src="../assets/images/cart.jpg" alt="">
-				</a>
+					<div id="cartHolder">
+							<sup>
+									<div class="circle">0</div>
+							</sup>
+							<img src="../assets/images/cart.jpg" alt="">
+					</div>
+							
 				<h3>Available Products</h3>
-				<div class="productDisplay"></div>
+				<div id="messageBox"></div>	
+				<!-- Cart Info -->
+				<div id="cart" class="cart">
+					<span class="cartHeading">Cart Info</span>
+					<hr>
+					<ul class="cartItemsList"></ul>
+					<div class="cartTotal">Total: &#8358;<span id="amount">0</span></div>
+					<a href="checkout.html">
+						<button type="button" class="cartBtn">Proceed to checkout</button>				
+					</a>
+				</div>
+				<div class="productDisplay">
+					
+				</div>
 
 			</div>
 		
@@ -68,6 +82,8 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="../assets/js/script.js"></script>
+	<script src="../assets/js/addToCart.js"></script>
 	<script type="text/javascript" src="../assets/js/allProducts.js"></script>
+
 </body>
 </html>

@@ -1,45 +1,28 @@
-/* eslint-disable no-undef */
-// Protect page if user did not login
-
-const addToCart = '<a href="#"><button type="button">Add to Cart</button></a>';
-
-const userMenu = (decoded.role === 1) ? '' : addToCart;
-
-const detailMenu = (decoded.role === 1) ? '/attendant/productDetails.html' : '/attendant/addproduct.html';
-/**
- * @classdesc - getAllAvailableProducts returns all product in Array format
- * @param {*} id - Product Id
- * @param {*} prdTitle - Product Name
- * @param {*} prdImage - Product Image
- * @param {*} prdDescription - Product Description
- * @param {*} prdPrice - Product price
- * @param {*} prdMinQty - Product Minimum Quantity
- */
-
-const getAllAvailableProducts = (id, prdTitle, prdImage, prdDescription, prdPrice, prdMinQty) => `<div class="card_4_column">
-  <div class="productHolderCard">
-    <div class="product-title" data-product=${id}>
-              <h5><strong>${prdTitle}</h5>
+function getProducts(product) {
+  const { 
+id, productname, price, description, minimumallowed, image 
+} = product;
+  const addToCart = `<button type="button" onclick="addToCart('${id}')" class="addToCart">Add to Cart</button>`;
+  const userMenu = (decoded.role === 1) ? '' : addToCart;
+  const detailMenu = (decoded.role === 1) ? '/attendant/productDetails.html' : '/attendant/addproduct.html';
+  const dom = `
+    <div class="card_4_column">
+      <input type="hidden" name="productId" value="${id}">
+      <div class="productHolderCard">
+        <h5 class="product-title"><strong>${productname}</h5>
+        <a href="${detailMenu}?${id}">
+          <div class="img-holder">
+            <img class="cart-image" src="../assets/images/${image}" alt="">
+            <div class="img-overlay"><article>${description.substring(0, 40)}</article></div>
+            <h3 data-price="${price}">&#8358;${price}.00 / piece</h3>
           </div>
-          <a href="${detailMenu}?${id}">
-            <div class="img-holder">
-                <img src="../assets/images/${prdImage}" alt="">
-                  <div class="img-overlay">
-                      <article>
-                    ${prdDescription}
-                  </article>
-                  </div>
-
-                  <h3>&#8358;${prdPrice}.00 / piece</h3>
-            </div>
         </a>
-          <div class="dets">
-              ${userMenu}
-              <small>Minimum Qty ${prdMinQty}</small>
-          </div>
-  </div>
-  </div>
-  `;
+        <div class="dets">${userMenu} <small>Minimum Qty ${minimumallowed}</small></div>
+      </div>
+    </div>`;
+  return dom;
+}
+
 
 const url = `${hostedServer}products/`;
 
@@ -52,10 +35,9 @@ fetch(url, {
 })
   .then(data => data.json())
   .then((response) => {
-    const products = response.data
-      .map(product => getAllAvailableProducts(product.id, product.productname, product.image, product.description.substring(0, 36), product.price, product.minimumallowed)).join('');
-
+    const products = response.data.map(product => getProducts(product)).join('');
     // eslint-disable-next-line no-multi-assign
     document.querySelector('.productDisplay').innerHTML = products;
+    localStorage.setItem('products', JSON.stringify(response.data));
   })
   .catch(err => userFeedbackMessage(err, 'error'));

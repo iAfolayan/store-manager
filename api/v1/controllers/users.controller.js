@@ -18,13 +18,13 @@ const login = (req, res) => {
 
   client.query(`SELECT * FROM users WHERE staffid = '${staffId}'`, (err, data) => {
     if (err) {
-      return helper.sendMessage(res, 500, 'Internal server error');
+      return helper.sendMessage(res, 500, 'Internal server error', 'danger');
     }
-    if (data.rowCount === 0) return helper.sendMessage(res, 401, 'Invalid login credentials');
+    if (data.rowCount === 0) return helper.sendMessage(res, 401, 'Invalid login credentials', 'danger');
 
     // Compare password
     bcrypt.compare(password, data.rows[0].password, (err, respass) => {
-      if (!respass) return helper.sendMessage(res, 401, 'Invalid login credentials');
+      if (!respass) return helper.sendMessage(res, 401, 'Invalid login credentials', 'danger');
       const token = jwt.sign({
         id: data.rows[0].id,
         staffId: data.rows[0].staffid,
@@ -41,9 +41,9 @@ const login = (req, res) => {
 const getAllUsers = (req, res) => {
   client.query('SELECT id, staffid, firstname, lastname, phonenumber, role FROM users WHERE role != 3 AND role != 1', (err, data) => {
     if (err) {
-      return helper.sendMessage(res, 500, 'Internal server error');
+      return helper.sendMessage(res, 500, 'Internal server error', 'danger');
     }
-    if (data.rowCount === 0) return helper.sendMessage(res, 404, 'No user found');
+    if (data.rowCount === 0) return helper.sendMessage(res, 404, 'No user found', 'danger');
     return helper.sendMessage(res, 200, 'Record retrieved successfully', data.rows);
   });
 };
@@ -89,11 +89,11 @@ const createUser = (req, res) => {
   const errors = req.validationErrors();
 
   if (errors) {
-    return helper.sendMessage(res, 400, errors[0].msg);
+    return helper.sendMessage(res, 400, errors[0].msg, 'danger');
   }
 
   if (!phonenumber.match(/^[0-9]+$/)) {
-    return helper.sendMessage(res, 400, 'Invalid Phone Number, Only integer allowed');
+    return helper.sendMessage(res, 400, 'Invalid Phone Number, Only integer allowed', 'danger');
   }
   client.query(`SELECT * FROM users WHERE staffid = '${staffId}'`, (err, data) => {
     if (data.rowCount === 1) return helper.sendMessage(res, 409, 'Duplicate staff id found');
@@ -106,7 +106,7 @@ const createUser = (req, res) => {
             '${gender}', '${avatar}', '${contactaddress}') RETURNING *`;
       client.query(query, (err, dataResult) => {
         if (err) {
-          return helper.sendMessage(res, 500, 'Internal server error');
+          return helper.sendMessage(res, 500, 'Internal server error', 'danger');
         }
         return helper.sendMessage(res, 201, 'New user successfully created', dataResult.rows);
       });
