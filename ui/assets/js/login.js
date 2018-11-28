@@ -32,7 +32,7 @@ const login = (event) => {
     .then(res => res.json())
     .then((response) => {
       if (response.status !== true) {
-        return userFeedbackMessage(response.msg, 'error');
+        return userFeedbackMessage(response.msg, 'danger');
       }
 
       localStorage.setItem('authorization', response.data);
@@ -41,7 +41,7 @@ const login = (event) => {
       window.location = decoded.role === 1 ? 'attendant/admin.html' : 'attendant/index.html';
       return userFeedbackMessage(response.msg, 'success');
     })
-    .catch(err => userFeedbackMessage('Unable to log you in, please check your network', 'error'));
+    .catch(err => userFeedbackMessage('Unable to log you in, please check your network', 'danger'));
 };
 const submitBtn = document.getElementById('submitBtn');
 
