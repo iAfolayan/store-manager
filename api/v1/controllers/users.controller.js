@@ -18,6 +18,7 @@ const login = (req, res) => {
 
   client.query(`SELECT * FROM users WHERE staffid = '${staffId}'`, (err, data) => {
     if (err) {
+      console.log('----------', err);
       return helper.sendMessage(res, 500, 'Internal server error', 'danger');
     }
     if (data.rowCount === 0) return helper.sendMessage(res, 401, 'Invalid login credentials', 'danger');
@@ -204,6 +205,18 @@ const disabledUserAcoount = (req, res) => {
   });
 };
 
+
+const getAUser = (req, res) => {
+  const { staffId } = req.params;
+  client.query(`SELECT * FROM users WHERE staffid='${staffId}'`, (err, data) => {
+    if (err) {
+      return helper.sendMessage(res, 500, 'Internal server error', 'danger');
+    }
+    if (data.rowCount === 0) return helper.sendMessage(res, 404, 'No user found', 'danger');
+    return helper.sendMessage(res, 200, 'Record retrieved successfully', data.rows);
+  });
+};
+
 export default {
   login,
   createUser,
@@ -211,5 +224,6 @@ export default {
   resetpassword,
   changePassword,
   makeUserAnAdmin,
-  disabledUserAcoount
+  disabledUserAcoount,
+  getAUser
 };

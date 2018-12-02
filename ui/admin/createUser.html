@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Store Manager | Admin </title>
+	<link rel="stylesheet" href="../assets/css/styles.css">
+	<script type="text/javascript" src="../scripts/vendors/jwt-decode.min.js"></script>
+</head>
+<body>
+	<div class="bodyWrapper">
+		<div class="sidebar">
+			<div id="logo"></div>
+			<h3>Welcome! <span id="loggerName">iAfolayan</span></h3>
+			<hr>
+			<nav> 
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li id="usrManagement">User Management
+						<div class="usrChild">
+							<ul>
+								<li><a href="createUser.html" title="Create new User">Create new User</a></li>
+								<li><a href="viewsalerecord.html" title="View Sales Record">View Sale Records</a></li>
+								<li><a href="viewusers.html" title="View Users">View Users</a></li>
+							</ul>
+						</div>
+					</li>
+					<li id="prdManagement">Product Management
+						<div class="prdChild">
+							<ul>
+								<li><a href="category.html" title="Create Category">Create Category</a></li>
+								<li><a href="createproduct.html" title="Create new Product">Create new product</a></li>
+								<li><a href="products.html" title="Modify Product">Modify product</a></li>
+							</ul>
+						</div>
+					</li>
+					<li id="rptManagement">Report Management
+						<div class="rptChild">
+							<ul>
+								<li><a href="saleCreatedReport.html" title="Create new Product">Sale Record</a></li>
+								<li><a href="productReport.html" title="Modify Product">Products Sold</a></li>
+								<li><a href="worthReport.html" title="Modify Product">Worth of Goods Sold</a></li>
+							</ul>
+						</div>
+					</li>
+					<li onclick="Auth.logout();"><a href="#" title="Logout"> Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="mainPage">
+			<div class="mainHeader">
+				
+				<div class="searchForm">
+
+					<div class="mobileMenu">
+						<img src="../assets/images/menu.png" title="Menu" alt="">
+					</div>
+					<div class="appTitle">
+						<h3>Store Manager</h3>
+					</div>
+				</div>
+
+			</div>	
+			<div id="menuDrop" class="menuDropContent">
+				<div id="logo"></div><hr />
+				<a href="index.html" title="Home page">Home</a>
+				<a href="createUser.html" title="Create new User">Create new User</a>
+				<a href="viewusers.html" title="View Users">View Users</a>
+				<a href="viewsalerecord.html" title="View Sales Record">View Sale Records</a>
+				<a href="category.html" title="Create Category">Create Category</a>
+				<a href="createproduct.html" title="Create new Product">Create new product</a>
+				<a href="products.html" title="Modify Product">Modify product</a>
+				<a href="saleCreatedReport.html" title="Create new Product">Sale Record</a>
+				<a href="productReport.html" title="Modify Product">Products Sold</a>
+				<a href="worthReport.html" title="Modify Product">Worth of Goods Sold</a>
+				<a onclick="Auth.logout();" href="" title="">Logout</a>
+			</div>
+
+			<div class="userFormControl">
+				<h3>Create new User</h3>
+				<form action="#" id='signupForm' method="POST" enctype="multipart/form-data">
+					<div class="column_6 inputMargin">
+						<label for="title"> Title:
+							<input type="text" name="title" class="formInput" value="" required id="title" placeholder="eg. Mr., Mrs, Miss">
+						</label>
+					</div>
+					<div class="column_6"> 
+						<label for="staffId"> Staff Number: <sup>*</sup>
+							<input type="text" class="formInput" name="staffId" id="staffId" required  placeholder="Staff ID eg. SM00XX">
+						</label>
+					</div>
+					<div>
+						<label for="password"> Password: <sup>*</sup>
+							<input type="password" class="formInput" name="password" id="password" required placeholder="Enter Password" value="">
+						</label>
+					</div>
+					<div>
+						<label for="firstname"> Firstname: <sup>*</sup>
+							<input type="text" class="formInput" name="firstname" id="firstname" required placeholder="Enter Firstname eg. John" value="">
+						</label>
+					</div>
+					<div>
+						<label for="lastname"> Lastname: <sup>*</sup>
+							<input type="text" class="formInput" name="lastname" id="lastname" required placeholder="Enter Lastname eg. Doe" value="">
+						</label>
+					</div>
+					<div>
+						<label for="emailaddress"> Email Address: <sup>*</sup>
+							<input type="email" class="formInput" name="emailaddress" id="emailaddress" required placeholder="Enter Email Address eg. someone@somewhere.com" value="">
+						</label>
+					</div>
+					<div class="column_6 inputMargin">
+						<label for="phoneNumber"> Phone Number: <sup>*</sup>
+							<input type="text" class="formInput" name="phoneNumber" maxlength="11" id="phoneNumber" required placeholder="Enter a valid phone number e.g 080xxxxxxxx" value="">
+						</label>
+					</div>
+					<div class="column_6">
+						<label for="role"> Type of User: <sup>*</sup>
+							<select name="" id="role" class="formInput">
+								<option value="">Select user type</option>
+								<option value="1">Admin</option>
+								<option value="2" selected>Sale Attendant</option>
+							</select>
+						</label>
+					</div>
+					<div class="column_6 inputMargin">
+						<label for="Gender"> Gender: <sup>*</sup>
+							<select name="gender" id="gender" class="formInput">
+								<option value="">Select staff gender</option>
+								<option value="1">Male</option>
+								<option value="2">Female</option>
+							</select>
+						</label>
+					</div>
+					<div class="column_6">
+						<label for="profileImage"> Passport:
+							<input type="file" class="formInput" name="profileImage" id="profileImage">
+						</label>
+					</div>
+					<br>
+					<div class="">
+						<label for="address"> Contact Address: <sup>*</sup>
+							<textarea name="address" placeholder="Staff Contact Address" id="address" class="formInput"></textarea>
+						</label>
+					</div>
+					<div class="btnSpacing">
+						<input type="submit" name="newUser" id="newUser" class="loginBtn" value="Create User">
+					</div>
+					<div id="messageBox"></div>
+				</form>
+			</div>		
+			<div class="clearAll"></div>
+			<hr>
+			<footer>
+				@ 2018 - Andela Developer Challenge
+			</footer>
+		
+		</div>
+	</div>
+	<script type="text/javascript" src="../scripts/classes.js"></script>
+	<script type="text/javascript" src="../scripts/utils.js"></script>
+	<script type="text/javascript" src="../scripts/auth.js"></script>
+	<script type="text/javascript" src="../scripts/index.js"></script>
+	<script src="../scripts/admin/manageUsers.js"></script>
+</body>
+</html>

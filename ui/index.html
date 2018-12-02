@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Store Manager</title>
-	<link rel="stylesheet" href="assets/css/styles.css">
-	<script type="text/javascript" src="assets/js/jwt-decode.min.js"></script>
-</head>
-<body class="logincover">
-	<div class="pageWrapper">
-		<div class="formElement">
-		<div id="logo"></div>
-		<h1>Store Manager</h1>
-		<form action="" id="loginForm">
-		  <div>
-		  	<label for="staffId"> Staff ID
-		  		<input type="text" name="staffId" value="" class="formInput" placeholder="Enter staff ID" id="staffId">
-		  	</label>
-		  </div>
-		  <div>
-		  	<label for="password"> Password
-		  		<input type="password" name="password" value="" class="formInput" placeholder="Staff password" id="pwd">
-		  	</label>
-		  </div>
-		  <div>
-				<a href="attendant/admin.html">
-					<input type="submit" name="submitBtn" class="loginBtn" id="submitBtn" value="Login">
-				</a>
-		  	<span class="recPassword">Forget password? <a href="forgetPassword.html">Click here</a></span>
-			</div>
-		</form>
-		<br /><br />
-		<div id="messageBox"></div>			
-		</div>
-		<footer>
-			<hr>
-			@ 2018 - Andela Developer Challenge	
-		</footer>
-	</div>
-	<script type="text/javascript" src="assets/js/script.js"></script>
-	<script type="text/javascript" src="assets/js/login.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Store Manager</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script type="text/javascript" src="scripts/vendors/jwt-decode.min.js"></script>
+  </head>
+  <body class="logincover">
+    <div class="pageWrapper">
+      <div class="formElement">
+        <div id="logo"></div>
+        <h1>Store Manager</h1>
+        <form action="" id="loginForm">
+          <div>
+            <label for="staffId"> Staff ID
+              <input type="text" name="staffId" value="" class="formInput" placeholder="Enter staff ID" id="staffId">
+            </label>
+          </div>
+          <div>
+            <label for="password"> Password
+              <input type="password" name="password" value="" class="formInput" placeholder="Staff password" id="pwd">
+            </label>
+          </div>
+          <div>
+            <div class="loginBtn" id="submitBtn" onclick="Auth.login()">Login</div>
+            <span class="recPassword">Forget password? <a href="forgetPassword.html">Click here</a></span>
+          </div>
+        </form>
+        <br /><br />
+        <div id="messageBox"></div>
+      </div>
+      <footer>
+        <hr>
+        @ 2018 - Andela Developer Challenge
+      </footer>
+    </div>
+    <script type="text/javascript" src="scripts/utils.js"></script>
+    <script type="text/javascript" src="scripts/auth.js"></script>
+  </body>
+
 </html>
