@@ -14,7 +14,8 @@ const dummyData = {
   description: 'test product',
   category: 'phone',
   minimumallowed: 200,
-  image: 'tet.png'
+  image: 'tet.png',
+  createdon: new Date().toISOString()
 };
 
 const updateData = {
@@ -145,4 +146,3 @@ describe('POST Delete a product', () => {
       });
   });
 });
-

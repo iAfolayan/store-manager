@@ -19,7 +19,7 @@ CREATE TABLE users (
 	phonenumber varchar(20) NOT NULL,
 	role int2 NOT NULL,
 	gender varchar(20) NULL,
-	avatar varchar(50) NOT NULL,
+	avatar text NOT NULL,
 	contactaddress text NOT NULL,
 	CONSTRAINT users_pk PRIMARY KEY (id),
 	CONSTRAINT users_un UNIQUE (staffid, emailaddress, phonenumber)
@@ -27,8 +27,8 @@ CREATE TABLE users (
 
 -- Permissions
 
-ALTER TABLE users OWNER TO abolajifemi;
-GRANT ALL ON TABLE users TO abolajifemi;
+ALTER TABLE users OWNER TO postgres;
+GRANT ALL ON TABLE users TO postgres;
 
 
 -- Drop table
@@ -43,17 +43,17 @@ CREATE TABLE products (
 	description text NULL,
 	category varchar(20) NOT NULL,
 	minimumallowed int4 NOT NULL,
-	image bpchar(20) NOT NULL,
+	image text NOT NULL,
 	createdon date NOT NULL,
 	CONSTRAINT products_pk PRIMARY KEY (id)
 );
 
 -- Permissions
 
-ALTER TABLE products OWNER TO abolajifemi;
-GRANT ALL ON TABLE products TO abolajifemi;
-GRANT INSERT, SELECT, UPDATE, REFERENCES(productname) ON products TO abolajifemi;
-GRANT INSERT, SELECT, UPDATE, REFERENCES(createdon) ON products TO abolajifemi;
+ALTER TABLE products OWNER TO postgres;
+GRANT ALL ON TABLE products TO postgres;
+GRANT INSERT, SELECT, UPDATE, REFERENCES(productname) ON products TO postgres;
+GRANT INSERT, SELECT, UPDATE, REFERENCES(createdon) ON products TO postgres;
 
 -- Drop table
 
@@ -73,8 +73,8 @@ CREATE TABLE sales (
 
 -- Permissions
 
-ALTER TABLE sales OWNER TO abolajifemi;
-GRANT ALL ON TABLE sales TO abolajifemi;
+ALTER TABLE sales OWNER TO postgres;
+GRANT ALL ON TABLE sales TO postgres;
 
 
 -- Drop table
@@ -86,7 +86,7 @@ CREATE TABLE categories (
 	catname varchar(50) NOT NULL,
 	CONSTRAINT categories_un UNIQUE (catname)
 );
-GRANT ALL ON TABLE categories TO abolajifemi;
+GRANT ALL ON TABLE categories TO postgres;
 
 -- Drop table
 
@@ -105,9 +105,9 @@ CREATE TABLE sales_item (
 
 -- Permissions
 
-ALTER TABLE sales_item OWNER TO abolajifemi;
-GRANT ALL ON TABLE sales_item TO abolajifemi;
-GRANT INSERT, SELECT, UPDATE, REFERENCES(salesid) ON sales_item TO abolajifemi;
+ALTER TABLE sales_item OWNER TO postgres;
+GRANT ALL ON TABLE sales_item TO postgres;
+GRANT INSERT, SELECT, UPDATE, REFERENCES(salesid) ON sales_item TO postgres;
 
 INSERT INTO users (id,staffid,title,"password",firstname,lastname,emailaddress,phonenumber,"role",gender,avatar,contactaddress) VALUES 
 ('cjobbz2i70000gwsd6cpwwx7','SM001','Miss','$2b$10$B4RDZ2IhVzc/xhPijuP7QunAF8jtVmaK/m5RQrOQnprhWZo5A4n4K','Afolayan','Isaiah','kun@kun.com','08032167944',1,'Male','null','Olunlade')
@@ -121,12 +121,11 @@ Lagos')
 Lagos')
 ,('cjoe8qlha00000mx536s8qjsk','S0010','Chief','$2b$10$Xfsi.4../N2QweBumCh0Z.xSUbKUz4aIRcrZzktQXqIedMS/DUre.','Ayoide','Oluide','oluide.ayoide@gail.co','08214145211',2,'1','defaultimage.jpg','Opomalu')
 ;
-/*
-INSERT INTO products (id,productname,price,quantity,description,category,minimumallowed,image,createdon) VALUES 
+
+/* INSERT INTO products (id,productname,price,quantity,description,category,minimumallowed,image,createdon) VALUES 
 (1,'Wireless bluetooth',3000,780,'Wireless cord bluetooth','Mobile',25,' image.jpg','2018-10-25')
 ,(3,'new products',50,780,'Wirdfdfdeless bluetooth','Mooobile',255,' image.jpg','2018-10-25')
 ,(11,'Wireless-Phone',3000,780,'Tis is s ihfh kjf fhcff h gcu hi g iuwf gkf eufg j g jjbjc','Mobile',25,' image.jpg','2018-10-28');
-
 
 INSERT INTO sales (id,buyername,buyeremail,buyeraddress,buyerphone,attendantid) VALUES 
 (1,'Afolayan Isaiah','afolayan@gmil.com','41 gfjhgjg dgkfilu giug km bkkb bjdkjcl','08032167911',3)

@@ -85,9 +85,8 @@ const createProduct = (req, res) => {
   // Validate user pofile image
   let image = productImage;
   // Validate user pofile image
-  if (!image.length) {
-    image = 'defaultImage.jpg';
-  }
+
+  image = 'defaultImage.jpg';
 
   if (!price.toString().match(/^[0-9]+$/)) return helper.sendMessage(res, 400, 'Invalid Price, Only integer allowed');
 
@@ -145,9 +144,8 @@ const updateAProduct = (req, res) => {
 
   let image = productImage;
   // Validate user pofile image
-  if (!image.length) {
-    image = 'defaultImage.jpg';
-  }
+  image = 'defaultImage.jpg';
+
 
   if (category === '') return helper.sendMessage(res, 400, 'Category field is required', 'danger');
 
