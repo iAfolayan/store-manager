@@ -19,7 +19,7 @@ CREATE TABLE users (
 	phonenumber varchar(20) NOT NULL,
 	role int2 NOT NULL,
 	gender varchar(20) NULL,
-	avatar varchar(50) NOT NULL,
+	avatar text NOT NULL,
 	contactaddress text NOT NULL,
 	CONSTRAINT users_pk PRIMARY KEY (id),
 	CONSTRAINT users_un UNIQUE (staffid, emailaddress, phonenumber)
@@ -43,7 +43,7 @@ CREATE TABLE products (
 	description text NULL,
 	category varchar(20) NOT NULL,
 	minimumallowed int4 NOT NULL,
-	image bpchar(20) NOT NULL,
+	image text NOT NULL,
 	createdon date NOT NULL,
 	CONSTRAINT products_pk PRIMARY KEY (id)
 );

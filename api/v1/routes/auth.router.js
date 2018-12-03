@@ -26,6 +26,10 @@ router.route('/users/:userId')
     middleware.isUserAdmin,
     UserController.makeUserAnAdmin)
 
+  .get(Validation.checkParamValid('userId'),
+    middleware.isUserAuthorized,
+    UserController.getAUser)
+
   .patch(Validation.checkParamValid('userId'),
     middleware.isUserAuthorized,
     middleware.isUserAdmin,

@@ -69,6 +69,7 @@ const createProduct = (req, res) => {
     description,
     category,
     minimumallowed,
+    productImage
   } = req.body;
 
   // Form validation
@@ -82,12 +83,11 @@ const createProduct = (req, res) => {
   req.checkBody('minimumallowed', 'Minimum Allowed can only be an integer value').isNumeric();
 
   // Validate user pofile image
-  let image = '';
-  if (req.file) {
-    image = req.body.filename;
-  } else {
-    image = 'defaultImage.jpg';
-  }
+  let image = productImage;
+  // Validate user pofile image
+
+  image = 'defaultImage.jpg';
+
   if (!price.toString().match(/^[0-9]+$/)) return helper.sendMessage(res, 400, 'Invalid Price, Only integer allowed');
 
   if (!quantity.toString().match(/^[0-9]+$/)) return helper.sendMessage(res, 400, 'Invalid quantity, Only integer allowed');
@@ -129,6 +129,7 @@ const updateAProduct = (req, res) => {
     description,
     category,
     minimumallowed,
+    productImage
   } = req.body;
 
   // Form validation
@@ -141,13 +142,10 @@ const updateAProduct = (req, res) => {
   req.checkBody('quantity', 'Quantity can only be an integer value').isNumeric();
   req.checkBody('minimumallowed', 'Minimum Allowed can only be an integer value').isNumeric();
 
+  let image = productImage;
   // Validate user pofile image
-  let image = '';
-  if (req.file) {
-    image = req.body.filename;
-  } else {
-    image = 'defaultImage.jpg';
-  }
+  image = 'defaultImage.jpg';
+
 
   if (category === '') return helper.sendMessage(res, 400, 'Category field is required', 'danger');
 
