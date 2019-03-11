@@ -13,14 +13,10 @@ const dummyData = {
   staffid: 'SM0062',
   title: 'Miss',
   password: 'admin',
-  firstname: 'Grace',
-  lastname: 'Festus',
+  fullname: 'Afol fghjk',
   emailaddress: 'festus.grace@festus.com',
   phonenumber: '08032167911',
-  role: 2,
-  gender: 'Female',
-  avatar: 'grace_festus.jpg',
-  contactaddress: '656 wertyuiop[jfh g fuy fu',
+  role: 2
 };
 
 const userId = 'cjoas4z9e0000ycsd47jffnp5';

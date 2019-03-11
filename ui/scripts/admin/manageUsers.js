@@ -5,14 +5,10 @@ async function handleSubmit(event) {
      staffId: signupForm.staffId.value,
      title: signupForm.title.value,
      password: signupForm.password.value,
-     firstname: signupForm.firstname.value,
-     lastname: signupForm.lastname.value,
+     fullname: signupForm.fullname.value,
      emailaddress: signupForm.emailaddress.value,
      phonenumber: signupForm.phoneNumber.value,
      role: signupForm.role.value,
-     gender: signupForm.gender.value,
-     avatar: signupForm.profileImage.value,
-     contactaddress: signupForm.address.value
    };
    const msg = await User.add(formData);
    if (msg) {

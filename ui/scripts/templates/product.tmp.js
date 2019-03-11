@@ -168,13 +168,12 @@ const ProductTemplate = (function() {
 const UserTemplate = (function() {
   const decoded = Auth.getDecodedToken();
   function view(users) {
-    const { id, staffid, firstname, lastname } = users;
+    const { id, staffid, fullname } = users;
     const row = document.createElement('tr');
     row.setAttribute('id', id);
     const dom = `
       <td>${staffid}</td>
-      <td>${lastname}</td>
-      <td>${firstname}</td>
+      <td>${fullname}</td>
       <td>
         <label class="userLabel">
           <input type="checkbox" name="makeAdmin" class="makeAdmin" /> Make Admin

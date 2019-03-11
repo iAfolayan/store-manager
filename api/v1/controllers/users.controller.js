@@ -18,7 +18,6 @@ const login = (req, res) => {
 
   client.query(`SELECT * FROM users WHERE staffid = '${staffId}'`, (err, data) => {
     if (err) {
-      console.log('----------', err);
       return helper.sendMessage(res, 500, 'Internal server error', 'danger');
     }
     if (data.rowCount === 0) return helper.sendMessage(res, 401, 'Invalid login credentials', 'danger');
@@ -30,7 +29,7 @@ const login = (req, res) => {
         id: data.rows[0].id,
         staffId: data.rows[0].staffid,
         role: data.rows[0].role,
-        firstname: data.rows[0].firstname
+        fullname: data.rows[0].fullname
       }, process.env.SECRET, {
         expiresIn: '1d'
       });
@@ -40,7 +39,7 @@ const login = (req, res) => {
 };
 
 const getAllUsers = (req, res) => {
-  client.query('SELECT id, staffid, firstname, lastname, phonenumber, role FROM users WHERE role != 3 AND role != 1', (err, data) => {
+  client.query('SELECT id, staffid, fullname, phonenumber, role FROM users WHERE role != 3 AND role != 1', (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal server error', 'danger');
     }
@@ -55,27 +54,16 @@ const createUser = (req, res) => {
     staffId,
     title,
     password,
-    firstname,
-    lastname,
+    fullname,
     emailaddress,
     phonenumber,
-    role,
-    gender,
-    contactaddress
+    role
   } = req.body;
 
-  // Validate user pofile image
-  let avatar = null;
-  if (req.file) {
-    avatar = req.body.filename;
-  } else {
-    avatar = 'defaultimage.jpg';
-  }
 
   // Form validation
   req.checkBody('staffId', 'Staff Number field is required').notEmpty();
-  req.checkBody('firstname', 'Firstname field is required').notEmpty();
-  req.checkBody('lastname', 'Lastname field is required').notEmpty();
+  req.checkBody('fullname', 'This field is required').notEmpty();
   req.checkBody('emailaddress', 'Email address field is required').notEmpty();
   req.checkBody('emailaddress', 'Invalid Email Address').isEmail();
   req.checkBody('phonenumber', 'Phone Number field is required').notEmpty();
@@ -83,12 +71,9 @@ const createUser = (req, res) => {
   req.checkBody('phonenumber', 'Incomplete Phone Number must be minimum of 11 characters')
     .isLength({ min: 11 });
   req.checkBody('role', 'Select type of User').notEmpty('');
-  req.checkBody('gender', 'Select gender').notEmpty();
-  req.checkBody('contactaddress', 'User contact address field is required').notEmpty();
 
   // check Errors
   const errors = req.validationErrors();
-
   if (errors) {
     return helper.sendMessage(res, 400, errors[0].msg, 'danger');
   }
@@ -100,11 +85,10 @@ const createUser = (req, res) => {
     if (data.rowCount === 1) return helper.sendMessage(res, 409, 'Duplicate staff id found');
     // password
     bcrypt.hash(password, 10, (errr, hash) => {
-      const query = `INSERT INTO users(id, staffid, title, password, firstname, lastname,
-         emailaddress, phonenumber, role, gender, avatar, contactaddress)
-          VALUES('${id}','${staffId}', '${title}', '${hash}', '${firstname}',
-           '${lastname}', '${emailaddress}', '${phonenumber}', ${role},
-            '${gender}', '${avatar}', '${contactaddress}') RETURNING *`;
+      const query = `INSERT INTO users(id, staffid, title, password, fullname,
+         emailaddress, phonenumber, role)
+          VALUES('${id}','${staffId}', '${title}', '${hash}', '${fullname}',
+          '${emailaddress}', '${phonenumber}', ${role}) RETURNING *`;
       client.query(query, (err, dataResult) => {
         if (err) {
           return helper.sendMessage(res, 500, 'Internal server error', 'danger');
@@ -182,7 +166,6 @@ const makeUserAnAdmin = (req, res) => {
 
   client.query(`UPDATE users SET role = 1 WHERE id='${userId}'`, (err, data) => {
     if (err) {
-      console.log(err)
       return helper.sendMessage(res, 500, 'Internal Server Error', 'danger');
     }
 

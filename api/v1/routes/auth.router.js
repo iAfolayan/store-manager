@@ -1,19 +1,19 @@
 import express from 'express';
-import multer from 'multer';
+// import multer from 'multer';
 import UserController from '../controllers/users.controller';
 import middleware from '../controllers/middleware.controller';
 import Validation from '../controllers/Validation';
 
-const upload = multer({ dest: './uploads/' });
+// const upload = multer({ dest: './uploads/' });
 
 
 const router = express.Router();
 
 router.post('/login', UserController.login);
 
-router.post('/signup', upload.single('useravatar'),
-  middleware.isUserAuthorized,
-  middleware.isUserAdmin,
+router.post('/signup',
+  // middleware.isUserAuthorized,
+  // middleware.isUserAdmin,
   UserController.createUser);
 
 router.get('/users', middleware.isUserAuthorized,

@@ -1,7 +1,13 @@
 import cuid from 'cuid';
+// import cloudinary from 'cloudinary';
 import client from '../db/index';
 import helper from '../utils';
 
+// cloudinary.config({
+//   cloud_name: process.env.CLOUDINARY_NAME,
+//   api_key: process.env.CLOUDINARY_API_KEY,
+//   api_secret: process.env.CLOUDINARY_API_SECRET
+// });
 /**
  * @description - Fetch all available products
  * @param {*} req - Request object
@@ -105,6 +111,7 @@ const createProduct = (req, res) => {
 
   const values = [id, productname, price, quantity, description, category,
     minimumallowed, image, createdon];
+  console.log('values----->', values);
   client.query(query, values, (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal Server Error');

@@ -13,14 +13,11 @@ CREATE TABLE users (
 	staffid varchar(25) NOT NULL,
 	title varchar(20) NULL,
 	password varchar(100) NOT NULL,
-	firstname varchar(50) NOT NULL,
-	lastname varchar(50) NOT NULL,
+	fullname varchar(50) NOT NULL,
 	emailaddress varchar(50) NOT NULL,
 	phonenumber varchar(20) NOT NULL,
 	role int2 NOT NULL,
-	gender varchar(20) NULL,
 	avatar text NOT NULL,
-	contactaddress text NOT NULL,
 	CONSTRAINT users_pk PRIMARY KEY (id),
 	CONSTRAINT users_un UNIQUE (staffid, emailaddress, phonenumber)
 );
@@ -109,18 +106,10 @@ ALTER TABLE sales_item OWNER TO postgres;
 GRANT ALL ON TABLE sales_item TO postgres;
 GRANT INSERT, SELECT, UPDATE, REFERENCES(salesid) ON sales_item TO postgres;
 
-INSERT INTO users (id,staffid,title,"password",firstname,lastname,emailaddress,phonenumber,"role",gender,avatar,contactaddress) VALUES 
-('cjobbz2i70000gwsd6cpwwx7','SM001','Miss','$2b$10$B4RDZ2IhVzc/xhPijuP7QunAF8jtVmaK/m5RQrOQnprhWZo5A4n4K','Afolayan','Isaiah','kun@kun.com','08032167944',1,'Male','null','Olunlade')
-,('cjobbz2i70000gwsd6cpwwx7y','SM002','Miss','$2b$10$ztopqc.8x.hxyPVPIGVHVeKUav1t0SbGdX7cmwiRWchGicX4pB2v.','Afolayan','Isaiah','olu@olu.com','07132564844',2,'Male','defaultimage.jpg','opomalu')
-,('cjoas4z9e0000ycsd47jffnp5','SM490','Miss','$2b$10$DbH0dthHCQ55Ssg52FPaj.FNgfDOUAx16DhkWGeKpw0zhE5As50vy','qertyuinvbm','wertyui','me@myge.com','08022167911',2,'Female','defaultimage.jpg','32jhgdwjhgfjc dcjhvjv')
-,('cjob79zq300005wsdb5i5jg1t','SX001','Chief','$2b$10$N6Xo9tnMIWQASqDGTieb9.LgKZWVOPb67fNqTEsRGzjDjaeYF1pSe','Isaiah','AFOLAYAN','iafolayaunle@gmail.com','08032267911',2,'1','defaultimage.jpg','Lagos
-Lagos')
-,('cjobbz2i70000gwsd6cpwwx7v','SX002','Mr.','$2b$10$4mwoeGXrPRJOxQgUBerR2.cfSLhWtaR5.qoRj6bJN8v9989eLaSBK','Isaiah','AFOLAYAN','olayanibikunle@gmail.com','08032367911',2,'1','defaultimage.jpg','Lagos
-Lagos')
-,('cjobdlrhr00046osd6k8u6ptc','SX003','Chief','$2b$10$lb4.H1w9uHLp5CWqvCPqk.PldDHK/8ZiVbtE38vqFhi03HHHPfsAe','Isaiah','AFOLAYAN','iafolaibikunle@gmail.com','08052167911',2,'2','defaultimage.jpg','Lagos
-Lagos')
-,('cjoe8qlha00000mx536s8qjsk','S0010','Chief','$2b$10$Xfsi.4../N2QweBumCh0Z.xSUbKUz4aIRcrZzktQXqIedMS/DUre.','Ayoide','Oluide','oluide.ayoide@gail.co','08214145211',2,'1','defaultimage.jpg','Opomalu')
-;
+INSERT INTO users (id,staffid,title,"password",fullname,emailaddress,phonenumber,"role",avatar) VALUES 
+('cjobbz2i70000gwsd6cpwwx7','SM001','Miss','$2b$10$B4RDZ2IhVzc/xhPijuP7QunAF8jtVmaK/m5RQrOQnprhWZo5A4n4K','Afolayan Isaiah','kun@kun.com','08032167944',1)
+,('cjobbz2i70000gwsd6cpwwx7y','SM002','Miss','$2b$10$ztopqc.8x.hxyPVPIGVHVeKUav1t0SbGdX7cmwiRWchGicX4pB2v.','Afolayan Isaiah','olu@olu.com','07132564844',2)
+,('cjoas4z9e0000ycsd47jffnp5','SM490','Miss','$2b$10$DbH0dthHCQ55Ssg52FPaj.FNgfDOUAx16DhkWGeKpw0zhE5As50vy','qertyuinvbm wertyui','me@myge.com','08022167911',2);
 
 /* INSERT INTO products (id,productname,price,quantity,description,category,minimumallowed,image,createdon) VALUES 
 (1,'Wireless bluetooth',3000,780,'Wireless cord bluetooth','Mobile',25,' image.jpg','2018-10-25')
