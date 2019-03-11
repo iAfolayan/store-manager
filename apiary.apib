@@ -1,0 +1,332 @@
+FORMAT: 1A
+HOST: https://store-manager-iafolayan.herokuapp.com/api/v1/
+
+# Store Manager
+
+Store Manager is a web application that helps store owners manage sales and product inventory records.
+
+## Home [/]
+
+### Welcome [GET]
+
++ Response 200 (application/json)
+
+            {
+                "status":: true,
+                "msg": "Welcome to Store Manager 1.0"
+            }
+
+## User [/auth]
+### Login [POST /auth/login]
+
++ Request (application/json)
+
+        {
+            "staffid":"ABC001",
+            "password": "yourpassword"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /auth/login
+
+    + Body
+
+            {
+                "status": true,
+                "msg": "Login successful",
+                authentication: token
+            }
+
+### Signup [POST /auth/signup]
+
++ Request (application/json)
+
+        {
+            "staffId": "ABC002",
+            "title": "Miss",
+            "password": "userpassword",
+            "firstname": "someone",
+            "lastname": "Somewhere",
+            "emailaddress": "someone@somewhere.com",
+            "phonenumber": "080xxxxxxxx",
+            "role": "sale attendant",
+            "gender": "Female",
+            "contactaddress": "PO. BOX 32 Soewhere, Nigeria"
+        }
+        
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /signup
+        
+    + Body
+       
+            {
+                "msg": "New user successfully created"
+            }
+
+### View Users [GET /auth/users]
+
++ Response 200 (application/json)
+
+    + Headers
+    
+            Location: users
+    
+    + Body
+    
+            {
+                "status": true,
+                "msg": "Record retrieved successfully",
+                "data": [
+                            {
+                                "staffid": "ABC002",
+                                "firstname": "someone",
+                                "lastname": "Somewhere",
+                                "phonenumber": "080xxxxxxxx",
+                                "role": 1
+                            },
+                        ]
+            }
+
+### Reset password [POST /auth/reset]
+
++ Request (application/json)
+
+        {
+            "emailaddress": "someone@somewhere.com"
+        }
++ Response 200 (application/json)
+
+     + Headers
+     
+            Location: /reset
+            
+    + Body
+    
+            {
+                "status": true,
+                "msg": "A mail has been sent to someone@somewhere.com. Kindly check and follow the link to reset your password"
+            }
+
+### Change password [PUT /changepassword]
+
++ Request (application/json)
+        
+        {
+            "newpassword": "newpasswordhere",
+            "confirpassword": "newpasswordhere"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+    
+            Location: /changepassword
+    
+    + Body
+    
+            {
+                "status": true,
+                "msg": "Password Updated successfully"
+            }
+
+## Products [/products/]
+Only admin can access this routes
+### Create a Product [POST /products]
+
++ Request (application/json)
+
+        {
+            "productname":"Product One",
+            "price": 850,
+            "quantity": 500,
+            "description": "Latest product for your enjoyment",
+            "category": "Phone",
+            "minimumallowed": 5
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /products
+
+    + Body
+    
+            {
+                "status": true,
+                "msg": "Product created successful",
+                "data": {
+                    "id": "cjog9smr200002wsda66sqgng",
+                    "productname": "Product One",
+                    "price": 850,
+                    "quantity": 500,
+                    "description": "Latest product for your enjoyment",
+                    "category": "Phone",
+                    "minimumallowed": 5,
+                    "image": "defaultImage.jpg",
+                    "createdon": "2018-11-12T23:00:00.000Z"
+                }
+            }
+
+### Get all Products [GET /products]
+
++ Response 200 (application/json)
+
+    + Headers
+    
+                Location: /products
+
+   + Body
+   
+            {
+                "id": "bnjj4r7rbhywkhf8y5hj48",
+                "productname": "Investment Five",
+                "price": 850,
+                "quantity": 55,
+                "description": "This is a product of Investment five",
+                "category": "Mobile",
+                "minimumallowed": 5,
+                "image": "defaultImage.jpg    ",
+                "createdon": "2018-11-12T23:00:00.000Z"
+            }
+            
+### Get a Product [GET /products/:productid]
+
++ Response 200 (application/json)
+
+   + Headers
+   
+                Location: /products/:productid
+
+   + Body
+   
+            {
+                "status": true,
+                "msg": "Record retrieved successfully",
+                "data": {
+                    "id": "bnjj4r7rbhywkhf8y5hj48",
+                    "productname": "Investment Five",
+                    "price": 850,
+                    "quantity": 500,
+                    "description": "This is a product of Investment five",
+                    "category": "Mobile",
+                    "minimumallowed": 5,
+                    "image": "defaultImage.jpg    ",
+                    "createdon": "2018-11-12T23:00:00.000Z"
+                }
+            }
+### Edit a Product [PUT /products/:productid]
+
++ Request (application/json)
+
+            {
+                "id": "bnjj4r7rbhywkhf8y5hj48",
+                "productname": "Investment Six",
+                "price": 850,
+                "quantity": 55,
+                "description": "This is a product of Investment Six",
+                "category": "Mobile",
+                "minimumallowed": 5,
+                "image": "defaultImage.jpg    ",
+                "createdon": "2018-11-12T23:00:00.000Z"
+            }
+
++ Response 201 (application/json)
+
+   + Headers
+
+                Location: /products/:productid
+
+   + Body
+   
+            {
+                "status": true,
+                "msg": "Product updated successful",
+                "data": {
+                    "id": "bnjj4r7rbhywkhf8y5hj48",
+                    "productname": "Product Seven",
+                    "price": 550,
+                    "quantity": 20,
+                    "description": "This is product Seven",
+                    "category": "Mobile",
+                    "minimumallowed": 15,
+                    "image": "image.png           ",
+                    "createdon": "2018-11-12T23:00:00.000Z"
+                }
+            }
+### Delete a Product [DELETE /products/:productid]
+
++ Response 200 (application/json)
+
+   + Headers
+   
+            Location: /products/:productid
+
+   + Body
+   
+            {
+              "msg": "Product deleted"
+            }
+           
+## Sales [/sales/]
+
+### Create a Sale [POST /sales]
+
++ Request (application/json)
+
+        {
+           "buyername": "someone",
+           "buyeremail": "someone@omewhere.com",
+           "buyeraddress": "FESTAC Town",
+           "buyerphone": "080xxxxxxxx",
+            "items": [{
+                 "productid": "nhghag7dg3jbjehgut7",
+                 "quantity": 34,
+                 "price": 250
+                }, {
+                "productid": "fhfg67fhj647648746bvnbklciofe",
+                "quantity":10,
+                "price": 250
+                },{
+                "productid": "bccb324nbndbfvnv",
+                "quantity":20,
+                "price": 500
+            }]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+    
+                Location: /sales
+
+    + Body
+    
+                {
+                  "status": true,
+                  "msg":"Sales Record was successfully created"
+                }
+
+### Get all sales order [GET /sales]
+
++ Response 200 (application/json)
+
+    + Headers
+        
+                Location: /sales
+    
+    + Body
+    
+### Fetch a single sale order [GET /sales/saleid]
+
++ Response 200 (application/json)
+
+    + Headers
+    
+    + Body
