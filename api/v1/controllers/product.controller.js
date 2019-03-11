@@ -88,11 +88,6 @@ const createProduct = (req, res) => {
   req.checkBody('minimumallowed', 'Minimum Allowed field is required').notEmpty();
   req.checkBody('minimumallowed', 'Minimum Allowed can only be an integer value').isNumeric();
 
-  // Validate user pofile image
-  let image = productImage;
-  // Validate user pofile image
-
-  image = 'defaultImage.jpg';
 
   if (!price.toString().match(/^[0-9]+$/)) return helper.sendMessage(res, 400, 'Invalid Price, Only integer allowed');
 
@@ -110,7 +105,7 @@ const createProduct = (req, res) => {
   }
 
   const values = [id, productname, price, quantity, description, category,
-    minimumallowed, image, createdon];
+    minimumallowed, productImage, createdon];
   console.log('values----->', values);
   client.query(query, values, (err, data) => {
     if (err) {
