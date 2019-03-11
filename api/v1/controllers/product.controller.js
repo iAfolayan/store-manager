@@ -106,7 +106,6 @@ const createProduct = (req, res) => {
 
   const values = [id, productname, price, quantity, description, category,
     minimumallowed, productImage, createdon];
-  console.log('values----->', values);
   client.query(query, values, (err, data) => {
     if (err) {
       return helper.sendMessage(res, 500, 'Internal Server Error');
